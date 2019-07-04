@@ -2,5 +2,5 @@
 
 int main()
 {
-    printf("%d\n", INIT_MONEY);
+    printf("hello world\n");
 }
