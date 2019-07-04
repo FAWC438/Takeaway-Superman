@@ -13,10 +13,12 @@
 #include <string.h>
 #include <time.h>
 //#include<algorithm>
-#include "consts.h"
-#include "structure.h"
 #include "./IO/inputByFile.h"
 #include "./IO/inputByKey.h"
-#include "../List/OrderListFunction.h"
+#include "./ListFunction/pop_front.h"
+#include "./ListFunction/push_back.h"
+#include "./ListFunction/swap_order.h"
+#include "consts.h"
+#include "structure.h"
 
 #endif
