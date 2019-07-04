@@ -17,6 +17,8 @@ const int FINE_SECOND_TIME = 60; // 超时时间，第二次超时倒闭
 const int MONEY_GAIN_ONE = 10;   // 完成一单获得的钱
 const int MAP_X = 17;            // 地图X大小
 const int MAP_Y = 17;            // 地图Y大小
+const int COMPANY_X = 7;         //公司所在X大小
+const int COMPANY_Y = 8;         //公司所在Y大小
 
 /*
     公司状态变量
@@ -29,7 +31,7 @@ int CompanyOrderSum = 0;      // 公司接单数
 int CompanyOrderFinish = 0;   // 公司完成数
 int CompanyOrderOverTime = 0; // 公司超时单数
 
-OrderList *AllOrderLog; // 全部订单记录
-RiderList *AllRiderLog; // 全部骑手记录
+OrderList *AllOrderLog; // 全部订单记录(头结点)
+RiderList *AllRiderLog; // 全部骑手记录(头结点)
 
 #endif

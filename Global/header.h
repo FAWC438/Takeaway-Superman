@@ -18,8 +18,9 @@
 #include "./Functions/push_back_order.h"
 #include "./Functions/push_back_rider.h"
 #include "./Functions/swap_order.h"
-#include "./IO/inputByFile.h"
-#include "./IO/inputByKey.h"
+#include "./Functions/orderFunctions.h"
+#include "./Functions/riderFunctions.h"
+#include "./IO/input.h"
 #include "./IO/output.h"
 
 #endif
