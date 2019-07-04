@@ -1,4 +1,6 @@
-#include <./Global/header.h>
+#ifndef _INPUTBYFILE
+#define _INPUTBYFILE
+#include "../Global/header.h"
 
 int inputFileOrder()
 {
@@ -17,6 +19,7 @@ int inputFileOrder()
         p->end_time = p->begin_time + FINE_SECOND_TIME;
         p->warn_time = p->begin_time + FINE_FIRST_TIME;
         CompanyOrderSum++;
-        push_back(p, AllOrederLog);
+        push_back(p, AllOrderLog);
     }
 }
+#endif

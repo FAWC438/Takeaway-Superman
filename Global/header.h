@@ -5,7 +5,6 @@
 
 #ifndef _HEADER
 #define _HEADER
-
 #include <io.h>
 #include <math.h>
 #include <stdio.h>
@@ -15,5 +14,6 @@
 //#include<algorithm>
 #include "consts.h"
 #include "structure.h"
-
+#include "../IO/output.h"
+#include "../IO/inputByFile.h"
 #endif
