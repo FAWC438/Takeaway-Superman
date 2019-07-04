@@ -18,7 +18,7 @@ typedef struct _Order // 订单
     int status;         // 订单状态 0未接单，1取餐，2送餐，3完成
 } Order;
 
-typedef struct _OrderList // 订单列表
+typedef struct _OrderList // 订单链表
 {
     struct _OrderList *Pre_order; // 上一个订单
     struct _OrderList *Nxt_order; // 下一个订单
