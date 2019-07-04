@@ -2,9 +2,10 @@
 
 Order *pop_front_order(OrderList *List) //订单出队首
 {
-    Order *FrontOrder = List->Cur_order;
+    Order *FrontOrder = List->Nxt_order->Cur_order;
     List = List->Nxt_order;
     free(List->Pre_order);
     List->Pre_order = NULL;
+    List->Cur_order = NULL;
     return FrontOrder;
 }
