@@ -2,5 +2,6 @@
 
 int main()
 {
-    printf("hello world\n");
+    printf("INIT_MONEY:%d\n",INIT_MONEY);
+    return 0;
 }
