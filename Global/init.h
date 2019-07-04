@@ -17,5 +17,4 @@ void initMap()
 		}
 	}
 }
-
 #endif

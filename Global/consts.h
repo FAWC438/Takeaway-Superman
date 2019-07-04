@@ -17,6 +17,8 @@ const int FINE_SECOND_TIME = 60; // 超时时间，第二次超时倒闭
 const int MONEY_GAIN_ONE = 10;   // 完成一单获得的钱
 const int MAP_X = 17;            // 地图X大小
 const int MAP_Y = 17;            // 地图Y大小
+const int COMPANY_X = 7;         //公司所在X大小
+const int COMPANY_Y = 8;         //公司所在Y大小
 
 /*
     公司状态变量
