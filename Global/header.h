@@ -15,9 +15,10 @@
 #include "./IO/inputByFile.h"
 #include "./IO/inputByKey.h"
 #include "./IO/output.h"
-#include "./ListFunction/pop_front.h"
-#include "./ListFunction/push_back.h"
+#include "./ListFunction/pop_front_order.h"
+#include "./ListFunction/push_back_order.h"
 #include "./ListFunction/swap_order.h"
+#include "./ListFunction/push_back_order.h"
 #include "consts.h"
 #include "structure.h"
 
