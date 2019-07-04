@@ -1,8 +1,7 @@
 #include "./Global/header.h"
 
-void assignOrder(int RiderID) //把队首订单放入对应骑手的背包
+void assignOrder(Order *AOrder, int RiderID) //把订单放入对应骑手的背包
 {
-    Order *FrontOrder = pop_front_order(AllOrderLog);
     RiderList *FindRider = AllRiderLog->Nxt_rider;
     while (FindRider && FindRider->Cur_rider->id != RiderID) //找到ID为RiderID的骑手
         FindRider = FindRider->Nxt_rider;
@@ -13,7 +12,7 @@ void assignOrder(int RiderID) //把队首订单放入对应骑手的背包
     }
     else
     {
-        push_back_order(FrontOrder, FindRider->Cur_rider->Bag); //将队首订单放入骑手背包
-        FrontOrder->status = 1;                                 //订单的状态变为“取餐”
+        AOrder->status = 1;                                 //订单的状态变为“取餐”
+        push_back_order(AOrder, FindRider->Cur_rider->Bag); //将订单放入骑手背包
     }
 }
