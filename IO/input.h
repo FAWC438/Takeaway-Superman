@@ -1,5 +1,4 @@
-
-#include "./Global/header.h"
+#include "../Global/header.h"
 
 int inputFileOrder()
 {

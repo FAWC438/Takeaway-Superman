@@ -1,7 +1,7 @@
 
 /*
     变量与常量
- */
+*/
 
 #ifndef _VARIABLE
 #define _VARIABLE
@@ -31,7 +31,14 @@ int CompanyOrderSum = 0;      // 公司接单数
 int CompanyOrderFinish = 0;   // 公司完成数
 int CompanyOrderOverTime = 0; // 公司超时单数
 
-OrderList *AllOrderLog; // 全部订单记录(头结点)
-RiderList *AllRiderLog; // 全部骑手记录(头结点)
+<<<<<<< HEAD
+OrderList *AllOrderLog = creatRiderList();; // 全部订单记录(头结点)
+RiderList *AllRiderLog = creatOrderList();; // 全部骑手记录(头结点)
+=======
+int Map[17][17];    // 输出用，0为道路，1为普通房屋，2为餐厅，3为宿舍，4为骑手
+
+OrderList *AllOrderLog; // 全部订单记录
+RiderList *AllRiderLog; // 全部骑手记录
+>>>>>>> 93825f77f7663a116fc5091072b5cadad6b09a5c
 
 #endif
