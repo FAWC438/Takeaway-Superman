@@ -14,6 +14,13 @@
 //#include<algorithm>
 #include "consts.h"
 #include "structure.h"
+<<<<<<< HEAD
 #include "../IO/output.h"
 #include "../IO/inputByFile.h"
+=======
+#include "./IO/inputByFile.h"
+#include "./IO/inputByKey.h"
+#include "../List/OrderListFunction.h"
+
+>>>>>>> 690a1b9b7071ecb76883829fa0fe8816c4c9a01d
 #endif
