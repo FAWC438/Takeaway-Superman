@@ -22,9 +22,9 @@ const int MAP_Y = 17;            // 地图Y大小
     公司状态变量
     为区分全局常量，全局变量命名如下所示
  */
-int CompanyMoney = 1000;     // 当前公司有多少钱
-int CompanyRiderCount = 0;   // 公司骑手数量
-int Time = 0;                // 当前时间，即Time个时间单位
+int CompanyMoney = 1000;      // 当前公司有多少钱
+int CompanyRiderCount = 0;    // 公司骑手数量
+int Time = 0;                 // 当前时间，即Time个时间单位
 int CompanyOrderSum = 0;      // 公司接单数
 int CompanyOrderFinish = 0;   // 公司完成数
 int CompanyOrderOverTime = 0; // 公司超时单数
