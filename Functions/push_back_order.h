@@ -1,4 +1,4 @@
-#include "./Global/header.h"
+#include "../Global/header.h"
 
 void push_back_order(Order *NewOrder, OrderList *List) //订单入队尾
 {

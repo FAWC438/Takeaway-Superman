@@ -1,4 +1,4 @@
-#include "./Global/header.h"
+#include "../Global/header.h"
 
 void swap_order(OrderList *List1, OrderList *List2) //交换两个订单
 {

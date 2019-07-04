@@ -1,4 +1,4 @@
-#include "./Global/header.h"
+#include "../Global/header.h"
 
 Order *pop_front_order(OrderList *List) //订单出队首
 {
