@@ -22,8 +22,4 @@ int inputFileOrder()
     }
     free(p); // 释放p的内存
     return 1;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 3f18f925c68dee644bebcc8f19433a7490ad8301
