@@ -25,8 +25,11 @@ const int MAP_Y = 17;            // 地图Y大小
 int CompanyMoney = 1000;     // 当前公司有多少钱
 int CompanyRiderCount = 0;   // 公司骑手数量
 int Time = 0;                // 当前时间，即Time个时间单位
-int CompanyBillSum = 0;      // 公司接单数
-int CompanyBillFinish = 0;   // 公司完成数
-int CompanyBillOverTime = 0; // 公司超时单数
+int CompanyOrderSum = 0;      // 公司接单数
+int CompanyOrderFinish = 0;   // 公司完成数
+int CompanyOrderOverTime = 0; // 公司超时单数
+
+OrderList *AllOrderLog; // 全部订单记录
+RiderList *AllRiderLog; // 全部骑手记录
 
 #endif

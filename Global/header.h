@@ -6,6 +6,7 @@
 #ifndef _HEADER
 #define _HEADER
 
+#include <io.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,6 +15,8 @@
 //#include<algorithm>
 #include "consts.h"
 #include "structure.h"
+#include "./IO/inputByFile.h"
+#include "./IO/inputByKey.h"
 #include "../List/OrderListFunction.h"
 
 #endif
