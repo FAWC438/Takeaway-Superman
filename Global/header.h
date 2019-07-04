@@ -17,6 +17,9 @@
 #include "../IO/output.h"
 #include "../IO/inputByFile.h"
 #include "../IO/inputByKey.h"
-#include "../List/OrderListFunction.h"
+#include "../ListFunction/pop_front.h"
+#include "../ListFunction/push_back.h"
+#include "../ListFunction/swap_order.h"
+
 
 #endif

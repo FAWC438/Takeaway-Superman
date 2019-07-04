@@ -1,7 +1,7 @@
 
 /*
     变量与常量
- */
+*/
 
 #ifndef _VARIABLE
 #define _VARIABLE
