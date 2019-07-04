@@ -15,5 +15,7 @@
 //#include<algorithm>
 #include "consts.h"
 #include "structure.h"
+#include"./IO/inputByFile.h"
+#include"./IO/inputByKey.h"
 
 #endif
