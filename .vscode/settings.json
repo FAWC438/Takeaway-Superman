@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "complex": "cpp",
+        "*.tcc": "cpp",
+        "vector": "cpp"
+    },
+    "git.ignoreLimitWarning": true
+}
