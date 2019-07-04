@@ -1,6 +1,5 @@
-#ifndef _OUTPUTBYKEY
-#define _OUTPUTBYKEY
-#include "../Global/header.h"
+
+#include "./Global/header.h"
 
 void outputOnFileKey()
 {
@@ -84,5 +83,3 @@ void outputOnFileKey()
 
     fclose(fPtr);
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef _INPUTBYFILE
-#define _INPUTBYFILE
+
 #include "../Global/header.h"
 
 int inputFileOrder()
@@ -25,4 +24,3 @@ int inputFileOrder()
     free(p); // 释放p的内存
     return 1;
 }
-#endif
