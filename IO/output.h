@@ -20,8 +20,9 @@ void outputOnFileKey()
     fprintf(fPtr,"完成数: %d; ", CompanyOrderFinish);
     printf("结单: ");
     fprintf(fPtr, "结单: ");
-    // 遍历全部订单判断是否有此时刻结单的
+    // 遍历全部订单判断是否有此时刻结单的 
     OrderList *HeadOrder = AllOrderLog;
+    HeadOrder = HeadOrder->Nxt_order;
     int flag = 0; // 判断是否为第一个输出的订单号
     while(HeadOrder)
     {
@@ -49,6 +50,7 @@ void outputOnFileKey()
     fprintf(fPtr, "罚单: ");
     // 遍历此时刻是否有罚单的
     HeadOrder = AllOrderLog;
+    HeadOrder = HeadOrder->Nxt_order;
     flag = 0;
     while(HeadOrder)
     {
@@ -72,6 +74,7 @@ void outputOnFileKey()
     fprintf(fPtr,";\n");
     // 输出各骑手状态
     RiderList *HeadRider = AllRiderLog;
+    HeadRider = HeadRider->Nxt_rider;
     while(HeadRider)
     {
         printf("骑手%d位置: %d, %d; ", HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
@@ -82,4 +85,98 @@ void outputOnFileKey()
     }
 
     fclose(fPtr);
+}
+
+void outputMap()
+{
+    int i, j, k;
+
+    initMap();  // 初始化地图
+    // 初始化房屋类型
+    OrderList *HeadOrder = AllOrderLog;
+    HeadOrder = HeadOrder->Nxt_order;
+    whlie(HeadOrder)
+    {
+        Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2;
+        Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3;
+        HeadOrder = HeadOrder->Nxt_order;
+    }
+    // 初始化骑手位置
+    RiderList *HeadRider = AllRiderLog;
+    HeadRider = HeadRider->Nxt_rider;
+    while(HeadRider)
+    {
+        Map[HeadRider->Cur_rider->rider_x][HeadRider->Cur_rider->rider_y] = 4 // 骑手地图更新
+        HeadRider = HeadRider->Nxt_rider;
+    }
+
+	for (i = 0; i <= 16; i++) {
+		if (i % 2 == 0) {   // 有房子的行
+			for (k = 0; k <= 3; k++) {
+				for (j = 0; j <= 16; j++) {
+					if (j % 2 == 0) {
+						if (k == 0) {
+							printf("__________");
+						}
+						else if (k == 1) {
+							printf("|        |");
+						}
+						else if (k == 2) {
+							printf("|  ");
+							/*
+                            if (Map[i][j] == 0) { // 道路
+								printf("    ");
+							}
+							*/
+							if (Map[i][j] == 1) { // 房子
+								printf("    ");
+							}
+							else if (Map[i][j] == 2) { // 餐厅
+								printf("餐厅");
+							}
+							else {  // 宿舍
+								printf("宿舍");
+							}
+							printf("  |");
+						}
+						else {
+							printf("|________|");
+						}
+					}
+					else {
+						if (k == 2) {
+							if (Map[i][j] == 0) { // 道路
+								printf("    ");
+							}
+							else if (Map[i][j] == 4) { // 骑手
+								printf("骑手");
+							}
+						}
+						else {
+							printf("    ");
+						}
+					}
+				}
+				printf("\n");
+			}
+		}
+		else {  // 无房子的行
+			for (int j = 0; j <= 16; j++) {
+				if (j % 2 == 0) {   
+					printf("   ");
+					if (Map[i][j] == 0) {
+						printf("    ");
+					}
+					if (Map[i][j] == 4) {
+						printf("骑手");
+					}
+					printf("   ");
+				}
+				else {
+					printf("    ");
+				}
+			}
+			printf("\n");
+		}
+	}
 }
