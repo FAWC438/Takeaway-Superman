@@ -1,6 +1,6 @@
 #include "../Global/header.h"
 
-void push_back(Order *NewOrder, OrderList *List) //订单入队尾
+void push_back_order(Order *NewOrder, OrderList *List) //订单入队尾
 {
     OrderList *NewOrderList = (OrderList *)malloc(sizeof(OrderList));
     NewOrderList->Cur_order = NewOrder;

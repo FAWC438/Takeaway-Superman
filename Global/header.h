@@ -5,19 +5,21 @@
 
 #ifndef _HEADER
 #define _HEADER
+#include "consts.h"
+#include "structure.h"
 #include <io.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
+#include "./Functions/pop_front_order.h"
+#include "./Functions/push_back_order.h"
+#include "./Functions/push_back_rider.h"
+#include "./Functions/swap_order.h"
 #include "./IO/inputByFile.h"
 #include "./IO/inputByKey.h"
 #include "./IO/output.h"
-#include "./OrderListFunction/pop_front.h"
-#include "./OrderListFunction/push_back.h"
-#include "./OrderListFunction/swap_order.h"
-#include "consts.h"
-#include "structure.h"
 
 #endif
