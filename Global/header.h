@@ -15,6 +15,7 @@
 #include "structure.h"
 #include "consts.h"
 #include "./Functions/creatList.h"
+#include "./Functions/init.h"
 #include "./Functions/orderFunctions.h"
 #include "./Functions/pop_front_order.h"
 #include "./Functions/push_back_order.h"
@@ -23,6 +24,5 @@
 #include "./Functions/swap_order.h"
 #include "./IO/input.h"
 #include "./IO/output.h"
-#include "init.h"
 
 #endif

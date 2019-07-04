@@ -1,5 +1,7 @@
 #include "../Global/header.h"
-
+/*
+    删除头部订单
+ */
 Order *pop_front_order(OrderList *List) //订单出队首
 {
     Order *FrontOrder = List->Cur_order;

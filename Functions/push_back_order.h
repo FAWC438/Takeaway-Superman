@@ -1,5 +1,7 @@
 #include "../Global/header.h"
-
+/*
+    添加尾部订单
+ */
 void push_back_order(Order *NewOrder, OrderList *List) //订单入队尾
 {
     OrderList *NewOrderList = (OrderList *)malloc(sizeof(OrderList));
