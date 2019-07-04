@@ -6,6 +6,7 @@
 #ifndef _HEADER
 #define _HEADER
 
+#include <io.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
