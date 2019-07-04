@@ -28,11 +28,8 @@ int Time = 0;                // 当前时间，即Time个时间单位
 int CompanyOrderSum = 0;      // 公司接单数
 int CompanyOrderFinish = 0;   // 公司完成数
 int CompanyOrderOverTime = 0; // 公司超时单数
-<<<<<<< HEAD
 
 OrderList *AllOrderLog; // 全部订单记录
 RiderList *AllRiderLog; // 全部骑手记录
-=======
->>>>>>> 19c54647ac520246b0aee5b62137f2daf7caa28d
 
 #endif
