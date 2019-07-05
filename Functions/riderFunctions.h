@@ -18,7 +18,7 @@ int hireRider()
     if (p->Cur_rider)
         newRider->id = p->Cur_rider->id + 1;
     else
-        newRider->id = 1;
+        newRider->id = 1; // 骑手id从1开始
     newRider->rider_x = COMPANY_X;
     newRider->rider_y = COMPANY_Y;
     newRider->Bag = creatOrderList(); // 骑手的背包是一个订单链表
