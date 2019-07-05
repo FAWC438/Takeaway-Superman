@@ -175,3 +175,29 @@ void riderMove(int rider_id, int pos_x, int pos_y)
         TODO:更改骑手的位置，仅移动一个单位
      */
 }
+
+/*
+    所有骑手进行移动，作为主函数的一部分，无参数和返回值
+    目前的策略是派背包里的第一个单
+ */
+void AllRiderMove()
+{
+    RiderList *tempRider = AllRiderLog->Nxt_rider;
+    while (tempRider)
+    {
+        int posX, posY;
+        OrderList *findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
+        if (findOrder->Cur_order->status == 1) //找到第一个订单对应的位置
+        {
+            posX = findOrder->Cur_order->rest_x;
+            posY = findOrder->Cur_order->rest_y;
+        }
+        else if (findOrder->Cur_order->status == 2)
+        {
+            posX = findOrder->Cur_order->cust_x;
+            posY = findOrder->Cur_order->cust_y;
+        }
+        riderMove(tempRider, posX, posY); //骑手移动
+        tempRider = tempRider->Nxt_rider; //换到下一个奇搜
+    }
+}
