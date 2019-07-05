@@ -17,4 +17,8 @@ void initMap()
 		}
 	}
 }
+
+/*
+	初始化
+ */
 #endif
