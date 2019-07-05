@@ -1,6 +1,11 @@
 
 #include "../Global/header.h"
 
+// TODO: 打印骑手轨迹以调整。
+
+/*
+    输出在文件和命令行中
+*/
 void outputOnFileKey()
 {
     FILE *fPtr;
@@ -54,7 +59,7 @@ void outputOnFileKey()
     flag = 0;
     while (HeadOrder)
     {
-        if (Time - HeadOrder->Cur_order->begin_time > FINE_FIRST_TIME && HeadOrder->Cur_order->status != 3) // 起始时间距现在大于30且未完成
+        if (Time - HeadOrder->Cur_order->begin_time == FINE_FIRST_TIME + 1 && HeadOrder->Cur_order->status != 3) // 起始时间距现在等于31且未完成
         {
             if (!flag)
             {
@@ -86,8 +91,10 @@ void outputOnFileKey()
 
     fclose(fPtr);
 }
-
-void outputMap()
+/*
+    以地图的形式输出在屏幕上
+*/
+void outputMap()    // 餐客形式没考虑
 {
     int i, j, k;
 
@@ -97,8 +104,12 @@ void outputMap()
     HeadOrder = HeadOrder->Nxt_order;
     whlie(HeadOrder)
     {
-        Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2; // 餐厅地图更新
-        Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3; // 宿舍地图更新
+        // 待与停靠函数协调
+        if((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3) || (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time != Time))
+        {
+            Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2; // 餐厅地图更新
+            Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3; // 宿舍地图更新
+        }
         HeadOrder = HeadOrder->Nxt_order;
     }
     // 初始化骑手位置
