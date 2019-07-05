@@ -89,93 +89,102 @@ void riderMove(int rider_id, int pos_x, int pos_y)
     *cur_y = p->Cur_rider->rider_y;
     // TODO: 测试移动单元
     // 先左右
-    if(i % 2 == 1 && j % 2 == 0)    // 在横向道路上
+    if(*cur_y < pos_y - 1 || *cur_y > pos_y + 1)
     {
-        if(*cur_y > pos_y + 1) // 在右边就要往左走
+        int i = *cur_x, j = *cur_y;
+        if(i % 2 == 1 && j % 2 == 0)    // 在横向道路上
         {
-            (*cur_y) -= 2;
-        }
-        else if(*cur_y < pos_y - 1) // 在左边要往右走
-        {
-            (*cur_y) += 2;
-        }
-    }
-    else if(i % 2 == 0 && j % 2 == 1)   // 在纵向道路上
-    {
-        if(*cur_y > pos_y + 1) // 在右边就要往左走
-        {
-            if(pos_x >= *cur_x)  // 目标在下或同行
+            if(*cur_y > pos_y + 1) // 在右边就要往左走
             {
-                (*cur_x)++;
-                (*cur_y)--;
+                (*cur_y) -= 2;
             }
-            else if(pos_x < *cur_x) // 目标在上
+            else if(*cur_y < pos_y - 1) // 在左边要往右走
             {
-                (*cur_x)--;
-                (*cur_y)--;
+                (*cur_y) += 2;
             }
         }
-        if(*cur_y < pos_y + 1) // 在右边就要往左走
+        else if(i % 2 == 0 && j % 2 == 1)   // 在纵向道路上
         {
-            if(pos_x >= *cur_x)  // 目标在下或同行
+            if(*cur_y > pos_y + 1) // 在右边就要往左走
             {
-                (*cur_x)++;
-                (*cur_y)++;
+                if(pos_x >= *cur_x)  // 目标在下或同行
+                {
+                    (*cur_x)++;
+                    (*cur_y)--;
+                }
+                else if(pos_x < *cur_x) // 目标在上
+                {
+                    (*cur_x)--;
+                    (*cur_y)--;
+                }
             }
-            else if(pos_x < *cur_x) // 目标在上
+            if(*cur_y < pos_y + 1) // 在右边就要往左走
             {
-                (*cur_x)--;
-                (*cur_y)++;
+                if(pos_x >= *cur_x)  // 目标在下或同行
+                {
+                    (*cur_x)++;
+                    (*cur_y)++;
+                }
+                else if(pos_x < *cur_x) // 目标在上
+                {
+                    (*cur_x)--;
+                    (*cur_y)++;
+                }
             }
         }
     }
     // 后上下
-    if(i % 2 == 0 && j % 2 == 1)    // 在纵向道路上
+    else
     {
-        if(*cur_x > pos_x + 1) // 在下边就要往上走
+        int i = *cur_x, j = *cur_y;
+        if(i % 2 == 0 && j % 2 == 1)    // 在纵向道路上
         {
-            (*cur_x) -= 2;
+            if(*cur_x > pos_x + 1) // 在下边就要往上走
+            {
+                (*cur_x) -= 2;
+            }
+            else if(*cur_x < pos_x - 1) // 在上边要往下走
+            {
+                (*cur_x) += 2;
+            }
         }
-        else if(*cur_x < pos_x - 1) // 在上边要往下走
+        else if(i % 2 == 0 && j % 2 == 1)   // 在横向道路上
         {
-            (*cur_x) += 2;
+            if(*cur_x > pos_x + 1) // 在下边就要往上走
+            {
+                if(pos_y >= *cur_y)  // 目标在右或同列
+                {
+                    (*cur_y)++;
+                    (*cur_x)--;
+                }
+                else if(pos_y < *cur_y) // 目标在左
+                {
+                    (*cur_y)--;
+                    (*cur_x)--;
+                }
+            }
+            if(*cur_x < pos_x + 1) // 在上边就要往下走
+            {
+                if(pos_y >= *cur_y)  // 目标在右或同列
+                {
+                    (*cur_y)++;
+                    (*cur_x)++;
+                }
+                else if(pos_y < *cur_y) // 目标在左
+                {
+                    (*cur_y)--;
+                    (*cur_x)++;
+                }
+            }
+        }
+        else    // 异常情况处理
+        {
+            // TODO: 加入终止函数？
+            printf("咋骑手跑到房子里了？\n");
+            //exit(0);
         }
     }
-    else if(i % 2 == 0 && j % 2 == 1)   // 在横向道路上
-    {
-        if(*cur_x > pos_x + 1) // 在下边就要往上走
-        {
-            if(pos_y >= *cur_y)  // 目标在右或同列
-            {
-                (*cur_y)++;
-                (*cur_x)--;
-            }
-            else if(pos_y < *cur_y) // 目标在左
-            {
-                (*cur_y)--;
-                (*cur_x)--;
-            }
-        }
-        if(*cur_x < pos_x + 1) // 在上边就要往下走
-        {
-            if(pos_y >= *cur_y)  // 目标在右或同列
-            {
-                (*cur_y)++;
-                (*cur_x)++;
-            }
-            else if(pos_y < *cur_y) // 目标在左
-            {
-                (*cur_y)--;
-                (*cur_x)++;
-            }
-        }
-    }
-    else    // 异常情况处理
-    {
-        // TODO: 加入终止函数？
-        printf("咋骑手跑到房子里了？\n");
-        //exit(0);
-    }
+    
     
     /* 
         横纵坐标一奇一偶的都是路，坐标都是偶数的是房间，坐标都是奇数的是路口
