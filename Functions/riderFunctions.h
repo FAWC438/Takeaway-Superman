@@ -211,6 +211,6 @@ void AllRiderMove()
             posY = findOrder->Cur_order->cust_y;
         }
         riderMove(tempRider, posX, posY); //骑手移动
-        tempRider = tempRider->Nxt_rider; //换到下一个奇搜
+        tempRider = tempRider->Nxt_rider; //换到下一个骑手
     }
 }
