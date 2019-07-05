@@ -57,8 +57,10 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
             if(nowOrder->Cur_order->status == 2)    // TODO: 停靠记录
             {
                 HeadOrder->Cur_order->status = 3;   // 变成已完成
+                nowOrder->Cur_order->status = 3;
+                nowOrder->Cur_order->end_time = Time;
                 HeadOrder->Cur_order->end_time = Time;
-                pop_front_order(nowOrder); // 弹出顶部订单
+                //pop_front_order(nowOrder); // 弹出顶部订单
                 CompanyOrderFinish++;
                 CompanyMoney += MONEY_GAIN_ONE;
             }
@@ -66,9 +68,11 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
             {
                 HeadOrder->Cur_order->status = 2;
                 nowOrder->Cur_order->status = 2; // 更新状态到送单
+                nowOrder->Cur_order->end_time = Time;
+                HeadOrder->Cur_order->end_time = Time;
                 //OrderList *newOrder = nowOrder;
-                pop_front_order(nowOrder);
-                push_back_order(nowOrder->Cur_order, nowOrder);
+                //pop_front_order(nowOrder);
+                //push_back_order(nowOrder->Cur_order, nowOrder);
             }  
         }
         HeadOrder = HeadOrder->Nxt_order;
