@@ -2,11 +2,48 @@
 #include "../Global/header.h"
 
 // TODO: 打印骑手轨迹以调整。
-
 /*
-    输出在文件和命令行中
+    停靠判断并输出
 */
-void outputOnFileKey()
+void printNearBy(Rider *nowRider, FILE *fPtr)
+{
+    int i;
+    const int dx[] = {-1, 1, 0, 0};
+    const int dy[] = {0, 0, 1, -1};
+    int restFlag = 0, dustFlag = 0;
+    
+    for(i = 0; i <= 3; i++)
+    {
+        restFlag = 0;
+        dustFlag = 0;
+        int now_x = nowRider->rider_x + dx[i];
+        int now_y = nowRider->rider_y + dy[i];
+        OrderList *tmpOrder = nowRider->Bag->Nxt_order;
+        while(tmpOrder)
+        {
+            if(tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->end_time == Time)    // 说明此位置房子作为餐厅有任务完成
+            {
+                restFlag = 1;
+            }
+            if(tmpOrder->Cur_order->cust_x == now_x && tmpOrder->Cur_order->cust_y == now_y && tmpOrder->Cur_order->end_time == Time)    // 说明此位置房子作为宿舍有任务完成
+            {
+                dustFlag = 1;
+            }
+            if(dustFlag && restFlag)
+                fprintf(fPtr, " 餐客 %d %d", now_x, now_y);
+            else if(restFlag)
+                fprintf(fPtr, " 餐厅 %d %d", now_x, now_y);
+            else if(dustFlag)
+                fprintf(fPtr, " 食客 %d %d", now_x, now_y);
+            tmpOrder = tmpOrder->Nxt_order;
+        }
+    }
+    
+}
+/*
+    输出在文件中
+*/
+void outputOnFile()
 {
     FILE *fPtr;
     if ((fPtr = fopen("output.txt", "a")) == NULL)
@@ -14,16 +51,10 @@ void outputOnFileKey()
         printf("Can't not open the output.txt");
         return;
     }
-
-    printf("时间: %d\n", Time);
     fprintf(fPtr, "时间: %d\n", Time);
-    printf("钱: %d\n", CompanyMoney); // 这里指现金，没有加上骑手资产
     fprintf(fPtr, "钱: %d\n", CompanyMoney);
-    printf("接单数: %d\n", CompanyOrderSum);
     fprintf(fPtr, "接单数: %d\n", CompanyOrderSum);
-    printf("完成数: %d; ", CompanyOrderFinish);
     fprintf(fPtr, "完成数: %d; ", CompanyOrderFinish);
-    printf("结单: ");
     fprintf(fPtr, "结单: ");
     // 遍历全部订单判断是否有此时刻结单的
     OrderList *HeadOrder = AllOrderLog;
@@ -36,22 +67,17 @@ void outputOnFileKey()
             if (!flag)
             {
                 flag = 1;
-                printf("%d", HeadOrder->Cur_order->id);
                 fprintf(fPtr, "%d", HeadOrder->Cur_order->id);
             }
             else
             {
-                printf(" %d", HeadOrder->Cur_order->id);
                 fprintf(fPtr, " %d", HeadOrder->Cur_order->id);
             }
         }
         HeadOrder = HeadOrder->Nxt_order;
     }
-    printf(";\n");
     fprintf(fPtr, ";\n");
-    printf("超时数: %d;", CompanyOrderOverTime);
     fprintf(fPtr, "超时数: %d;", CompanyOrderOverTime);
-    printf("罚单: ");
     fprintf(fPtr, "罚单: ");
     // 遍历此时刻是否有罚单的
     HeadOrder = AllOrderLog;
@@ -64,32 +90,41 @@ void outputOnFileKey()
             if (!flag)
             {
                 flag = 1;
-                printf("%d", HeadOrder->Cur_order->id);
                 fprintf(fPtr, "%d", HeadOrder->Cur_order->id);
             }
             else
             {
-                printf(" %d", HeadOrder->Cur_order->id);
                 fprintf(fPtr, " %d", HeadOrder->Cur_order->id);
             }
         }
         HeadOrder = HeadOrder->Nxt_order;
     }
-    printf(";\n");
     fprintf(fPtr, ";\n");
     // 输出各骑手状态
     RiderList *HeadRider = AllRiderLog;
     HeadRider = HeadRider->Nxt_rider;
     while (HeadRider)
     {
-        printf("骑手%d位置: %d, %d; ", HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
         fprintf(fPtr, "骑手%d位置: %d, %d; ", HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
-        printf("停靠: ");
-        fprintf(fPtr, "停靠: ");
+        fprintf(fPtr, "停靠:");
         // TODO: 停靠判断
+        printNearBy(HeadRider->Cur_rider, fPtr);
+        HeadRider = HeadRider->Nxt_rider;
+        fprintf(fPtr, ";\n");
     }
 
     fclose(fPtr);
+}
+/*
+    以文字的形式输出在屏幕上，注意刷新频率不同！！！
+*/
+void outputKey()
+{
+	printf("时间: %d\n", Time);
+    printf("钱: %d\n", CompanyMoney); // 这里指现金，没有加上骑手资产
+    printf("接单数: %d\n", CompanyOrderSum);
+    printf("完成数: %d\n", CompanyOrderFinish);
+    printf("超时数: %d;", CompanyOrderOverTime);
 }
 /*
     以地图的形式输出在屏幕上
