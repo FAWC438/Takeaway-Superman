@@ -1,6 +1,10 @@
 #include "./Global/header.h"
 
-int hireRider() // 招募骑手,返回骑手的id，注意，前提条件是CompanyMoney>=400
+/*
+    招募骑手,返回骑手的id，注意，前提条件是CompanyMoney>=400
+    return(int):骑手的id
+ */
+int hireRider()
 {
     CompanyMoney -= 300; // 扣钱
     CompanyRiderCount++; // 加骑手数量
@@ -22,8 +26,12 @@ int hireRider() // 招募骑手,返回骑手的id，注意，前提条件是Comp
     tmp->Nxt_rider = NULL;
     return newRider->id;
 }
-
-Order *getRiderCurOrder(int rider_id) // 输入骑手id返回Order指针
+/*
+    输入骑手id返回Order指针
+    int rider_id:骑手id
+    return(Order *):棋手当前订单的指针
+ */
+Order *getRiderCurOrder(int rider_id)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
@@ -32,8 +40,12 @@ Order *getRiderCurOrder(int rider_id) // 输入骑手id返回Order指针
     }
     return p->Cur_rider;
 }
-
-OrderList *getRiderCurBag(int rider_id) // 输入骑手id返回OrderList指针
+/*
+    输入骑手id返回OrderList指针
+    int rider_id:骑手id
+    return(OrderList *):棋手当前背包的指针
+ */
+OrderList *getRiderCurBag(int rider_id)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
@@ -43,7 +55,13 @@ OrderList *getRiderCurBag(int rider_id) // 输入骑手id返回OrderList指针
     return p->Cur_rider->Bag;
 }
 
-void riderPos(int rider_id, int *x, int *y) // 返回骑手位置，注意传入坐标的指针
+/*
+    返回骑手位置，注意传入的坐标为指针
+    int rider_id:骑手id
+    int *x:骑手横坐标指针
+    int *y:骑手纵坐标指针
+ */
+void riderPos(int rider_id, int *x, int *y)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
@@ -53,8 +71,13 @@ void riderPos(int rider_id, int *x, int *y) // 返回骑手位置，注意传入
     *x = p->Cur_rider->rider_x;
     *y = p->Cur_rider->rider_y;
 }
-
-void riderMove(int rider_id, int pos_x, int pos_y) // 传入骑手id和目的地（房子坐标），根据骑手当前位置，先左右,后上下，移动一个单位
+/*
+    入骑手id和目的地（房子坐标），根据骑手当前位置，先左右,后上下，移动一个单位
+    int rider_id:骑手id
+    int pos_x:目的地横坐标
+    int pos_y:目的地纵坐标
+ */
+void riderMove(int rider_id, int pos_x, int pos_y)
 {
     int *cur_x, *cur_y;
     RiderList *p = AllRiderLog;

@@ -1,19 +1,20 @@
 #include "../Global/header.h"
 
 /*
-    删除头部订单
+    传入链表，删除头部订单
+    List：订单链表
  */
-Order *pop_front_order(OrderList *List)
+void pop_front_order(OrderList *List)
 {
-    Order *FrontOrder = List->Nxt_order->Cur_order;
-    List = List->Nxt_order;
-    free(List->Pre_order);
-    List->Pre_order = NULL;
-    List->Cur_order = NULL;
-    return FrontOrder;
+    OrderList *p = List->Nxt_order;
+    List->Nxt_order = List->Nxt_order->Nxt_order;
+    List->Nxt_order->Pre_order=List;
+    free(p);
 }
 /*
     添加尾部订单
+    NewOrder：添加的订单
+    List：订单列表
  */
 void push_back_order(Order *NewOrder, OrderList *List)
 {
@@ -28,6 +29,8 @@ void push_back_order(Order *NewOrder, OrderList *List)
 }
 /*
     骑手队列尾部添加骑手
+    NewRider：新的骑手
+    List：骑手列表
  */
 void push_back_rider(Rider *NewRider, RiderList *List)
 {
