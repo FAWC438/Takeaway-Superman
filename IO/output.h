@@ -97,8 +97,8 @@ void outputMap()
     HeadOrder = HeadOrder->Nxt_order;
     whlie(HeadOrder)
     {
-        Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2;
-        Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3;
+        Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2; // 餐厅地图更新
+        Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3; // 宿舍地图更新
         HeadOrder = HeadOrder->Nxt_order;
     }
     // 初始化骑手位置

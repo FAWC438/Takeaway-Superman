@@ -12,6 +12,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include <Windows.h>
 
 #include "consts.h"
 #include "structure.h"
