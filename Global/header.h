@@ -1,6 +1,9 @@
 
 /*
     全局通用头文件
+    注意！请勿轻易格式化该代码！因为每行的前后有关联
+    新增的头文件应当补写在最下方
+    切记！切记！
  */
 
 #ifndef _HEADER
@@ -13,16 +16,16 @@
 #include <time.h>
 #include <unistd.h>
 #include <Windows.h>
-
+// 自建头文件
+#include "structure.h"
+#include "./Functions/creatList.h" // 该文件必须放在consts.h前面，structure.h后面！！！
 #include "consts.h"
 #include "init.h"
-#include "structure.h"
-#include "./Functions/creatList.h"
-#include "./Functions/init.h"
+#include "./Functions/listOperation.h" // 该文件为工具函数集，优先级较高，应放在上面
 #include "./Functions/orderFunctions.h"
 #include "./Functions/riderFunctions.h"
-#include "./Functions/listOperation.h"
 #include "./IO/input.h"
 #include "./IO/output.h"
+#include "./Functions/gameOver.h"
 
 #endif
