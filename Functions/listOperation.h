@@ -8,6 +8,7 @@ void pop_front_order(OrderList *List)
 {
     OrderList *p = List->Nxt_order;
     List->Nxt_order = List->Nxt_order->Nxt_order;
+    List->Nxt_order->Pre_order=List;
     free(p);
 }
 /*
