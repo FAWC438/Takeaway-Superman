@@ -7,16 +7,16 @@ int main()
     else
         inputKeyOrder();
 
-    while (AllOrderLog->Nxt_order)
+    while (1)//胜利条件
     {
+        Time++;
         //招募骑手
         //派单
             //派单之前把骑手背包完成的订单弹出
             initRiderBag();
             //派单算法
-        //判断是否超时
+        //判断是否超时或破产
         isAnyOrderOverTime();
-        //判断是否破产
         //送单
             //骑手移动
             AllRiderMove();
