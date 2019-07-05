@@ -20,6 +20,7 @@
 #include "./Functions/creatList.h"
 #include "./Functions/init.h"
 #include "./Functions/orderFunctions.h"
+#include "./Functions/riderFunctions.h"
 #include "./Functions/listOperation.h"
 #include "./IO/input.h"
 #include "./IO/output.h"

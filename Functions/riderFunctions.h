@@ -8,22 +8,14 @@ int hireRider()
 {
     CompanyMoney -= 300; // 扣钱
     CompanyRiderCount++; // 加骑手数量
-    RiderList *p = AllRiderLog, *tmp = (RiderList *)malloc(sizeof(RiderList));
     Rider *newRider = (Rider *)malloc(sizeof(Rider));
-    while (p->Nxt_rider)
-    {
-        p = p->Nxt_rider;
-    }
     // 初始化新骑手
-    newRider->id = p->Cur_rider->id + 1;
+    newRider->id = CompanyRiderCount;
     newRider->rider_x = COMPANY_X;
     newRider->rider_y = COMPANY_Y;
     newRider->Bag = creatOrderList(); // 骑手的背包是一个订单链表
     //将该骑手添加到骑手列表
-    p->Nxt_rider = tmp;
-    tmp->Pre_rider = p;
-    tmp->Cur_rider = newRider;
-    tmp->Nxt_rider = NULL;
+    push_back_rider(newRider, AllRiderLog);
     return newRider->id;
 }
 /*
@@ -61,7 +53,7 @@ OrderList *getRiderCurBag(int rider_id)
     int *x:骑手横坐标指针
     int *y:骑手纵坐标指针
  */
-void riderPos(int rider_id, int *x, int *y)
+void getRiderCurPos(int rider_id, int *x, int *y)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
