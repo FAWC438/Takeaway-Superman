@@ -2,6 +2,7 @@
 
 /*
     招募骑手,返回骑手的id，注意，前提条件是CompanyMoney>=400
+    return(int):骑手的id
  */
 int hireRider()
 {
@@ -27,7 +28,7 @@ int hireRider()
 }
 /*
     输入骑手id返回Order指针
-    rider_id:骑手id
+    int rider_id:骑手id
     return(Order *):棋手当前订单的指针
  */
 Order *getRiderCurOrder(int rider_id)
@@ -41,7 +42,7 @@ Order *getRiderCurOrder(int rider_id)
 }
 /*
     输入骑手id返回OrderList指针
-    rider_id:骑手id
+    int rider_id:骑手id
     return(OrderList *):棋手当前背包的指针
  */
 OrderList *getRiderCurBag(int rider_id)
@@ -55,8 +56,8 @@ OrderList *getRiderCurBag(int rider_id)
 }
 
 /*
-    返回骑手位置，注意传入坐标的指针
-    rider_id:骑手id
+    返回骑手位置，注意传入的坐标为指针
+    int rider_id:骑手id
     int *x:骑手横坐标指针
     int *y:骑手纵坐标指针
  */
@@ -72,7 +73,7 @@ void riderPos(int rider_id, int *x, int *y)
 }
 /*
     入骑手id和目的地（房子坐标），根据骑手当前位置，先左右,后上下，移动一个单位
-    rider_id:骑手id
+    int rider_id:骑手id
     int pos_x:目的地横坐标
     int pos_y:目的地纵坐标
  */
