@@ -72,14 +72,14 @@ void riderPos(int rider_id, int *x, int *y)
     *y = p->Cur_rider->rider_y;
 }
 /*
-    入骑手id和目的地（房子坐标），根据骑手当前位置，先左右,后上下，移动一个单位
+    入骑手id和目的地（房子坐标），根据骑手当前位置，先左右,后上下，移动一个单位，默认已经判断是否停靠，不再重新检查
     int rider_id:骑手id
     int pos_x:目的地横坐标
     int pos_y:目的地纵坐标
  */
 void riderMove(int rider_id, int pos_x, int pos_y)
 {
-    int *cur_x, *cur_y;
+    int *cur_x, *cur_y, i, j;
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
     {
@@ -87,11 +87,12 @@ void riderMove(int rider_id, int pos_x, int pos_y)
     }
     *cur_x = p->Cur_rider->rider_x;
     *cur_y = p->Cur_rider->rider_y;
+    i = *cur_x;
+    j = *cur_y;
     // TODO: 测试移动单元
     // 先左右
     if(*cur_y < pos_y - 1 || *cur_y > pos_y + 1)
     {
-        int i = *cur_x, j = *cur_y;
         if(i % 2 == 1 && j % 2 == 0)    // 在横向道路上
         {
             if(*cur_y > pos_y + 1) // 在右边就要往左走
@@ -118,7 +119,7 @@ void riderMove(int rider_id, int pos_x, int pos_y)
                     (*cur_y)--;
                 }
             }
-            if(*cur_y < pos_y + 1) // 在右边就要往左走
+            else if(*cur_y < pos_y + 1) // 在右边就要往左走
             {
                 if(pos_x >= *cur_x)  // 目标在下或同行
                 {
@@ -134,9 +135,8 @@ void riderMove(int rider_id, int pos_x, int pos_y)
         }
     }
     // 后上下
-    else
+    else if(i < pos_x - 1 || i > pos_x + 1)
     {
-        int i = *cur_x, j = *cur_y;
         if(i % 2 == 0 && j % 2 == 1)    // 在纵向道路上
         {
             if(*cur_x > pos_x + 1) // 在下边就要往上走
@@ -177,14 +177,13 @@ void riderMove(int rider_id, int pos_x, int pos_y)
                 }
             }
         }
-        else    // 异常情况处理
-        {
-            // TODO: 加入终止函数？
-            printf("咋骑手跑到房子里了？\n");
-            //exit(0);
-        }
     }
-    
+    else    // 异常情况处理
+    {
+        // TODO: 加入终止函数？
+        printf("咋骑手跑到房子里了？\n");
+        //exit(0);
+    }
     
     /* 
         横纵坐标一奇一偶的都是路，坐标都是偶数的是房间，坐标都是奇数的是路口
