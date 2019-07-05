@@ -15,11 +15,8 @@
 #include <Windows.h>
 
 #include "consts.h"
-<<<<<<< HEAD
 #include "init.h"
-=======
 #include "structure.h"
->>>>>>> deccf03b3d729c266f6695b563cd99333461494d
 #include "./Functions/creatList.h"
 #include "./Functions/init.h"
 #include "./Functions/orderFunctions.h"
