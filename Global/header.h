@@ -11,17 +11,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
-#include "structure.h"
 #include "consts.h"
+#include "structure.h"
 #include "./Functions/creatList.h"
 #include "./Functions/init.h"
 #include "./Functions/orderFunctions.h"
-#include "./Functions/pop_front_order.h"
-#include "./Functions/push_back_order.h"
-#include "./Functions/push_back_rider.h"
-#include "./Functions/riderFunctions.h"
-#include "./Functions/swap_order.h"
+#include "./Functions/listOperation.h"
 #include "./IO/input.h"
 #include "./IO/output.h"
 
