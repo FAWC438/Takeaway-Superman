@@ -64,7 +64,7 @@ OrderList *getRiderCurBag(int rider_id)
     int *x:骑手横坐标指针
     int *y:骑手纵坐标指针
  */
-void riderPos(int rider_id, int *x, int *y)
+void getRiderCurPos(int rider_id, int *x, int *y)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
