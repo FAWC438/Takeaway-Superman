@@ -20,7 +20,7 @@ void assignOrder(Order *AOrder, int RiderID)
     }
 }
 /*
-    每次刷新时间点后判断是否有超时订单
+    每次刷新时间点后判断是否有超时订单，若破产则结束游戏
 */
 void isAnyOrderOverTime()
 {
@@ -40,6 +40,11 @@ void isAnyOrderOverTime()
         {
             CompanyMoney -= FINE_MONEY;
             CompanyOrderOverTime++;
+            if(CompanyMoney < 0)
+            {
+                printf("GAMEOVER!!!\n");
+                // TODO: 终止函数
+            }
         }
     }
 }
