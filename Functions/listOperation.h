@@ -52,3 +52,16 @@ void swap_order(OrderList *List1, OrderList *List2)
     List1->Cur_order = List2->Cur_order;
     List2->Cur_order = TempOrder;
 }
+/*
+    删除订单，返回该订单的前一个订单
+    tOrder：目标订单
+ */
+OrderList *delete_order(OrderList *tOrder)
+{
+    OrderList *tempOrder = tOrder->Pre_order;
+    tOrder->Pre_order->Nxt_order = tOrder->Nxt_order;
+    if (tOrder->Nxt_order) //如果后驱结点存在，改变后驱结点的前一个结点的指向
+        tOrder->Nxt_order->Pre_order = tOrder->Pre_order;
+    free(tOrder);
+    return tempOrder;
+}

@@ -10,14 +10,17 @@ int main()
     while (AllOrderLog->Nxt_order)
     {
         //招募骑手
-            //派单
+        //派单
             //派单之前把骑手背包完成的订单弹出
-
+            initRiderBag();
+            //派单算法
         //判断是否超时
         isAnyOrderOverTime();
+        //判断是否破产
         //送单
             //骑手移动
             AllRiderMove();
+            //判断订单是否完成
             //完成每一个订单 但是在骑手背包里不弹出刚完成的订单 （输出文件时判断停靠使用）
             //完成订单时输出控制台窗口
             system("clr");
@@ -26,5 +29,6 @@ int main()
         outputOnFileKey();
         sleep(TIME_UNIT);
     }
-    printf("Successful!") return 0;
+    printf("Successful!"); 
+    return 0;
 }
