@@ -1,5 +1,7 @@
 #include "../Global/header.h"
-
+/*
+    从文件输入
+ */
 int inputFileOrder()
 {
     if (access("sales.txt", 0) == -1)
@@ -24,6 +26,9 @@ int inputFileOrder()
     return 1;
 }
 
+/*
+    从文件输出
+ */
 int inputKeyOrder()
 {
     Order *p = (Order *)malloc(sizeof(Order));
