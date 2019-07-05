@@ -27,7 +27,7 @@ int inputFileOrder()
 }
 
 /*
-    从文件输出
+    从键盘输出
  */
 int inputKeyOrder()
 {
