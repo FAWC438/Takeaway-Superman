@@ -15,6 +15,7 @@
 #include <Windows.h>
 
 #include "consts.h"
+#include "init.h"
 #include "structure.h"
 #include "./Functions/creatList.h"
 #include "./Functions/init.h"
