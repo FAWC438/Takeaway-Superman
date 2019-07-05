@@ -15,6 +15,7 @@
 
 #include "structure.h"
 #include "consts.h"
+#include "init.h"
 #include "./Functions/creatList.h"
 #include "./Functions/init.h"
 #include "./Functions/orderFunctions.h"
