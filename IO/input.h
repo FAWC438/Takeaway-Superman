@@ -2,7 +2,7 @@
 /*
     从文件输入
  */
-int inputFileOrder()
+int inputFileOrder()    // TODO: 处理输入数据和要计算的数据的关系
 {
     if (access("sales.txt", 0) == -1)
     {

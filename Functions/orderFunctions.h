@@ -28,15 +28,15 @@ void isAnyOrderOverTime()
     HeadOrder = HeadOrder->Nxt_order;
     while (HeadOrder)
     {
-        if(HeadOrder->Cur_order->status == 3) // 不处理已完成订单
+        if (HeadOrder->Cur_order->status == 3) // 不处理已完成订单
             continue;
         int difference = Time - HeadOrder->Cur_order->begin_time; // 时间差
-        if (difference == FINE_SECOND_TIME + 1)  // 恶意拖单
+        if (difference == FINE_SECOND_TIME + 1)                   // 恶意拖单
         {
             printf("GAMEOVER!!!\n");
             exit(0); // TODO: 可以写一个统一的终止函数
         }
-        else if (difference == FINE_FIRST_TIME + 1)  // 罚单
+        else if (difference == FINE_FIRST_TIME + 1) // 罚单
         {
             CompanyMoney -= FINE_MONEY;
             CompanyOrderOverTime++;
@@ -55,11 +55,11 @@ void isAnyOrderOverTime()
 void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还是整个订单完成
 {
     OrderList *HeadOrder = AllOrderLog->Nxt_order;
-    while(HeadOrder)
+    while (HeadOrder)
     {
-        if(HeadOrder->Cur_order->id == nowOrder->Cur_order->id) // 更新全局记录中该订单状态
+        if (HeadOrder->Cur_order->id == nowOrder->Cur_order->id) // 更新全局记录中该订单状态
         {
-            if(nowOrder->Cur_order->status == 2)    // TODO: 停靠记录
+            if (nowOrder->Cur_order->status == 2) // TODO: 停靠记录
             {
                 HeadOrder->Cur_order->status = 3;   // 变成已完成
                 nowOrder->Cur_order->status = 3;
@@ -69,7 +69,7 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
                 CompanyOrderFinish++;
                 CompanyMoney += MONEY_GAIN_ONE;
             }
-            else if(nowOrder->Cur_order->status == 1)
+            else if (nowOrder->Cur_order->status == 1)
             {
                 HeadOrder->Cur_order->status = 2;
                 nowOrder->Cur_order->status = 2; // 更新状态到送单
@@ -84,3 +84,25 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
     }
     
 }
+
+/*
+    判断订单是否结单
+    nowOrder：目前遍历到的订单
+ */
+int isComplishOrder(OrderList *NowOrder)
+{
+    int judge = 0;
+    if(NowOrder->Cur_order->status==1)
+        judge = abs((NowOrder->Cur_order->rest_x)-(CurRider->rider_x))+abs((NowOrder->Cur_order->rest_y)-(CurRider->rider_y));
+    else if(NowOrder->Cur_order->status==2)
+        judge = abs((NowOrder->Cur_order->cust_x)-(CurRider->rider_x))+abs((NowOrder->Cur_order->cust_y)-(CurRider->rider_y));
+    else
+    {
+        printf("订单状态错误\n");
+        //exit(0);//终止
+    }
+    if(judge==1)
+        return 1;
+    return 0;
+}
+

@@ -64,7 +64,7 @@ void getRiderCurPos(int rider_id, int *x, int *y)
     *y = p->Cur_rider->rider_y;
 }
 /*
-    入骑手id和目的地（房子坐标），根据骑手当前位置，先左右,后上下，移动一个单位，默认已经判断是否停靠，不再重新检查
+    入骑手id和目的地（房子坐标），根据骑手当前位置，先左右，后上下，移动一个单位，默认已经判断是否停靠，不再重新检查
     int rider_id:骑手id
     int pos_x:目的地横坐标
     int pos_y:目的地纵坐标
@@ -187,4 +187,30 @@ void riderMove(int rider_id, int pos_x, int pos_y)
         房子上面和下面的路（横着的）：(偶，奇) 房子左面和右面的路（竖着的）：(奇，偶)
         TODO:更改骑手的位置，仅移动一个单位
      */
+}
+
+/*
+    所有骑手进行移动，作为主函数的一部分，无参数和返回值
+    目前的策略是派背包里的第一个单
+ */
+void AllRiderMove()
+{
+    RiderList *tempRider = AllRiderLog->Nxt_rider;
+    while (tempRider)
+    {
+        int posX, posY;
+        OrderList *findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
+        if (findOrder->Cur_order->status == 1) //找到第一个订单对应的位置
+        {
+            posX = findOrder->Cur_order->rest_x;
+            posY = findOrder->Cur_order->rest_y;
+        }
+        else if (findOrder->Cur_order->status == 2)
+        {
+            posX = findOrder->Cur_order->cust_x;
+            posY = findOrder->Cur_order->cust_y;
+        }
+        riderMove(tempRider, posX, posY); //骑手移动
+        tempRider = tempRider->Nxt_rider; //换到下一个骑手
+    }
 }
