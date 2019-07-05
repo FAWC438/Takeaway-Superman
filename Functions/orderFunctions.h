@@ -79,3 +79,24 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
     }
     
 }
+
+/*
+    判断订单是否结单
+    nowOrder：目前遍历到的订单
+ */
+int isComplishOrder(OrderList *NowOrder)
+{
+    int judge = 0;
+    if(NowOrder->Cur_order->status==1)
+        judge = abs((NowOrder->Cur_order->rest_x)-(CurRider->rider_x))+abs((NowOrder->Cur_order->rest_y)-(CurRider->rider_y));
+    else if(NowOrder->Cur_order->status==2)
+        judge = abs((NowOrder->Cur_order->cust_x)-(CurRider->rider_x))+abs((NowOrder->Cur_order->cust_y)-(CurRider->rider_y));
+    else
+    {
+        printf("订单状态错误\n");
+        //exit(0);//终止
+    }
+    if(judge==1)
+        return 1;
+    return 0;
+}
