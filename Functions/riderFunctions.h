@@ -53,7 +53,7 @@ OrderList *getRiderCurBag(int rider_id)
     int *x:骑手横坐标指针
     int *y:骑手纵坐标指针
  */
-void riderPos(int rider_id, int *x, int *y)
+void getRiderCurPos(int rider_id, int *x, int *y)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
@@ -64,7 +64,7 @@ void riderPos(int rider_id, int *x, int *y)
     *y = p->Cur_rider->rider_y;
 }
 /*
-    入骑手id和目的地（房子坐标），根据骑手当前位置，先左右,后上下，移动一个单位
+    根据骑手id和目的地（房子坐标），根据骑手当前位置，先左右,后上下，移动一个单位
     int rider_id:骑手id
     int pos_x:目的地横坐标
     int pos_y:目的地纵坐标
