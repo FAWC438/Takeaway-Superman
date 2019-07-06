@@ -7,7 +7,7 @@ int main()
     else
         inputKeyOrder();
 
-    while (1)//胜利条件 
+    while (1)//TODO:胜利条件 
     {
         Time++;
         //招募骑手
@@ -45,6 +45,6 @@ int main()
         outputOnFileKey();
         sleep(TIME_UNIT);
     }
-    printf("Successful!"); 
-    return 0;
+    gameSuccess();
+    // return 0;
 }
