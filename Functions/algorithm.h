@@ -190,8 +190,10 @@ void getBestRider(Order *nowOrder)
     {
         if(chooseRider->Cur_rider->id == id_min)
         {
-            nowOrder->status = 1    // 切换订单状态
+            AllOrderLog->Cur_order->status = 1;
+            nowOrder->status = 1;    // 切换订单状态
             push_back_order(nowOrder, chooseRider->Cur_rider->Bag); // 将订单进队
         }
+        chooseRider = chooseRider->Nxt_rider;
     }
 }
