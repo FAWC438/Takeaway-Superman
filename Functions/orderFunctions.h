@@ -57,7 +57,7 @@ void isAnyOrderOverTime()
 }
 /*
     订单完成时调用即可
-    Var: 骑手的队头订单
+    nowOrder(OrderList *)：目前遍历到的订单，注意，为OrderList指针而非Order指针
 */
 void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还是整个订单完成
 {
@@ -93,7 +93,7 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
 
 /*
     判断订单是否结单
-    nowOrder：目前遍历到的订单
+    nowOrder(OrderList *)：目前遍历到的订单，注意，为OrderList指针而非Order指针
  */
 int isComplishOrder(OrderList *NowOrder)
 {

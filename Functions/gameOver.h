@@ -65,8 +65,10 @@ void gameOver(int reason)
 
 /* 
     正常结算
+    该函数应在main中调用
     以下列出调用该函数的情况：
     1. 鼠标操作手动结束游戏
+    2. 输入文件中无更多订单
 */
 
 void gameSuccess()
@@ -109,12 +111,3 @@ void gameSuccess()
     system("PAUSE");
     exit(0);
 }
-
-/*
-    TODO:
-    异常结算
-    以下列出调用该函数的情况（return值）
-    0. 输入异常：未按照正常格式输入
-    1. 骑手移动异常：骑手位置未在道路上方
-    2. ...
- */
