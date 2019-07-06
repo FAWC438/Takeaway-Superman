@@ -18,7 +18,7 @@ int main()
         //派单之前把骑手背包完成的订单弹出
         initRiderBag();
         //派单算法
-        
+
         //判断是否超时或破产
         isAnyOrderOverTime();
         //骑手移动
@@ -46,6 +46,7 @@ int main()
         {
             system("clr");
             outputMap();
+            outputKey();
         }
         //输出文件
         outputOnFileKey();
