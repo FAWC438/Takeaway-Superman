@@ -5,6 +5,49 @@
 int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
 {
     int cnt = 0;
+    // 优化算法，已测试，但不确定是否完全正确...
+    if(abs((*cur_y) - pos_y) > 1)
+	{
+		if((*cur_x) % 2 == 1 && ((*cur_y) % 2 == 0))	// 横向道路 
+		{
+			cnt += abs((*cur_y) - pos_y) / 2;
+			*cur_y = pos_y;
+		}
+		else if((*cur_x) % 2 == 0 && ((*cur_y) % 2 == 1))	// 纵向道路 
+		{
+			cnt += abs(((*cur_y)) - pos_y) / 2 + 1;
+			*cur_y = pos_y;
+			if(pos_x > *cur_x)
+				(*cur_x)++;
+			else
+				(*cur_x)--;
+		}
+	}
+	if(abs((*cur_x) - pos_x) > 1)
+	{
+		if((*cur_x) % 2 == 0 && ((*cur_y) % 2 == 1))	// 纵向道路 
+		{
+			cnt += abs((*cur_x) - pos_x) / 2;
+			*cur_x = pos_x;
+		}
+		else if((*cur_x) % 2 == 1 && ((*cur_y) % 2 == 0))	// 横向道路 
+		{
+			cnt += abs(((*cur_x)) - pos_x) / 2 + 1;
+			*cur_x = pos_x;
+			if(pos_y > *cur_y)
+				(*cur_y)++;
+			else if(pos_y < *cur_y)
+				(*cur_y)--;
+			else
+			{
+				if(pos_y == 0)
+					(*cur_y)++;
+				else
+					(*cur_y)--;
+			}
+		}
+	}
+    /*
     while (abs((*cur_x) - pos_x) > 1 || abs((*cur_y) - pos_y) > 1)
     {
         i = *cur_x;
@@ -91,6 +134,7 @@ int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
             }
         }
     }
+    */
     return cnt;
 }
 /*
