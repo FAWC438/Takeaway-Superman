@@ -70,7 +70,7 @@ void gameOver(int reason)
     该函数应在main中调用
     以下列出调用该函数的情况：
     1. 鼠标操作手动结束游戏
-    2. 输入文件中无更多订单
+    2. 输入文件中无更多订单且所有已知订单均完成
 */
 
 void gameSuccess()
