@@ -37,8 +37,9 @@ void gameOver(int reason)
 
     // 释放全局变量内存
     OrderList *p1 = AllOrderLog;
-    OrderList *p3 = Buffer;
     RiderList *p2 = AllRiderLog;
+    OrderList *p3 = Buffer;
+
     // 释放AllOrderLog
     while (p1)
     {
@@ -50,7 +51,7 @@ void gameOver(int reason)
     }
     AllOrderLog = NULL;
     // 释放Buffer
-    while(p3)
+    while (p3)
     {
         free(p3->Pre_order);
         free(p3->Cur_order);
@@ -64,7 +65,8 @@ void gameOver(int reason)
     {
         free(p2->Pre_order);
         p1 = p2->Cur_rider->Bag;
-        while(p1)
+        // 释放bag
+        while (p1)
         {
             free(p1->Pre_order);
             free(p1->Cur_order);
@@ -107,6 +109,7 @@ void gameSuccess()
     // 释放全局变量内存
     OrderList *p1 = AllOrderLog;
     RiderList *p2 = AllRiderLog;
+    OrderList *p3 = Buffer;
     // 释放AllOrderLog
     while (p1)
     {
@@ -118,7 +121,7 @@ void gameSuccess()
     }
     AllOrderLog = NULL;
     // 释放Buffer
-    while(p3)
+    while (p3)
     {
         free(p3->Pre_order);
         free(p3->Cur_order);
