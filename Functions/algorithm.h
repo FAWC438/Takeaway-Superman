@@ -121,3 +121,33 @@ int getPath(Rider *nowRider, Order *nowOrder)
     sum += virtualRun(now_x, now_y, nowOrder->rest_x, nowOrder->rest_y);
     return sum;
 }
+/*
+    找到最佳派单骑手
+ */
+void getBestRider(Order *nowOrder)
+{
+    RiderList *chooseRider = AllRiderLog->Nxt_rider;
+    int path_min = 0x3f3f3f3f;
+    int path_now, id_min;
+    // 找出最佳骑手
+    while(chooseRider)
+    {
+        path_now = getPath(chooseRider->Cur_rider, nowOrder);   // 如果把包裹给此骑手的时长
+        if(path_min > path_now)
+        {
+            path_min = path_now;
+            id_min = chooseRider->Cur_rider->id;
+        }
+        chooseRider = chooseRider->Nxt_rider;
+    }
+    // 将订单加入骑手背包
+    chooseRider = AllRiderLog->Nxt_rider;
+    while(chooseRider)
+    {
+        if(chooseRider->Cur_rider->id == id_min)
+        {
+            nowOrder->status = 1    // 切换订单状态
+            push_back_order(nowOrder, chooseRider->Cur_rider->Bag); // 将订单进队
+        }
+    }
+}
