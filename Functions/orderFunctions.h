@@ -34,7 +34,6 @@ void isAnyOrderOverTime()
         if (difference == DEAD_TIME + 1 && HeadOrder->Cur_order->status == 0) //拒单
         {
             // printf("GAMEOVER!!!\n");
-            // exit(0); // TODO: 可以写一个统一的终止函数
             gameOver(1);
         }
         if (difference == FINE_SECOND_TIME + 1)                               // 恶意拖单
@@ -49,7 +48,6 @@ void isAnyOrderOverTime()
             if (CompanyMoney < 0)
             {
                 // printf("GAMEOVER!!!\n");
-                // // TODO: 终止函数
                 gameOver(0);
             }
         }
