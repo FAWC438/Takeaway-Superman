@@ -83,103 +83,105 @@ void riderMove(int rider_id, int pos_x, int pos_y)
     j = *cur_y;
     // TODO: 测试移动单元
     // 先左右
-    if(*cur_y < pos_y - 1 || *cur_y > pos_y + 1)
+    if (*cur_y < pos_y - 1 || *cur_y > pos_y + 1)
     {
-        if(i % 2 == 1 && j % 2 == 0)    // 在横向道路上
+        if (i % 2 == 1 && j % 2 == 0) // 在横向道路上
         {
-            if(*cur_y > pos_y + 1) // 在右边就要往左走
+            if (*cur_y > pos_y + 1) // 在右边就要往左走
             {
                 (*cur_y) -= 2;
             }
-            else if(*cur_y < pos_y - 1) // 在左边要往右走
+            else if (*cur_y < pos_y - 1) // 在左边要往右走
             {
                 (*cur_y) += 2;
             }
         }
-        else if(i % 2 == 0 && j % 2 == 1)   // 在纵向道路上
+        else if (i % 2 == 0 && j % 2 == 1) // 在纵向道路上
         {
-            if(*cur_y > pos_y + 1) // 在右边就要往左走
+            if (*cur_y > pos_y + 1) // 在右边就要往左走
             {
-                if(pos_x >= *cur_x)  // 目标在下或同行
+                if (pos_x >= *cur_x) // 目标在下或同行
                 {
                     (*cur_x)++;
                     (*cur_y)--;
                 }
-                else if(pos_x < *cur_x) // 目标在上
+                else if (pos_x < *cur_x) // 目标在上
                 {
                     (*cur_x)--;
                     (*cur_y)--;
                 }
             }
-            else if(*cur_y < pos_y + 1) // 在右边就要往左走
+            else if (*cur_y < pos_y + 1) // 在右边就要往左走
             {
-                if(pos_x >= *cur_x)  // 目标在下或同行
+                if (pos_x >= *cur_x) // 目标在下或同行
                 {
                     (*cur_x)++;
                     (*cur_y)++;
                 }
-                else if(pos_x < *cur_x) // 目标在上
+                else if (pos_x < *cur_x) // 目标在上
                 {
                     (*cur_x)--;
                     (*cur_y)++;
                 }
             }
         }
-        else    // 异常情况处理
+        else // 异常情况处理
         {
-            // TODO: 加入终止函数？
-            printf("咋骑手跑到房子里了？\n");
-            //exit(0);
+            // // TODO: 加入终止函数？
+            // printf("咋骑手跑到房子里了？\n");
+            // //exit(0);
+            gameOver(5);
         }
     }
     // 后上下
-    else if(i < pos_x - 1 || i > pos_x + 1)
+    else if (i < pos_x - 1 || i > pos_x + 1)
     {
-        if(i % 2 == 0 && j % 2 == 1)    // 在纵向道路上
+        if (i % 2 == 0 && j % 2 == 1) // 在纵向道路上
         {
-            if(*cur_x > pos_x + 1) // 在下边就要往上走
+            if (*cur_x > pos_x + 1) // 在下边就要往上走
             {
                 (*cur_x) -= 2;
             }
-            else if(*cur_x < pos_x - 1) // 在上边要往下走
+            else if (*cur_x < pos_x - 1) // 在上边要往下走
             {
                 (*cur_x) += 2;
             }
         }
-        else if(i % 2 == 1 && j % 2 == 0)   // 在横向道路上
+        else if (i % 2 == 1 && j % 2 == 0) // 在横向道路上
         {
-            if(*cur_x > pos_x + 1) // 在下边就要往上走
+            if (*cur_x > pos_x + 1) // 在下边就要往上走
             {
-                if(pos_y >= *cur_y)  // 目标在右或同列
+                if (pos_y >= *cur_y) // 目标在右或同列
                 {
                     (*cur_y)++;
                     (*cur_x)--;
                 }
-                else if(pos_y < *cur_y) // 目标在左
+                else if (pos_y < *cur_y) // 目标在左
                 {
                     (*cur_y)--;
                     (*cur_x)--;
                 }
             }
-            if(*cur_x < pos_x + 1) // 在上边就要往下走
+            if (*cur_x < pos_x + 1) // 在上边就要往下走
             {
-                if(pos_y >= *cur_y)  // 目标在右或同列
+                if (pos_y >= *cur_y) // 目标在右或同列
                 {
                     (*cur_y)++;
                     (*cur_x)++;
                 }
-                else if(pos_y < *cur_y) // 目标在左
+                else if (pos_y < *cur_y) // 目标在左
                 {
                     (*cur_y)--;
                     (*cur_x)++;
                 }
             }
         }
-        else    // 异常情况处理
+        else // 异常情况处理
         {
-            // TODO: 加入终止函数？
-            printf("咋骑手跑到房子里了？\n");
-            //exit(0);
+            // // TODO: 加入终止函数？
+            // printf("咋骑手跑到房子里了？\n");
+            // //exit(0);
+            gameOver(5);
         }
     }
     /* 
@@ -200,7 +202,7 @@ void AllRiderMove()
     {
         int posX, posY;
         OrderList *findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
-        if (findOrder->Cur_order->status == 1) //找到第一个订单对应的位置
+        if (findOrder->Cur_order->status == 1)                       //找到第一个订单对应的位置
         {
             posX = findOrder->Cur_order->rest_x;
             posY = findOrder->Cur_order->rest_y;

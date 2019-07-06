@@ -31,26 +31,33 @@ void isAnyOrderOverTime()
         if (HeadOrder->Cur_order->status == 3) // 不处理已完成订单
             continue;
         int difference = Time - HeadOrder->Cur_order->begin_time; // 时间差
-        if (difference == FINE_SECOND_TIME + 1)                   // 恶意拖单
+        if (difference == DEAD_TIME + 1 && HeadOrder->Cur_order->status == 0) //拒单
         {
-            printf("GAMEOVER!!!\n");
-            exit(0); // TODO: 可以写一个统一的终止函数
+            // printf("GAMEOVER!!!\n");
+            // exit(0); // TODO: 可以写一个统一的终止函数
+            gameOver(1);
         }
-        else if (difference == FINE_FIRST_TIME + 1) // 罚单
+        if (difference == FINE_SECOND_TIME + 1)                               // 恶意拖单
+        {
+            // printf("GAMEOVER!!!\n");
+            gameOver(2);
+        }
+        else if (difference == FINE_FIRST_TIME + 1)                           // 罚单,资金为负
         {
             CompanyMoney -= FINE_MONEY;
             CompanyOrderOverTime++;
-            if(CompanyMoney < 0)
+            if (CompanyMoney < 0)
             {
-                printf("GAMEOVER!!!\n");
-                // TODO: 终止函数
+                // printf("GAMEOVER!!!\n");
+                // // TODO: 终止函数
+                gameOver(0);
             }
         }
     }
 }
 /*
     订单完成时调用即可
-    Var: 骑手的队头订单
+    nowOrder(OrderList *)：目前遍历到的订单，注意，为OrderList指针而非Order指针
 */
 void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还是整个订单完成
 {
@@ -61,7 +68,7 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
         {
             if (nowOrder->Cur_order->status == 2) // TODO: 停靠记录
             {
-                HeadOrder->Cur_order->status = 3;   // 变成已完成
+                HeadOrder->Cur_order->status = 3; // 变成已完成
                 nowOrder->Cur_order->status = 3;
                 nowOrder->Cur_order->end_time = Time;
                 HeadOrder->Cur_order->end_time = Time;
@@ -78,31 +85,30 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
                 //OrderList *newOrder = nowOrder;
                 //pop_front_order(nowOrder);
                 //push_back_order(nowOrder->Cur_order, nowOrder);
-            }  
+            }
         }
         HeadOrder = HeadOrder->Nxt_order;
     }
-    
 }
 
 /*
     判断订单是否结单
-    nowOrder：目前遍历到的订单
+    nowOrder(OrderList *)：目前遍历到的订单，注意，为OrderList指针而非Order指针
  */
 int isComplishOrder(OrderList *NowOrder)
 {
     int judge = 0;
-    if(NowOrder->Cur_order->status==1)
-        judge = abs((NowOrder->Cur_order->rest_x)-(CurRider->rider_x))+abs((NowOrder->Cur_order->rest_y)-(CurRider->rider_y));
-    else if(NowOrder->Cur_order->status==2)
-        judge = abs((NowOrder->Cur_order->cust_x)-(CurRider->rider_x))+abs((NowOrder->Cur_order->cust_y)-(CurRider->rider_y));
+    if (NowOrder->Cur_order->status == 1)
+        judge = abs((NowOrder->Cur_order->rest_x) - (CurRider->rider_x)) + abs((NowOrder->Cur_order->rest_y) - (CurRider->rider_y));
+    else if (NowOrder->Cur_order->status == 2)
+        judge = abs((NowOrder->Cur_order->cust_x) - (CurRider->rider_x)) + abs((NowOrder->Cur_order->cust_y) - (CurRider->rider_y));
     else
     {
-        printf("订单状态错误\n");
-        //exit(0);//终止
+        // printf("订单状态错误\n");
+        // //exit(0);//终止
+        gameOver(3);
     }
-    if(judge==1)
+    if (judge == 1)
         return 1;
     return 0;
 }
-
