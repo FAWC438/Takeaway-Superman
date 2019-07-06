@@ -31,12 +31,16 @@ void isAnyOrderOverTime()
         if (HeadOrder->Cur_order->status == 3) // 不处理已完成订单
             continue;
         int difference = Time - HeadOrder->Cur_order->begin_time; // 时间差
-        if (difference == FINE_SECOND_TIME + 1)                   // 恶意拖单
+        if (difference == DEAD_TIME + 1 && HeadOrder->Cur_order->status == 0) //拒单
+        {
+            gameOver(1);
+        }
+        if (difference == FINE_SECOND_TIME + 1)                               // 恶意拖单
         {
             // printf("GAMEOVER!!!\n");
             gameOver(2);
         }
-        else if (difference == FINE_FIRST_TIME + 1) // 罚单
+        else if (difference == FINE_FIRST_TIME + 1)                           // 罚单
         {
             CompanyMoney -= FINE_MONEY;
             CompanyOrderOverTime++;
