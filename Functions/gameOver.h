@@ -52,8 +52,15 @@ void gameOver(int reason)
     while (p2)
     {
         free(p2->Pre_order);
-        free(p2->Cur_rider->Bag);
-        p2->Cur_rider->Bag = NULL;
+        p1 = p2->Cur_rider->Bag;
+        while(p1)
+        {
+            free(p1->Pre_order);
+            free(p1->Cur_order);
+            p1->Pre_order = NULL;
+            p1->Cur_order = NULL;
+            p1 = p1->Nxt_order;
+        }
         free(p2->Cur_rider);
         p2->Pre_order = NULL;
         p2->Cur_order = NULL;
