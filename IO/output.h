@@ -107,7 +107,6 @@ void outputOnFile()
     {
         fprintf(fPtr, "骑手%d位置: %d, %d; ", HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
         fprintf(fPtr, "停靠:");
-        // TODO: 停靠判断
         printNearBy(HeadRider->Cur_rider, fPtr);
         HeadRider = HeadRider->Nxt_rider;
         fprintf(fPtr, ";\n");

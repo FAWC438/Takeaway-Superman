@@ -83,8 +83,8 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
                 nowOrder->Cur_order->end_time = Time;
                 HeadOrder->Cur_order->end_time = Time;
                 //OrderList *newOrder = nowOrder;
-                //pop_front_order(nowOrder);
-                //push_back_order(nowOrder->Cur_order, nowOrder);
+                push_back_order(nowOrder->Cur_order, nowOrder);
+                delete_order(nowOrder);
             }
         }
         HeadOrder = HeadOrder->Nxt_order;
@@ -111,4 +111,19 @@ int isComplishOrder(OrderList *NowOrder)
     if (judge == 1)
         return 1;
     return 0;
+}
+/*
+    将新订单进行派单
+ */
+void arrangeNewOrder()
+{
+    OrderList *newOrder = AllOrderLog->Nxt_order;
+    while(newOrder)
+    {
+        if(newOrder->Cur_order->status == 0)
+        {
+            getBestRider(newOrder->Cur_order);
+        }
+        newOrder->Cur_order;
+    }
 }
