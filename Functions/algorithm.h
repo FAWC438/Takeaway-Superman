@@ -93,8 +93,10 @@ int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
     }
     return cnt;
 }
-
-int getDis(int a_x, int a_y, int b_x, int b_y) // 获取两点之间的曼哈顿距离
+/*
+    获取两点之间的曼哈顿距离
+ */
+int getDis(int a_x, int a_y, int b_x, int b_y)
 {
     return abs(a_x - b_x) + abs(a_y - b_y);
 }
