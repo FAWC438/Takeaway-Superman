@@ -27,9 +27,7 @@ Order *getRiderCurOrder(int rider_id)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
-    {
         p = p->Nxt_rider;
-    }
     return p->Cur_rider;
 }
 /*
@@ -41,9 +39,7 @@ OrderList *getRiderCurBag(int rider_id)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
-    {
         p = p->Nxt_rider;
-    }
     return p->Cur_rider->Bag;
 }
 
@@ -57,9 +53,7 @@ void getRiderCurPos(int rider_id, int *x, int *y)
 {
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
-    {
         p = p->Nxt_rider;
-    }
     *x = p->Cur_rider->rider_x;
     *y = p->Cur_rider->rider_y;
 }
@@ -74,9 +68,7 @@ void riderMove(int rider_id, int pos_x, int pos_y)
     int *cur_x, *cur_y, i, j;
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
-    {
         p = p->Nxt_rider;
-    }
     *cur_x = p->Cur_rider->rider_x;
     *cur_y = p->Cur_rider->rider_y;
     i = *cur_x;
@@ -88,13 +80,9 @@ void riderMove(int rider_id, int pos_x, int pos_y)
         if (i % 2 == 1 && j % 2 == 0) // 在横向道路上
         {
             if (*cur_y > pos_y + 1) // 在右边就要往左走
-            {
                 (*cur_y) -= 2;
-            }
             else if (*cur_y < pos_y - 1) // 在左边要往右走
-            {
                 (*cur_y) += 2;
-            }
         }
         else if (i % 2 == 0 && j % 2 == 1) // 在纵向道路上
         {
@@ -139,13 +127,9 @@ void riderMove(int rider_id, int pos_x, int pos_y)
         if (i % 2 == 0 && j % 2 == 1) // 在纵向道路上
         {
             if (*cur_x > pos_x + 1) // 在下边就要往上走
-            {
                 (*cur_x) -= 2;
-            }
             else if (*cur_x < pos_x - 1) // 在上边要往下走
-            {
                 (*cur_x) += 2;
-            }
         }
         else if (i % 2 == 1 && j % 2 == 0) // 在横向道路上
         {
@@ -177,12 +161,10 @@ void riderMove(int rider_id, int pos_x, int pos_y)
             }
         }
         else // 异常情况处理
-        {
             // // TODO: 加入终止函数？
             // printf("咋骑手跑到房子里了？\n");
             // //exit(0);
             gameOver(5);
-        }
     }
 }
 

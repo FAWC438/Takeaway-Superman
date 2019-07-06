@@ -30,26 +30,20 @@ void isAnyOrderOverTime()
     {
         if (HeadOrder->Cur_order->status == 3) // 不处理已完成订单
             continue;
-        int difference = Time - HeadOrder->Cur_order->begin_time; // 时间差
+        int difference = Time - HeadOrder->Cur_order->begin_time;             // 时间差
         if (difference == DEAD_TIME + 1 && HeadOrder->Cur_order->status == 0) //拒单
-        {
             // printf("GAMEOVER!!!\n");
             gameOver(1);
-        }
-        if (difference == FINE_SECOND_TIME + 1)                               // 恶意拖单
-        {
+        if (difference == FINE_SECOND_TIME + 1) // 恶意拖单
             // printf("GAMEOVER!!!\n");
             gameOver(2);
-        }
-        else if (difference == FINE_FIRST_TIME + 1)                           // 罚单,资金为负
+        else if (difference == FINE_FIRST_TIME + 1) // 罚单,资金为负
         {
             CompanyMoney -= FINE_MONEY;
             CompanyOrderOverTime++;
             if (CompanyMoney < 0)
-            {
                 // printf("GAMEOVER!!!\n");
                 gameOver(0);
-            }
         }
     }
 }
@@ -101,11 +95,9 @@ int isComplishOrder(OrderList *NowOrder)
     else if (NowOrder->Cur_order->status == 2)
         judge = abs((NowOrder->Cur_order->cust_x) - (CurRider->rider_x)) + abs((NowOrder->Cur_order->cust_y) - (CurRider->rider_y));
     else
-    {
         // printf("订单状态错误\n");
         // //exit(0);//终止
         gameOver(3);
-    }
     if (judge == 1)
         return 1;
     return 0;
@@ -116,12 +108,10 @@ int isComplishOrder(OrderList *NowOrder)
 void arrangeNewOrder()
 {
     OrderList *newOrder = AllOrderLog->Nxt_order;
-    while(newOrder)
+    while (newOrder)
     {
-        if(newOrder->Cur_order->status == 0)
-        {
+        if (newOrder->Cur_order->status == 0)
             getBestRider(newOrder->Cur_order);
-        }
         newOrder->Cur_order;
     }
 }
