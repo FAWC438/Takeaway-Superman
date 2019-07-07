@@ -101,7 +101,7 @@ void gameSuccess()
     printf("公司剩余现金数：%d\n", CompanyMoney);
     printf("公司骑手数量：%d\n", CompanyRiderCount);
     printf("公司收益利润：%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
-    printf("破产时间：%d个时间单位\n", Time);
+    printf("坚持时间：%d个时间单位\n", Time);
     printf("公司接单数：%d\n", CompanyOrderSum);
     printf("公司完成单数:%d\n", CompanyOrderFinish);
     printf("公司超时单数:%d\n", CompanyOrderOverTime);
