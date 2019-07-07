@@ -162,7 +162,7 @@ int getPath(Rider *nowRider, Order *nowOrder)
             sum += virtualRun(&now_x, &now_y, nowBag->Cur_order->cust_x, nowBag->Cur_order->cust_y);
         nowBag = nowBag->Nxt_order;
     }
-    sum += virtualRun(now_x, now_y, nowOrder->rest_x, nowOrder->rest_y);
+    sum += virtualRun(&now_x, &now_y, nowOrder->rest_x, nowOrder->rest_y);
     return sum;
 }
 /*
@@ -172,11 +172,11 @@ void getBestRider(Order *nowOrder)
 {
     RiderList *chooseRider = AllRiderLog->Nxt_rider;
     int path_min = 0x3f3f3f3f;
-    int path_now, id_min;
+    int path_now = 0x3f3f3f3f, id_min = 0;
     // 找出最佳骑手
     while(chooseRider)
     {
-        path_now = getPath(chooseRider->Cur_rider, nowOrder);   // 如果把包裹给此骑手的时长
+        path_now = getPath(chooseRider->Cur_rider, nowOrder);   // 把包裹给此骑手的时长
         if(path_min > path_now)
         {
             path_min = path_now;

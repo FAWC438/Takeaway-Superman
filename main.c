@@ -2,6 +2,7 @@
 
 int main()
 {
+    clock_t start_clock, end_clock; // 用于计算程序运行时间
     if (inputFileOrder())
         ;
     else
@@ -9,6 +10,7 @@ int main()
 
     while (Buffer->Nxt_order) // 结束条件是缓冲区为空
     {
+        start_clock = clock();
         Time++;
         //将缓冲区中的订单放到全局订单记录中
         {
@@ -31,7 +33,7 @@ int main()
         //派单之前把骑手背包完成的订单弹出
         initRiderBag();
         //派单算法
-        arrangeNewOrder();
+        arrangeNewOrder();  // 此处遍历可优化
         //判断是否超时或破产
         isAnyOrderOverTime();
         //骑手移动
@@ -62,8 +64,9 @@ int main()
             outputKey();
         }
         //输出文件
-        outputOnFileKey();
-        sleep(TIME_UNIT);
+        outputOnFile();
+        end_clock() = clock();
+        sleep(TIME_UNIT - (end_clock - start_clock));   // 准确2秒刷新
     }
     gameSuccess();
     // return 0;

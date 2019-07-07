@@ -104,7 +104,7 @@ int isComplishOrder(OrderList *NowOrder)
 }
 /*
     将新订单进行派单
- */
+*/
 void arrangeNewOrder()
 {
     OrderList *newOrder = AllOrderLog->Nxt_order;

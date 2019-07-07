@@ -152,7 +152,7 @@ void outputMap()    // 餐客形式没考虑
     while (HeadRider)
     {
         Map[HeadRider->Cur_rider->rider_x][HeadRider->Cur_rider->rider_y] = 4 // 骑手地图更新
-            HeadRider = HeadRider->Nxt_rider;
+        HeadRider = HeadRider->Nxt_rider;
     }
 
     for (i = 0; i <= 16; i++)
