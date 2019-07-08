@@ -186,14 +186,5 @@ void getBestRider(Order *nowOrder)
     }
     // 将订单加入骑手背包
     chooseRider = AllRiderLog->Nxt_rider;
-    while(chooseRider)
-    {
-        if(chooseRider->Cur_rider->id == id_min)
-        {
-            AllOrderLog->Cur_order->status = 1;
-            nowOrder->status = 1;    // 切换订单状态
-            push_back_order(nowOrder, chooseRider->Cur_rider->Bag); // 将订单进队
-        }
-        chooseRider = chooseRider->Nxt_rider;
-    }
+    assignOrder(nowOrder, id_min)
 }
