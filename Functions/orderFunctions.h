@@ -86,14 +86,15 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
 /*
     判断订单是否结单
     nowOrder(OrderList *)：目前遍历到的订单，注意，为OrderList指针而非Order指针
+    NowRider(Rider *)：目前的骑手，注意，为RiderList指针
  */
-int isComplishOrder(OrderList *NowOrder)
+int isComplishOrder(OrderList *NowOrder,RiderList *NowRider)
 {
     int judge = 0;
     if (NowOrder->Cur_order->status == 1)
-        judge = abs((NowOrder->Cur_order->rest_x) - (CurRider->rider_x)) + abs((NowOrder->Cur_order->rest_y) - (CurRider->rider_y));
+        judge = abs((NowOrder->Cur_order->rest_x) - (NowRider->Cur_rider->rider_x)) + abs((NowOrder->Cur_order->rest_y) - (NowRider->Cur_rider->rider_y));
     else if (NowOrder->Cur_order->status == 2)
-        judge = abs((NowOrder->Cur_order->cust_x) - (CurRider->rider_x)) + abs((NowOrder->Cur_order->cust_y) - (CurRider->rider_y));
+        judge = abs((NowOrder->Cur_order->cust_x) - (NowRider->Cur_rider->rider_x)) + abs((NowOrder->Cur_order->cust_y) - (NowRider->Cur_rider->rider_y));
     else
         // printf("订单状态错误\n");
         // //exit(0);//终止

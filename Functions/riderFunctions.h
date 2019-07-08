@@ -189,7 +189,7 @@ void AllRiderMove()
             posX = findOrder->Cur_order->cust_x;
             posY = findOrder->Cur_order->cust_y;
         }
-        riderMove(tempRider, posX, posY); //骑手移动
+        riderMove(tempRider->Cur_rider->id, posX, posY); //骑手移动
         tempRider = tempRider->Nxt_rider; //换到下一个骑手
     }
 }
