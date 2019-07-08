@@ -2,7 +2,7 @@
 /*
     从文件输入
  */
-int inputFileOrder()    // TODO: 处理输入数据和要计算的数据的关系
+int inputFileOrder() // TODO: 处理输入数据和要计算的数据的关系
 {
     if (access("sales.txt", 0) == -1)
     {
@@ -13,13 +13,13 @@ int inputFileOrder()    // TODO: 处理输入数据和要计算的数据的关�
     FILE *fp = fopen("sales.txt", "r"); // 打开文件
     while (fscanf(fp, "%d %d %d %d %d %d\n", &p->id, &p->begin_time,
                   &p->rest_x, &p->rest_y,
-                  &p->cust_x, &p->cust_y))
+                  &p->cust_x, &p->cust_y) != EOF)
     {
         p->status = 0;                                  // 未接单状态
         p->end_time = p->begin_time + FINE_SECOND_TIME; // 破产时间
         p->warn_time = p->begin_time + FINE_FIRST_TIME; // 罚款时间
         CompanyOrderSum++;                              // 公司的总订单+1
-        push_back_order(p, Buffer);                // 添加到全局订单记录后
+        push_back_order(p, Buffer);                     // 添加到全局订单记录后
         p = (Order *)malloc(sizeof(Order));             // 给p新的空间
     }
     free(p); // 释放p的内存
@@ -34,13 +34,13 @@ int inputKeyOrder()
     Order *p = (Order *)malloc(sizeof(Order));
     while (scanf("%d %d %d %d %d %d\n", &p->id, &p->begin_time,
                  &p->rest_x, &p->rest_y,
-                 &p->cust_x, &p->cust_y))
+                 &p->cust_x, &p->cust_y) != EOF)
     {
         p->status = 0;                                  // 未接单状态
         p->end_time = p->begin_time + FINE_SECOND_TIME; // 破产时间
         p->warn_time = p->begin_time + FINE_FIRST_TIME; // 罚款时间
         CompanyOrderSum++;                              // 公司的总订单+1
-        push_back_order(p, Buffer);                // 添加到全局订单记录后
+        push_back_order(p, Buffer);                     // 添加到全局订单记录后
         p = (Order *)malloc(sizeof(Order));             // 给p新的空间
     }
     free(p); // 释放p的内存
