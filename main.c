@@ -40,7 +40,9 @@ int main()
         //判断是否超时或破产
         isAnyOrderOverTime();
         //骑手移动
+        printf("A ");
         AllRiderMove();
+        printf("B ");
         //判断每一个订单是否完成
         //完成每一个需要完成的订单 但是在骑手背包里不弹出刚完成的订单 （输出文件时判断停靠使用）
         int isAnyOrderComplish = 0;
