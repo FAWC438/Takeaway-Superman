@@ -223,7 +223,7 @@ void outputMap() // 餐客形式没考虑
         }
         else
         { // 无房子的行
-            for (int j = 0; j <= 16; j++)
+            for (j = 0; j <= 16; j++)
             {
                 if (j % 2 == 0)
                 {
