@@ -113,6 +113,6 @@ void arrangeNewOrder()
     {
         if (newOrder->Cur_order->status == 0)
             getBestRider(newOrder->Cur_order);
-        newOrder->Cur_order;
+        newOrder = newOrder->Nxt_order;
     }
 }
