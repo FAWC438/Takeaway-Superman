@@ -1,149 +1,170 @@
 #include "../Global/header.h"
 /*
-    ç ´äº§ç»“ç®—å‡½æ•°
+	ÆÆ²ú½áËãº¯Êý
 */
 
-/* 
-    ç ´äº§ç»“ç®—
-    ä»¥ä¸‹åˆ—å‡ºè°ƒç”¨è¯¥å‡½æ•°çš„æƒ…å†µ(int reason)ï¼š
-    0. ç ´äº§ï¼šèµ„é‡‘ä¸ºè´Ÿæ•°
-    1. æ‹’å•ï¼šè¶…è¿‡DEAD_TIMEä¸ªæ—¶é—´å•ä½æŽ¥å•
-    2. æ¶æ„æ‹–å•ï¼šç¬¬äºŒæ¬¡è¶…æ—¶ï¼Œå³æŽ¥å•åŽï¼Œåœ¨FINE_SECOND_TIMEæ—¶é—´å•ä½å†…æœªé€è¾¾
-    3. è®¢å•çŠ¶æ€é”™è¯¯
-    4. è¾“å…¥æ ¼å¼é”™è¯¯
-    5. ç¨‹åºè¿è¡Œå¼‚å¸¸ï¼ˆeg. å’‹éª‘æ‰‹è·‘åˆ°æˆ¿å­é‡Œäº†ï¼Ÿï¼‰
+/*
+	ÅÐ¶ÏÃ¿¸ö¶©µ¥ÊÇ·ñÍê³É
+*/
+int isAllOrderFinished()
+{
+	OrderList* nowOrder = AllOrderLog->Nxt_order;
+	if (nowOrder == NULL)
+	{
+		return 0;
+	}
+	while (nowOrder)
+	{
+		if (nowOrder->Cur_order->status != 3)
+			return 0;
+		nowOrder = nowOrder->Nxt_order;
+	}
+	return 1;
+}
+/*
+	ÆÆ²ú½áËã
+	ÒÔÏÂÁÐ³öµ÷ÓÃ¸Ãº¯ÊýµÄÇé¿ö(int reason)£º
+	0. ÆÆ²ú£º×Ê½ðÎª¸ºÊý
+	1. ¾Üµ¥£º³¬¹ýDEAD_TIME¸öÊ±¼äµ¥Î»½Óµ¥
+	2. ¶ñÒâÍÏµ¥£ºµÚ¶þ´Î³¬Ê±£¬¼´½Óµ¥ºó£¬ÔÚFINE_SECOND_TIMEÊ±¼äµ¥Î»ÄÚÎ´ËÍ´ï
+	3. ¶©µ¥×´Ì¬´íÎó
+	4. ÊäÈë¸ñÊ½´íÎó
+	5. ³ÌÐòÔËÐÐÒì³££¨eg. Õ¦ÆïÊÖÅÜµ½·¿×ÓÀïÁË£¿£©
 */
 void gameOver(int reason)
 {
-    printf("------------------------------------------------\n");
-    printf("%d\n", reason);
-    printf("å…¬å¸å·²ç»ç ´äº§ï¼ï¼ï¼\n");
-    printf("å…¬å¸ç ´äº§åŽŸå› ï¼š");
-    if (reason == 0)
-        printf("ç ´äº§\n");
-    else if (reason == 1)
-        printf("æ‹’å•\n");
-    else if (reason == 2)
-        printf("æ¶æ„åºŸå•\n");
-    else
-        printf("å¼‚å¸¸åŽŸå› ï¼Œé”™è¯¯ä»£ç ä¸º%d\n", reason);
-    printf("æœ¬æ¬¡å…¬å¸æ‰€åœ¨åœ°å€:ï¼ˆ%dï¼Œ%dï¼‰\n", COMPANY_X, COMPANY_Y);
-    printf("å…¬å¸å‰©ä½™çŽ°é‡‘æ•°ï¼š%d\n", CompanyMoney);
-    printf("å…¬å¸éª‘æ‰‹æ•°é‡ï¼š%d\n", CompanyRiderCount);
-    printf("å…¬å¸æ”¶ç›Šåˆ©æ¶¦ï¼š%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
-    printf("ç ´äº§æ—¶é—´ï¼š%dä¸ªæ—¶é—´å•ä½\n", Time);
-    printf("å…¬å¸æŽ¥å•æ•°ï¼š%d\n", CompanyOrderSum);
-    printf("å…¬å¸å®Œæˆå•æ•°:%d\n", CompanyOrderFinish);
-    printf("å…¬å¸è¶…æ—¶å•æ•°:%d\n", CompanyOrderOverTime);
+	printf("------------------------------------------------\n");
+	printf("%d\n", reason);
+	printf("¹«Ë¾ÒÑ¾­ÆÆ²ú£¡£¡£¡\n");
+	printf("¹«Ë¾ÆÆ²úÔ­Òò:");
+	if (reason == 0)
+		printf("ÆÆ²ú\n");
+	else if (reason == 1)
+		printf("¾Üµ¥\n");
+	else if (reason == 2)
+		printf("¶ñÒâ·Ïµ¥\n");
+	else
+		printf("Òì³£Ô­Òò£¬´íÎó´úÂëÎª%d\n", reason);
+	printf("±¾´Î¹«Ë¾ËùÔÚµØÖ·:£¨%d£¬%d£©\n", COMPANY_X, COMPANY_Y);
+	printf("¹«Ë¾Ê£ÓàÏÖ½ðÊý£º%d\n", CompanyMoney);
+	printf("¹«Ë¾ÆïÊÖÊýÁ¿£º%d\n", CompanyRiderCount);
+	printf("¹«Ë¾ÊÕÒæÀûÈó£º%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
+	printf("ÆÆ²úÊ±¼ä£º%d¸öÊ±¼äµ¥Î»\n", Time);
+	printf("¹«Ë¾½Óµ¥Êý£º%d\n", CompanyOrderSum);
+	printf("¹«Ë¾Íê³Éµ¥Êý:%d\n", CompanyOrderFinish);
+	printf("¹«Ë¾³¬Ê±µ¥Êý:%d\n", CompanyOrderOverTime);
 
-    // é‡Šæ”¾å…¨å±€å˜é‡å†…å­˜
-    OrderList *p1 = AllOrderLog;
-    RiderList *p2 = AllRiderLog;
-    OrderList *p3 = Buffer;
+	// ÊÍ·ÅÈ«¾Ö±äÁ¿ÄÚ´æ
+	OrderList* p1 = AllOrderLog;
+	RiderList* p2 = AllRiderLog;
+	OrderList* p3 = Buffer;
 
-    // é‡Šæ”¾AllOrderLog
-    while (p1)
-    {
-        free(p1->Pre_order);
-        free(p1->Cur_order);
-        p1->Pre_order = NULL;
-        p1->Cur_order = NULL;
-        p1 = p1->Nxt_order;
-    }
-    AllOrderLog = NULL;
-    // é‡Šæ”¾Buffer
-    while (p3)
-    {
-        free(p3->Pre_order);
-        free(p3->Cur_order);
-        p3->Pre_order = NULL;
-        p3->Cur_order = NULL;
-        p3 = p3->Nxt_order;
-    }
-    Buffer = NULL;
-    // é‡Šæ”¾AllRiderLog
-    while (p2)
-    {
-        free(p2->Pre_rider);
-        p1 = p2->Cur_rider->Bag;
-        // é‡Šæ”¾bag
-        while (p1)
-        {
-            free(p1->Pre_order);
-            free(p1->Cur_order);
-            p1->Pre_order = NULL;
-            p1->Cur_order = NULL;
-            p1 = p1->Nxt_order;
-        }
-        free(p2->Cur_rider);
-        p2->Pre_rider = NULL;
-        p2->Cur_rider = NULL;
-        p2 = p2->Nxt_rider;
-    }
-    AllRiderLog = NULL;
-    printf("GAME OVER!!!\n");
-    system("PAUSE");
-    exit(0);
+	// ÊÍ·ÅAllOrderLog
+	while (p1)
+	{
+		free(p1->Pre_order);
+		free(p1->Cur_order);
+		p1->Pre_order = NULL;
+		p1->Cur_order = NULL;
+		p1 = p1->Nxt_order;
+	}
+	AllOrderLog = NULL;
+	// ÊÍ·ÅBuffer
+	while (p3)
+	{
+		free(p3->Pre_order);
+		free(p3->Cur_order);
+		p3->Pre_order = NULL;
+		p3->Cur_order = NULL;
+		p3 = p3->Nxt_order;
+	}
+	Buffer = NULL;
+	// ÊÍ·ÅAllRiderLog
+	while (p2)
+	{
+		free(p2->Pre_rider);
+		p1 = p2->Cur_rider->Bag;
+		// ÊÍ·Åbag
+		while (p1)
+		{
+			free(p1->Pre_order);
+			free(p1->Cur_order);
+			p1->Pre_order = NULL;
+			p1->Cur_order = NULL;
+			p1 = p1->Nxt_order;
+		}
+		free(p2->Cur_rider);
+		p2->Pre_rider = NULL;
+		p2->Cur_rider = NULL;
+		p2 = p2->Nxt_rider;
+	}
+	AllRiderLog = NULL;
+	printf("GAME OVER!!!\n");
+	system("PAUSE");
+	exit(0);
 }
 
-/* 
-    æ­£å¸¸ç»“ç®—
-    è¯¥å‡½æ•°åº”åœ¨mainä¸­è°ƒç”¨
-    ä»¥ä¸‹åˆ—å‡ºè°ƒç”¨è¯¥å‡½æ•°çš„æƒ…å†µï¼š
-    1. é¼ æ ‡æ“ä½œæ‰‹åŠ¨ç»“æŸæ¸¸æˆ
-    2. è¾“å…¥æ–‡ä»¶ä¸­æ— æ›´å¤šè®¢å•ä¸”æ‰€æœ‰å·²çŸ¥è®¢å•å‡å®Œæˆ
+/*
+	Õý³£½áËã
+	¸Ãº¯ÊýÓ¦ÔÚmainÖÐµ÷ÓÃ
+	ÒÔÏÂÁÐ³öµ÷ÓÃ¸Ãº¯ÊýµÄÇé¿ö£º
+	1. Êó±ê²Ù×÷ÊÖ¶¯½áÊøÓÎÏ·
+	2. ÊäÈëÎÄ¼þÖÐÎÞ¸ü¶à¶©µ¥ÇÒËùÓÐÒÑÖª¶©µ¥¾ùÍê³É
 */
 
 void gameSuccess()
 {
-    printf("------------------------------------------------\n");
-    printf("å…¬å¸å­˜æ´»åˆ°äº†æœ€åŽï¼ï¼ï¼You are the true Takeaway Supermanï¼\n");
-    printf("æœ¬æ¬¡å…¬å¸æ‰€åœ¨åœ°å€:ï¼ˆ%dï¼Œ%dï¼‰\n", COMPANY_X, COMPANY_Y);
-    printf("å…¬å¸å‰©ä½™çŽ°é‡‘æ•°ï¼š%d\n", CompanyMoney);
-    printf("å…¬å¸éª‘æ‰‹æ•°é‡ï¼š%d\n", CompanyRiderCount);
-    printf("å…¬å¸æ”¶ç›Šåˆ©æ¶¦ï¼š%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
-    printf("åšæŒæ—¶é—´ï¼š%dä¸ªæ—¶é—´å•ä½\n", Time);
-    printf("å…¬å¸æŽ¥å•æ•°ï¼š%d\n", CompanyOrderSum);
-    printf("å…¬å¸å®Œæˆå•æ•°:%d\n", CompanyOrderFinish);
-    printf("å…¬å¸è¶…æ—¶å•æ•°:%d\n", CompanyOrderOverTime);
+	printf("------------------------------------------------\n");
+	printf("¹«Ë¾´æ»îµ½ÁË×îºó£¡£¡£¡You are the true Takeaway Superman£¡\n");
+	printf("±¾´Î¹«Ë¾ËùÔÚµØÖ·:£¨%d£¬%d£©\n", COMPANY_X, COMPANY_Y);
+	printf("¹«Ë¾Ê£ÓàÏÖ½ðÊý£º%d\n", CompanyMoney);
+	printf("¹«Ë¾ÆïÊÖÊýÁ¿£º%d\n", CompanyRiderCount);
+	printf("¹«Ë¾ÊÕÒæÀûÈó£º%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
+	printf("¼á³ÖÊ±¼ä£º%d¸öÊ±¼äµ¥Î»\n", Time);
+	printf("¹«Ë¾½Óµ¥Êý£º%d\n", CompanyOrderSum);
+	printf("¹«Ë¾Íê³Éµ¥Êý:%d\n", CompanyOrderFinish);
+	printf("¹«Ë¾³¬Ê±µ¥Êý:%d\n", CompanyOrderOverTime);
 
-    // é‡Šæ”¾å…¨å±€å˜é‡å†…å­˜
-    OrderList *p1 = AllOrderLog;
-    RiderList *p2 = AllRiderLog;
-    OrderList *p3 = Buffer;
-    // é‡Šæ”¾AllOrderLog
-    while (p1)
-    {
-        free(p1->Pre_order);
-        free(p1->Cur_order);
-        p1->Pre_order = NULL;
-        p1->Cur_order = NULL;
-        p1 = p1->Nxt_order;
-    }
-    AllOrderLog = NULL;
-    // é‡Šæ”¾Buffer
-    while (p3)
-    {
-        free(p3->Pre_order);
-        free(p3->Cur_order);
-        p3->Pre_order = NULL;
-        p3->Cur_order = NULL;
-        p3 = p3->Nxt_order;
-    }
-    Buffer = NULL;
-    // é‡Šæ”¾AllRiderLog
-    while (p2)
-    {
-        free(p2->Pre_rider);
-        free(p2->Cur_rider->Bag);
-        p2->Cur_rider->Bag = NULL;
-        free(p2->Cur_rider);
-        p2->Pre_rider = NULL;
-        p2->Cur_rider = NULL;
-        p2 = p2->Nxt_rider;
-    }
-    AllRiderLog = NULL;
-    printf("GAME SUCCESS!!!\n");
-    system("PAUSE");
-    exit(0);
+	// ÊÍ·ÅÈ«¾Ö±äÁ¿ÄÚ´æ
+	OrderList* p1 = AllOrderLog;
+	RiderList* p2 = AllRiderLog;
+	OrderList* p3 = Buffer;
+	// ÊÍ·ÅAllOrderLog
+	while (p1)
+	{
+		free(p1->Pre_order);
+		free(p1->Cur_order);
+		p1->Pre_order = NULL;
+		p1->Cur_order = NULL;
+		p1 = p1->Nxt_order;
+	}
+	AllOrderLog = NULL;
+	// ÊÍ·ÅBuffer
+	while (p3)
+	{
+		free(p3->Pre_order);
+		free(p3->Cur_order);
+		p3->Pre_order = NULL;
+		p3->Cur_order = NULL;
+		p3 = p3->Nxt_order;
+	}
+	Buffer = NULL;
+	// ÊÍ·ÅAllRiderLog
+	while (p2)
+	{
+		free(p2->Pre_rider);
+		if (p2->Cur_rider != NULL)
+		{
+			free(p2->Cur_rider->Bag);
+			p2->Cur_rider->Bag = NULL;
+		}
+		free(p2->Cur_rider);
+		p2->Pre_rider = NULL;
+		p2->Cur_rider = NULL;
+		p2 = p2->Nxt_rider;
+	}
+	AllRiderLog = NULL;
+	printf("GAME SUCCESS!!!\n");
+	system("PAUSE");
+	exit(0);
 }

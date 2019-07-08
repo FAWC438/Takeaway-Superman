@@ -1,249 +1,249 @@
 
 #include "../Global/header.h"
 
-// TODO: æ‰“å°éª‘æ‰‹è½¨è¿¹ä»¥è°ƒæ•´ã€‚
+// TODO: ´òÓ¡ÆïÊÖ¹ì¼£ÒÔµ÷Õû¡£
 /*
-    åœé åˆ¤æ–­å¹¶è¾“å‡º
+	Í£¿¿ÅĞ¶Ï²¢Êä³ö
 */
-void printNearBy(Rider *nowRider, FILE *fPtr)
+void printNearBy(Rider* nowRider, FILE* fPtr)
 {
-    int i;
-    const int dx[] = {-1, 1, 0, 0};
-    const int dy[] = {0, 0, 1, -1};
-    int restFlag = 0, dustFlag = 0;
+	int i;
+	const int dx[] = { -1, 1, 0, 0 };
+	const int dy[] = { 0, 0, 1, -1 };
+	int restFlag = 0, dustFlag = 0;
 
-    for (i = 0; i <= 3; i++)
-    {
-        restFlag = 0;
-        dustFlag = 0;
-        int now_x = nowRider->rider_x + dx[i];
-        int now_y = nowRider->rider_y + dy[i];
-        OrderList *tmpOrder = nowRider->Bag->Nxt_order;
-        while (tmpOrder)
-        {
-            if (tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->end_time == Time) // è¯´æ˜æ­¤ä½ç½®æˆ¿å­ä½œä¸ºé¤å…æœ‰ä»»åŠ¡å®Œæˆ
-            {
-                restFlag = 1;
-            }
-            if (tmpOrder->Cur_order->cust_x == now_x && tmpOrder->Cur_order->cust_y == now_y && tmpOrder->Cur_order->end_time == Time) // è¯´æ˜æ­¤ä½ç½®æˆ¿å­ä½œä¸ºå®¿èˆæœ‰ä»»åŠ¡å®Œæˆ
-            {
-                dustFlag = 1;
-            }
-            if (dustFlag && restFlag)
-                fprintf(fPtr, " é¤å®¢ %d %d", now_x, now_y);
-            else if (restFlag)
-                fprintf(fPtr, " é¤å… %d %d", now_x, now_y);
-            else if (dustFlag)
-                fprintf(fPtr, " é£Ÿå®¢ %d %d", now_x, now_y);
-            tmpOrder = tmpOrder->Nxt_order;
-        }
-    }
+	for (i = 0; i <= 3; i++)
+	{
+		restFlag = 0;
+		dustFlag = 0;
+		int now_x = nowRider->rider_x + dx[i];
+		int now_y = nowRider->rider_y + dy[i];
+		OrderList* tmpOrder = nowRider->Bag->Nxt_order;
+		while (tmpOrder)
+		{
+			if (tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->end_time == Time) // ËµÃ÷´ËÎ»ÖÃ·¿×Ó×÷Îª²ÍÌüÓĞÈÎÎñÍê³É
+			{
+				restFlag = 1;
+			}
+			if (tmpOrder->Cur_order->cust_x == now_x && tmpOrder->Cur_order->cust_y == now_y && tmpOrder->Cur_order->end_time == Time) // ËµÃ÷´ËÎ»ÖÃ·¿×Ó×÷ÎªËŞÉáÓĞÈÎÎñÍê³É
+			{
+				dustFlag = 1;
+			}
+			if (dustFlag && restFlag)
+				fprintf(fPtr, " ²Í¿Í %d %d", now_x, now_y);
+			else if (restFlag)
+				fprintf(fPtr, " ²ÍÌü %d %d", now_x, now_y);
+			else if (dustFlag)
+				fprintf(fPtr, " Ê³¿Í %d %d", now_x, now_y);
+			tmpOrder = tmpOrder->Nxt_order;
+		}
+	}
 }
 /*
-    è¾“å‡ºåœ¨æ–‡ä»¶ä¸­
+	Êä³öÔÚÎÄ¼şÖĞ
 */
 void outputOnFile()
 {
-    FILE *fPtr;
-    if ((fPtr = fopen("output.txt", "a")) == NULL)
-    {
-        printf("Can't not open the output.txt");
-        return;
-    }
-    fprintf(fPtr, "æ—¶é—´: %d\n", Time);
-    fprintf(fPtr, "é’±: %d\n", CompanyMoney);
-    fprintf(fPtr, "æ¥å•æ•°: %d\n", CompanyOrderSum);
-    fprintf(fPtr, "å®Œæˆæ•°: %d; ", CompanyOrderFinish);
-    fprintf(fPtr, "ç»“å•: ");
-    // éå†å…¨éƒ¨è®¢å•åˆ¤æ–­æ˜¯å¦æœ‰æ­¤æ—¶åˆ»ç»“å•çš„
-    OrderList *HeadOrder = AllOrderLog;
-    HeadOrder = HeadOrder->Nxt_order;
-    int flag = 0; // åˆ¤æ–­æ˜¯å¦ä¸ºç¬¬ä¸€ä¸ªè¾“å‡ºçš„è®¢å•å·
-    while (HeadOrder)
-    {
-        if (HeadOrder->Cur_order->end_time == Time && HeadOrder->Cur_order->status == 3)
-        {
-            if (!flag)
-            {
-                flag = 1;
-                fprintf(fPtr, "%d", HeadOrder->Cur_order->id);
-            }
-            else
-            {
-                fprintf(fPtr, " %d", HeadOrder->Cur_order->id);
-            }
-        }
-        HeadOrder = HeadOrder->Nxt_order;
-    }
-    fprintf(fPtr, ";\n");
-    fprintf(fPtr, "è¶…æ—¶æ•°: %d;", CompanyOrderOverTime);
-    fprintf(fPtr, "ç½šå•: ");
-    // éå†æ­¤æ—¶åˆ»æ˜¯å¦æœ‰ç½šå•çš„
-    HeadOrder = AllOrderLog;
-    HeadOrder = HeadOrder->Nxt_order;
-    flag = 0;
-    while (HeadOrder)
-    {
-        if (Time - HeadOrder->Cur_order->begin_time == FINE_FIRST_TIME + 1 && HeadOrder->Cur_order->status != 3) // èµ·å§‹æ—¶é—´è·ç°åœ¨ç­‰äº31ä¸”æœªå®Œæˆ
-        {
-            if (!flag)
-            {
-                flag = 1;
-                fprintf(fPtr, "%d", HeadOrder->Cur_order->id);
-            }
-            else
-            {
-                fprintf(fPtr, " %d", HeadOrder->Cur_order->id);
-            }
-        }
-        HeadOrder = HeadOrder->Nxt_order;
-    }
-    fprintf(fPtr, ";\n");
-    // è¾“å‡ºå„éª‘æ‰‹çŠ¶æ€
-    RiderList *HeadRider = AllRiderLog;
-    HeadRider = HeadRider->Nxt_rider;
-    while (HeadRider)
-    {
-        fprintf(fPtr, "éª‘æ‰‹%dä½ç½®: %d, %d; ", HeadRider->Cur_rider->id, HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
-        fprintf(fPtr, "åœé :");
-        printNearBy(HeadRider->Cur_rider, fPtr);
-        HeadRider = HeadRider->Nxt_rider;
-        fprintf(fPtr, ";\n");
-    }
+	FILE* fPtr;
+	if ((fPtr = fopen("D:\output.txt", "a")) == NULL)
+	{
+		printf("Can't not open the output.txt");
+		return;
+	}
+	fprintf(fPtr, "Ê±¼ä: %d\n", Time);
+	fprintf(fPtr, "Ç®: %d\n", CompanyMoney);
+	fprintf(fPtr, "½Óµ¥Êı: %d\n", CompanyOrderSum);
+	fprintf(fPtr, "Íê³ÉÊı: %d; ", CompanyOrderFinish);
+	fprintf(fPtr, "½áµ¥: ");
+	// ±éÀúÈ«²¿¶©µ¥ÅĞ¶ÏÊÇ·ñÓĞ´ËÊ±¿Ì½áµ¥µÄ
+	OrderList* HeadOrder = AllOrderLog;
+	HeadOrder = HeadOrder->Nxt_order;
+	int flag = 0; // ÅĞ¶ÏÊÇ·ñÎªµÚÒ»¸öÊä³öµÄ¶©µ¥ºÅ
+	while (HeadOrder)
+	{
+		if (HeadOrder->Cur_order->end_time == Time && HeadOrder->Cur_order->status == 3)
+		{
+			if (!flag)
+			{
+				flag = 1;
+				fprintf(fPtr, "%d", HeadOrder->Cur_order->id);
+			}
+			else
+			{
+				fprintf(fPtr, " %d", HeadOrder->Cur_order->id);
+			}
+		}
+		HeadOrder = HeadOrder->Nxt_order;
+	}
+	fprintf(fPtr, ";\n");
+	fprintf(fPtr, "³¬Ê±Êı: %d;", CompanyOrderOverTime);
+	fprintf(fPtr, "·£µ¥: ");
+	// ±éÀú´ËÊ±¿ÌÊÇ·ñÓĞ·£µ¥µÄ
+	HeadOrder = AllOrderLog;
+	HeadOrder = HeadOrder->Nxt_order;
+	flag = 0;
+	while (HeadOrder)
+	{
+		if (Time - HeadOrder->Cur_order->begin_time == FINE_FIRST_TIME + 1 && HeadOrder->Cur_order->status != 3) // ÆğÊ¼Ê±¼ä¾àÏÖÔÚµÈÓÚ31ÇÒÎ´Íê³É
+		{
+			if (!flag)
+			{
+				flag = 1;
+				fprintf(fPtr, "%d", HeadOrder->Cur_order->id);
+			}
+			else
+			{
+				fprintf(fPtr, " %d", HeadOrder->Cur_order->id);
+			}
+		}
+		HeadOrder = HeadOrder->Nxt_order;
+	}
+	fprintf(fPtr, ";\n");
+	// Êä³ö¸÷ÆïÊÖ×´Ì¬
+	RiderList* HeadRider = AllRiderLog;
+	HeadRider = HeadRider->Nxt_rider;
+	while (HeadRider)
+	{
+		fprintf(fPtr, "ÆïÊÖ%dÎ»ÖÃ: %d, %d; ", HeadRider->Cur_rider->id, HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
+		fprintf(fPtr, "Í£¿¿:");
+		printNearBy(HeadRider->Cur_rider, fPtr);
+		HeadRider = HeadRider->Nxt_rider;
+		fprintf(fPtr, ";\n");
+	}
 
-    fclose(fPtr);
+	fclose(fPtr);
 }
 /*
-    ä»¥æ–‡å­—çš„å½¢å¼è¾“å‡ºåœ¨å±å¹•ä¸Šï¼Œæ³¨æ„åˆ·æ–°é¢‘ç‡ä¸åŒï¼ï¼ï¼
+	ÒÔÎÄ×ÖµÄĞÎÊ½Êä³öÔÚÆÁÄ»ÉÏ£¬×¢ÒâË¢ĞÂÆµÂÊ²»Í¬£¡£¡£¡
 */
 void outputKey()
 {
-    printf("æ—¶é—´: %d\n", Time);
-    printf("é’±: %d\n", CompanyMoney); // è¿™é‡ŒæŒ‡ç°é‡‘ï¼Œæ²¡æœ‰åŠ ä¸Šéª‘æ‰‹èµ„äº§
-    printf("æ¥å•æ•°: %d\n", CompanyOrderSum);
-    printf("å®Œæˆæ•°: %d\n", CompanyOrderFinish);
-    printf("è¶…æ—¶æ•°: %d;", CompanyOrderOverTime);
+	printf("Ê±¼ä: %d\n", Time);
+	printf("Ç®: %d\n", CompanyMoney); // ÕâÀïÖ¸ÏÖ½ğ£¬Ã»ÓĞ¼ÓÉÏÆïÊÖ×Ê²ú
+	printf("½Óµ¥Êı: %d\n", CompanyOrderSum);
+	printf("Íê³ÉÊı: %d\n", CompanyOrderFinish);
+	printf("³¬Ê±Êı: %d;", CompanyOrderOverTime);
 }
 /*
-    ä»¥åœ°å›¾çš„å½¢å¼è¾“å‡ºåœ¨å±å¹•ä¸Š
+	ÒÔµØÍ¼µÄĞÎÊ½Êä³öÔÚÆÁÄ»ÉÏ
 */
-void outputMap() // é¤å®¢å½¢å¼æ²¡è€ƒè™‘
+void outputMap() // ²Í¿ÍĞÎÊ½Ã»¿¼ÂÇ
 {
-    int i, j, k;
+	int i, j, k;
 
-    initMap(); // åˆå§‹åŒ–åœ°å›¾
-    // åˆå§‹åŒ–æˆ¿å±‹ç±»å‹
-    OrderList *HeadOrder = AllOrderLog;
-    HeadOrder = HeadOrder->Nxt_order;
-    while (HeadOrder)
-    {
-        // å¾…ä¸åœé å‡½æ•°åè°ƒ
-        if ((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3) || (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time))
-        {
-            Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2; // é¤å…åœ°å›¾æ›´æ–°
-            Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3; // å®¿èˆåœ°å›¾æ›´æ–°
-        }
-        HeadOrder = HeadOrder->Nxt_order;
-    }
-    // åˆå§‹åŒ–éª‘æ‰‹ä½ç½®
-    RiderList *HeadRider = AllRiderLog;
-    HeadRider = HeadRider->Nxt_rider;
-    while (HeadRider)
-    {
-        Map[HeadRider->Cur_rider->rider_x][HeadRider->Cur_rider->rider_y] = 4; // éª‘æ‰‹åœ°å›¾æ›´æ–°
-        HeadRider = HeadRider->Nxt_rider;
-    }
+	initMap(); // ³õÊ¼»¯µØÍ¼
+	// ³õÊ¼»¯·¿ÎİÀàĞÍ
+	OrderList* HeadOrder = AllOrderLog;
+	HeadOrder = HeadOrder->Nxt_order;
+	while (HeadOrder)
+	{
+		// ´ıÓëÍ£¿¿º¯ÊıĞ­µ÷
+		if ((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3) || (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time))
+		{
+			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2; // ²ÍÌüµØÍ¼¸üĞÂ
+			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3; // ËŞÉáµØÍ¼¸üĞÂ
+		}
+		HeadOrder = HeadOrder->Nxt_order;
+	}
+	// ³õÊ¼»¯ÆïÊÖÎ»ÖÃ
+	RiderList* HeadRider = AllRiderLog;
+	HeadRider = HeadRider->Nxt_rider;
+	while (HeadRider)
+	{
+		Map[HeadRider->Cur_rider->rider_x][HeadRider->Cur_rider->rider_y] = 4; // ÆïÊÖµØÍ¼¸üĞÂ
+		HeadRider = HeadRider->Nxt_rider;
+	}
 
-    for (i = 0; i <= 16; i++)
-    {
-        if (i % 2 == 0)
-        { // æœ‰æˆ¿å­çš„è¡Œ
-            for (k = 0; k <= 3; k++)
-            {
-                for (j = 0; j <= 16; j++)
-                {
-                    if (j % 2 == 0)
-                    {
-                        if (k == 0)
-                        {
-                            printf("__________");
-                        }
-                        else if (k == 1)
-                        {
-                            printf("|        |");
-                        }
-                        else if (k == 2)
-                        {
-                            printf("|  ");
-                            /*
-                            if (Map[i][j] == 0) { // é“è·¯
+	for (i = 0; i <= 16; i++)
+	{
+		if (i % 2 == 0)
+		{ // ÓĞ·¿×ÓµÄĞĞ
+			for (k = 0; k <= 3; k++)
+			{
+				for (j = 0; j <= 16; j++)
+				{
+					if (j % 2 == 0)
+					{
+						if (k == 0)
+						{
+							printf("__________");
+						}
+						else if (k == 1)
+						{
+							printf("|        |");
+						}
+						else if (k == 2)
+						{
+							printf("|  ");
+							/*
+							if (Map[i][j] == 0) { // µÀÂ·
 								printf("    ");
 							}
 							*/
-                            if (Map[i][j] == 1)
-                            { // æˆ¿å­
-                                printf("    ");
-                            }
-                            else if (Map[i][j] == 2)
-                            { // é¤å…
-                                printf("é¤å…");
-                            }
-                            else
-                            { // å®¿èˆ
-                                printf("å®¿èˆ");
-                            }
-                            printf("  |");
-                        }
-                        else
-                        {
-                            printf("|________|");
-                        }
-                    }
-                    else
-                    {
-                        if (k == 2)
-                        {
-                            if (Map[i][j] == 0)
-                            { // é“è·¯
-                                printf("    ");
-                            }
-                            else if (Map[i][j] == 4)
-                            { // éª‘æ‰‹
-                                printf("éª‘æ‰‹");
-                            }
-                        }
-                        else
-                        {
-                            printf("    ");
-                        }
-                    }
-                }
-                printf("\n");
-            }
-        }
-        else
-        { // æ— æˆ¿å­çš„è¡Œ
-            for (j = 0; j <= 16; j++)
-            {
-                if (j % 2 == 0)
-                {
-                    printf("   ");
-                    if (Map[i][j] == 0)
-                    {
-                        printf("    ");
-                    }
-                    if (Map[i][j] == 4)
-                    {
-                        printf("éª‘æ‰‹");
-                    }
-                    printf("   ");
-                }
-                else
-                {
-                    printf("    ");
-                }
-            }
-            printf("\n");
-        }
-    }
+							if (Map[i][j] == 1)
+							{ // ·¿×Ó
+								printf("    ");
+							}
+							else if (Map[i][j] == 2)
+							{ // ²ÍÌü
+								printf("²ÍÌü");
+							}
+							else
+							{ // ËŞÉá
+								printf("ËŞÉá");
+							}
+							printf("  |");
+						}
+						else
+						{
+							printf("|________|");
+						}
+					}
+					else
+					{
+						if (k == 2)
+						{
+							if (Map[i][j] == 0)
+							{ // µÀÂ·
+								printf("    ");
+							}
+							else if (Map[i][j] == 4)
+							{ // ÆïÊÖ
+								printf("ÆïÊÖ");
+							}
+						}
+						else
+						{
+							printf("    ");
+						}
+					}
+				}
+				printf("\n");
+			}
+		}
+		else
+		{ // ÎŞ·¿×ÓµÄĞĞ
+			for (j = 0; j <= 16; j++)
+			{
+				if (j % 2 == 0)
+				{
+					printf("   ");
+					if (Map[i][j] == 0)
+					{
+						printf("    ");
+					}
+					if (Map[i][j] == 4)
+					{
+						printf("ÆïÊÖ");
+					}
+					printf("   ");
+				}
+				else
+				{
+					printf("    ");
+				}
+			}
+			printf("\n");
+		}
+	}
 }

@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <unistd.h>
 #include <Windows.h>
  // 自建头文件
+ #include "unistd.h"
 #include "structure.h"
 #include "../Functions/creatList.h" // 该文件必须放在consts.h前面，structure.h后面！！！
 #include "consts.h"
