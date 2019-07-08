@@ -15,6 +15,15 @@ void assignOrder(Order *AOrder, int RiderID)
     }
     else
     {
+        OrderList *nowOrder = AllOrderLog->Nxt_order;
+        while(nowOrder)
+        {
+            if(nowOrder->Cur_order->id == AOrder->id)
+            {
+                nowOrder->Cur_order->status = 1;
+                break;
+            }
+        }
         AOrder->status = 1;                                 //订单的状态变为“取餐”
         push_back_order(AOrder, FindRider->Cur_rider->Bag); //将订单放入骑手背包
     }
