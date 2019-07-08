@@ -10,7 +10,7 @@ int hireRider()
     CompanyRiderCount++; // 加骑手数量
     Rider *newRider = (Rider *)malloc(sizeof(Rider));
     // 初始化新骑手
-    newRider->id = CompanyRiderCount;
+    newRider->id = CompanyRiderCount - 1;
     newRider->rider_x = COMPANY_X;
     newRider->rider_y = COMPANY_Y;
     newRider->Bag = creatOrderList(); // 骑手的背包是一个订单链表
@@ -69,8 +69,8 @@ void riderMove(int rider_id, int pos_x, int pos_y)
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
         p = p->Nxt_rider;
-    *cur_x = p->Cur_rider->rider_x;
-    *cur_y = p->Cur_rider->rider_y;
+    cur_x = &(p->Cur_rider->rider_x);
+    cur_y = &(p->Cur_rider->rider_y);
     i = *cur_x;
     j = *cur_y;
     // TODO: 测试移动单元
