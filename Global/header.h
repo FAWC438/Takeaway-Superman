@@ -20,8 +20,8 @@
 #include "structure.h"
 #include "../Functions/creatList.h" // 该文件必须放在consts.h前面，structure.h后面！！！
 #include "consts.h"
-#include "init.h"
 #include "../Functions/listOperation.h" // 该文件为工具函数集，优先级较高，应放在上面
+#include "init.h"
 #include "../Functions/algorithm.h"
 #include "../Functions/orderFunctions.h"
 #include "../Functions/riderFunctions.h"
