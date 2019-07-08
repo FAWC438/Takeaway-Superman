@@ -63,7 +63,7 @@ void gameOver(int reason)
     // 释放AllRiderLog
     while (p2)
     {
-        free(p2->Pre_order);
+        free(p2->Pre_rider);
         p1 = p2->Cur_rider->Bag;
         // 释放bag
         while (p1)
@@ -75,9 +75,9 @@ void gameOver(int reason)
             p1 = p1->Nxt_order;
         }
         free(p2->Cur_rider);
-        p2->Pre_order = NULL;
-        p2->Cur_order = NULL;
-        p2 = p2->Nxt_order;
+        p2->Pre_rider = NULL;
+        p2->Cur_rider = NULL;
+        p2 = p2->Nxt_rider;
     }
     AllRiderLog = NULL;
     printf("GAME OVER!!!\n");
@@ -133,13 +133,13 @@ void gameSuccess()
     // 释放AllRiderLog
     while (p2)
     {
-        free(p2->Pre_order);
+        free(p2->Pre_rider);
         free(p2->Cur_rider->Bag);
         p2->Cur_rider->Bag = NULL;
         free(p2->Cur_rider);
-        p2->Pre_order = NULL;
-        p2->Cur_order = NULL;
-        p2 = p2->Nxt_order;
+        p2->Pre_rider = NULL;
+        p2->Cur_rider = NULL;
+        p2 = p2->Nxt_rider;
     }
     AllRiderLog = NULL;
     printf("GAME SUCCESS!!!\n");
