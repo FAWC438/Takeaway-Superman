@@ -2,6 +2,9 @@
 
 int main()
 {
+    AllOrderLog = creatOrderList(); // 全部订单记录(含有头结点)
+    Buffer = creatOrderList();      // 缓冲区(含有头结点)
+    AllRiderLog = creatRiderList(); // 全部骑手记录(含有头结点)
     clock_t start_clock, end_clock; // 用于计算程序运行时间
     if (inputFileOrder())
         ;
