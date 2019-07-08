@@ -1,4 +1,4 @@
-#include "./Global/header.h"
+#include "../Global/header.h"
 
 /*
     建立空的头结点

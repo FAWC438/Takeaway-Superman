@@ -1,4 +1,4 @@
-#include "./Global/header.h"
+#include "../Global/header.h"
 
 /*
     招募骑手,返回骑手的id，注意，前提条件是CompanyMoney>=400

@@ -1,4 +1,4 @@
-#include "./Global/header.h"
+#include "../Global/header.h"
 /*
     破产结算函数
 */

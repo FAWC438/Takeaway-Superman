@@ -1,0 +1,129 @@
+D:\code\cpp\小学期计导\大作业\Takeaway-Superman>cd "d:\code\cpp\小学期计导\大作业\Takeaway-Superman\" && gcc main.c -o main && "d:\code\cpp\小学期计导\大作业\Takeaway-Superman\"main
+In file included from ./Global/header.h:22:0,
+                 from main.c:1:
+./Global/consts.h:34:26: error: initializer element is not constant
+ OrderList *AllOrderLog = creatOrderList(); // ?1;31mm^~~~~~~~~~~~~~
+./Global/consts.h:35:26: error: initializer element is not constant
+ OrderList *Buffer      = creatOrderList(); // 缂01;31m^~~~~~~~~~~~~~
+./Global/consts.h:36:26: error: initializer element is not constant
+ RiderList *AllRiderLog = creatRiderList(); // ?1;31mm^~~~~~~~~~~~~~
+In file included from ./Global/header.h:23:0,
+                 from main.c:1:
+./Global/init.h: In function 'initMap':
+./Global/init.h:10:8: error: 'j' undeclared (first use in this function)
+   for (j = 0; j <= 16; j++)
+        ^
+./Global/init.h:10:8: note: each undeclared identifier is reported only once for each function it appears in
+./Global/init.h: In function 'initRiderBag':
+./Global/init.h:34:13: warning: implicit declaration of function 'delete_order'; did you mean 'DeletePortW'? [-Wimplicit-function-declaration]
+     order = delete_order(order);
+             ^~~~~~~~~~~~
+             DeletePortW
+./Global/init.h:34:11: warning: assignment makes pointer from integer without a cast [-Wint-conversion]
+     order = delete_order(order);
+           ^
+In file included from ./Global/header.h:24:0,
+                 from main.c:1:
+./Global/../Functions/listOperation.h: At top level:
+./Global/../Functions/listOperation.h:59:12: error: conflicting types for 'delete_order'
+ OrderList *delete_order(OrderList *tOrder)
+            ^~~~~~~~~~~~
+In file included from ./Global/header.h:23:0,
+                 from main.c:1:
+./Global/init.h:34:13: note: previous implicit declaration of 'delete_order' was here
+     order = delete_order(order);
+             ^~~~~~~~~~~~
+In file included from ./Global/header.h:26:0,
+                 from main.c:1:
+./Global/../Functions/orderFunctions.h: In function 'isAnyOrderOverTime':
+./Global/../Functions/orderFunctions.h:36:13: warning: implicit declaration of function 'gameOver' [-Wimplicit-function-declaration]
+             gameOver(1);
+             ^~~~~~~~
+./Global/../Functions/orderFunctions.h: In function 'isComplishOrder':
+./Global/../Functions/orderFunctions.h:94:54: error: 'CurRider' undeclared (first use in this function); did you mean 'Rider'?
+         judge = abs((NowOrder->Cur_order->rest_x) - (CurRider->rider_x)) + abs((NowOrder->Cur_order->rest_y) - (CurRider->rider_y));
+                                                      ^~~~~~~~
+                                                      Rider
+In file included from ./Global/header.h:27:0,
+                 from main.c:1:
+./Global/../Functions/riderFunctions.h: In function 'getRiderCurOrder':
+./Global/../Functions/riderFunctions.h:31:13: warning: return from incompatible pointer type [-Wincompatible-pointer-types]
+     return p->Cur_rider;
+            ~^~~~~~~~~~~
+In file included from ./Global/header.h:27:0,
+                 from main.c:1:
+./Global/../Functions/riderFunctions.h: In function 'AllRiderMove':
+./Global/../Functions/riderFunctions.h:192:19: warning: passing argument 1 of 'riderMove' makes integer from pointer without a cast [-Wint-conversion]
+         riderMove(tempRider, posX, posY); //楠01;35m^~~~~~~~~
+./Global/../Functions/riderFunctions.h:66:6: note: expected 'int' but argument is of type 'RiderList * {aka struct _RiderList *}'
+ void riderMove(int rider_id, int pos_x, int pos_y)
+      ^~~~~~~~~
+In file included from ./Global/header.h:29:0,
+                 from main.c:1:
+./Global/../IO/output.h: In function 'outputMap':
+./Global/../IO/output.h:139:5: warning: implicit declaration of function 'whlie' [-Wimplicit-function-declaration]
+     whlie(HeadOrder)
+     ^~~~~
+./Global/../IO/output.h:140:5: error: expected ';' before '{' token
+     {
+     ^
+./Global/../IO/output.h:151:5: error: 'HeadRider' undeclared (first use in this function); did you mean 'HeadOrder'?
+     HeadRider = HeadRider->Nxt_rider;
+     ^~~~~~~~~
+     HeadOrder
+./Global/../IO/output.h:155:9: error: expected ';' before 'HeadRider'
+         HeadRider = HeadRider->Nxt_rider;
+         ^~~~~~~~~
+In file included from ./Global/header.h:30:0,
+                 from main.c:1:
+./Global/../Functions/gameOver.h: At top level:
+./Global/../Functions/gameOver.h:16:6: warning: conflicting types for 'gameOver'
+ void gameOver(int reason)
+      ^~~~~~~~
+In file included from ./Global/header.h:26:0,
+                 from main.c:1:
+./Global/../Functions/orderFunctions.h:36:13: note: previous implicit declaration of 'gameOver' was here
+             gameOver(1);
+             ^~~~~~~~
+In file included from ./Global/header.h:30:0,
+                 from main.c:1:
+./Global/../Functions/gameOver.h: In function 'gameOver':
+./Global/../Functions/gameOver.h:66:18: error: 'RiderList {aka struct _RiderList}' has no member named 'Pre_order'; did you mean 'Pre_rider'?
+         free(p2->Pre_order);
+                  ^~~~~~~~~
+                  Pre_rider
+./Global/../Functions/gameOver.h:78:13: error: 'RiderList {aka struct _RiderList}' has no member named 'Pre_order'; did you mean 'Pre_rider'?
+         p2->Pre_order = NULL;
+             ^~~~~~~~~
+             Pre_rider
+./Global/../Functions/gameOver.h:79:13: error: 'RiderList {aka struct _RiderList}' has no member named 'Cur_order'; did you mean 'Cur_rider'?
+         p2->Cur_order = NULL;
+             ^~~~~~~~~
+             Cur_rider
+./Global/../Functions/gameOver.h:80:18: error: 'RiderList {aka struct _RiderList}' has no member named 'Nxt_order'; did you mean 'Nxt_rider'?
+         p2 = p2->Nxt_order;
+                  ^~~~~~~~~
+                  Nxt_rider
+./Global/../Functions/gameOver.h: In function 'gameSuccess':
+./Global/../Functions/gameOver.h:136:18: error: 'RiderList {aka struct _RiderList}' has no member named 'Pre_order'; did you mean 'Pre_rider'?
+         free(p2->Pre_order);
+                  ^~~~~~~~~
+                  Pre_rider
+./Global/../Functions/gameOver.h:140:13: error: 'RiderList {aka struct _RiderList}' has no member named 'Pre_order'; did you mean 'Pre_rider'?
+         p2->Pre_order = NULL;
+             ^~~~~~~~~
+             Pre_rider
+./Global/../Functions/gameOver.h:141:13: error: 'RiderList {aka struct _RiderList}' has no member named 'Cur_order'; did you mean 'Cur_rider'?
+         p2->Cur_order = NULL;
+             ^~~~~~~~~
+             Cur_rider
+./Global/../Functions/gameOver.h:142:18: error: 'RiderList {aka struct _RiderList}' has no member named 'Nxt_order'; did you mean 'Nxt_rider'?
+         p2 = p2->Nxt_order;
+                  ^~~~~~~~~
+                  Nxt_rider
+main.c: In function 'main':
+main.c:68:9: error: called object 'end_clock' is not a function or function pointer
+         end_clock() = clock();
+         ^~~~~~~~~
+main.c:5:26: note: declared here
+     clock_t start_clock, end_clock; // ?1;36mm^~~~~~~~~
