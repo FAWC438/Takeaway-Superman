@@ -1,7 +1,10 @@
 {
     "version": "2.0.0",
     "command": "g++",
+<<<<<<< HEAD
     "label": "g++",
+=======
+>>>>>>> d0ddcae0b607f33898cacb962333afaab51958a4
     "args": [
         "-g",
         "${file}",
