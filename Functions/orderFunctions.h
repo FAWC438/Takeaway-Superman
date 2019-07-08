@@ -1,33 +1,5 @@
 #include "../Global/header.h"
-/*
-    把订单放入对应骑手的背包
-    Var: Order类型订单、骑手ID
-*/
-void assignOrder(Order *AOrder, int RiderID)
-{
-    RiderList *FindRider = AllRiderLog->Nxt_rider;
-    while (FindRider && FindRider->Cur_rider->id != RiderID) //找到ID为RiderID的骑手
-        FindRider = FindRider->Nxt_rider;
-    if (FindRider == NULL) //判断是否能找到该骑手
-    {
-        printf("骑手ID越界\n"); //若找不到，返回错误信息
-        return;
-    }
-    else
-    {
-        OrderList *nowOrder = AllOrderLog->Nxt_order;
-        while(nowOrder)
-        {
-            if(nowOrder->Cur_order->id == AOrder->id)
-            {
-                nowOrder->Cur_order->status = 1;
-                break;
-            }
-        }
-        AOrder->status = 1;                                 //订单的状态变为“取餐”
-        push_back_order(AOrder, FindRider->Cur_rider->Bag); //将订单放入骑手背包
-    }
-}
+
 /*
     每次刷新时间点后判断是否有超时订单，若破产则结束游戏
 */
@@ -54,6 +26,7 @@ void isAnyOrderOverTime()
                 // printf("GAMEOVER!!!\n");
                 gameOver(0);
         }
+        HeadOrder = HeadOrder->Nxt_order;
     }
 }
 /*

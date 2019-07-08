@@ -66,7 +66,7 @@ void getRiderCurPos(int rider_id, int *x, int *y)
 void riderMove(int rider_id, int pos_x, int pos_y)
 {
     int *cur_x, *cur_y, i, j;
-    RiderList *p = AllRiderLog;
+    RiderList *p = AllRiderLog->Nxt_rider;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
         p = p->Nxt_rider;
     cur_x = &(p->Cur_rider->rider_x);
@@ -178,11 +178,10 @@ void AllRiderMove()
     while (tempRider)
     {
         int posX, posY;
-        
         OrderList *findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
         if (findOrder)
         {
-            if (findOrder->Cur_order->status == 1)                       //找到第一个订单对应的位置
+            if (findOrder->Cur_order->status == 1) //找到第一个订单对应的位置
             {
                 posX = findOrder->Cur_order->rest_x;
                 posY = findOrder->Cur_order->rest_y;

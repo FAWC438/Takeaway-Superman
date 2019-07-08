@@ -40,24 +40,42 @@ int main()
         }
         //派单之前把骑手背包完成的订单弹出
         initRiderBag();
-        printf("B ");
         //派单算法
         arrangeNewOrder(); // 此处遍历可优化
-        printf("A ");
         //判断是否超时或破产
         isAnyOrderOverTime();
+
         //骑手移动
         AllRiderMove();
-
         //判断每一个订单是否完成
         //完成每一个需要完成的订单 但是在骑手背包里不弹出刚完成的订单 （输出文件时判断停靠使用）
         int isAnyOrderComplish = 0;
         RiderList *tempRider = AllRiderLog->Nxt_rider;
-        while (tempRider)
+        // printf("C ");
+        while (tempRider) // 骑手
         {
             OrderList *tempOrder = tempRider->Cur_rider->Bag->Nxt_order;
-            while (tempOrder)
+            // printf("A ");
+            while (tempOrder) // 背包
             {
+                // printf("B\n");
+
+                // // debug
+                // RiderList *p = AllRiderLog->Nxt_rider;
+                // OrderList *p1;
+                // while (p)
+                // {
+                //     printf("id:%d\n", p->Cur_rider->id);
+                //     p1 = p->Cur_rider->Bag->Nxt_order;
+                //     while (p1)
+                //     {
+                //         printf("status:%d ord_id:%d\n", p1->Cur_order->status, p1->Cur_order->id);
+                //         p1 = p1->Nxt_order;
+                //     }
+                //     p = p->Nxt_rider;
+                // }
+                // // debug
+
                 if (isComplishOrder(tempOrder, tempRider))
                 {
                     complishOrder(tempOrder);
