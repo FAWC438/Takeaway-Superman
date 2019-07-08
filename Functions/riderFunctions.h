@@ -178,18 +178,22 @@ void AllRiderMove()
     while (tempRider)
     {
         int posX, posY;
+        
         OrderList *findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
-        if (findOrder->Cur_order->status == 1)                       //找到第一个订单对应的位置
+        if (findOrder)
         {
-            posX = findOrder->Cur_order->rest_x;
-            posY = findOrder->Cur_order->rest_y;
+            if (findOrder->Cur_order->status == 1)                       //找到第一个订单对应的位置
+            {
+                posX = findOrder->Cur_order->rest_x;
+                posY = findOrder->Cur_order->rest_y;
+            }
+            else if (findOrder->Cur_order->status == 2)
+            {
+                posX = findOrder->Cur_order->cust_x;
+                posY = findOrder->Cur_order->cust_y;
+            }
+            riderMove(tempRider->Cur_rider->id, posX, posY); //骑手移动
         }
-        else if (findOrder->Cur_order->status == 2)
-        {
-            posX = findOrder->Cur_order->cust_x;
-            posY = findOrder->Cur_order->cust_y;
-        }
-        riderMove(tempRider->Cur_rider->id, posX, posY); //骑手移动
         tempRider = tempRider->Nxt_rider; //换到下一个骑手
     }
 }
