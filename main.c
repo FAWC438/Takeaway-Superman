@@ -50,7 +50,7 @@ int main()
             OrderList *tempOrder = tempRider->Cur_rider->Bag->Nxt_order;
             while (tempOrder)
             {
-                if (isComplishOrder(tempOrder,tempRider))
+                if (isComplishOrder(tempOrder, tempRider))
                 {
                     complishOrder(tempOrder);
                     isAnyOrderComplish = 1;

@@ -28,7 +28,7 @@ Order *getRiderCurOrder(int rider_id)
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
         p = p->Nxt_rider;
-    return p->Cur_rider;
+    return p->Cur_rider->Bag->Cur_order;
 }
 /*
     输入骑手id返回OrderList指针

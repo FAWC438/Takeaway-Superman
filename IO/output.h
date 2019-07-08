@@ -11,34 +11,33 @@ void printNearBy(Rider *nowRider, FILE *fPtr)
     const int dx[] = {-1, 1, 0, 0};
     const int dy[] = {0, 0, 1, -1};
     int restFlag = 0, dustFlag = 0;
-    
-    for(i = 0; i <= 3; i++)
+
+    for (i = 0; i <= 3; i++)
     {
         restFlag = 0;
         dustFlag = 0;
         int now_x = nowRider->rider_x + dx[i];
         int now_y = nowRider->rider_y + dy[i];
         OrderList *tmpOrder = nowRider->Bag->Nxt_order;
-        while(tmpOrder)
+        while (tmpOrder)
         {
-            if(tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->end_time == Time)    // 说明此位置房子作为餐厅有任务完成
+            if (tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->end_time == Time) // 说明此位置房子作为餐厅有任务完成
             {
                 restFlag = 1;
             }
-            if(tmpOrder->Cur_order->cust_x == now_x && tmpOrder->Cur_order->cust_y == now_y && tmpOrder->Cur_order->end_time == Time)    // 说明此位置房子作为宿舍有任务完成
+            if (tmpOrder->Cur_order->cust_x == now_x && tmpOrder->Cur_order->cust_y == now_y && tmpOrder->Cur_order->end_time == Time) // 说明此位置房子作为宿舍有任务完成
             {
                 dustFlag = 1;
             }
-            if(dustFlag && restFlag)
+            if (dustFlag && restFlag)
                 fprintf(fPtr, " 餐客 %d %d", now_x, now_y);
-            else if(restFlag)
+            else if (restFlag)
                 fprintf(fPtr, " 餐厅 %d %d", now_x, now_y);
-            else if(dustFlag)
+            else if (dustFlag)
                 fprintf(fPtr, " 食客 %d %d", now_x, now_y);
             tmpOrder = tmpOrder->Nxt_order;
         }
     }
-    
 }
 /*
     输出在文件中
@@ -119,7 +118,7 @@ void outputOnFile()
 */
 void outputKey()
 {
-	printf("时间: %d\n", Time);
+    printf("时间: %d\n", Time);
     printf("钱: %d\n", CompanyMoney); // 这里指现金，没有加上骑手资产
     printf("接单数: %d\n", CompanyOrderSum);
     printf("完成数: %d\n", CompanyOrderFinish);
@@ -128,7 +127,7 @@ void outputKey()
 /*
     以地图的形式输出在屏幕上
 */
-void outputMap()    // 餐客形式没考虑
+void outputMap() // 餐客形式没考虑
 {
     int i, j, k;
 
@@ -136,10 +135,10 @@ void outputMap()    // 餐客形式没考虑
     // 初始化房屋类型
     OrderList *HeadOrder = AllOrderLog;
     HeadOrder = HeadOrder->Nxt_order;
-    whlie(HeadOrder)
+    while (HeadOrder)
     {
         // 待与停靠函数协调
-        if((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3) || (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time))
+        if ((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3) || (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time))
         {
             Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2; // 餐厅地图更新
             Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3; // 宿舍地图更新
@@ -151,7 +150,7 @@ void outputMap()    // 餐客形式没考虑
     HeadRider = HeadRider->Nxt_rider;
     while (HeadRider)
     {
-        Map[HeadRider->Cur_rider->rider_x][HeadRider->Cur_rider->rider_y] = 4 // 骑手地图更新
+        Map[HeadRider->Cur_rider->rider_x][HeadRider->Cur_rider->rider_y] = 4; // 骑手地图更新
         HeadRider = HeadRider->Nxt_rider;
     }
 
