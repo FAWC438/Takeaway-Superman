@@ -10,7 +10,7 @@ int hireRider()
     CompanyRiderCount++; // 加骑手数量
     Rider *newRider = (Rider *)malloc(sizeof(Rider));
     // 初始化新骑手
-    newRider->id = CompanyRiderCount;
+    newRider->id = CompanyRiderCount - 1;
     newRider->rider_x = COMPANY_X;
     newRider->rider_y = COMPANY_Y;
     newRider->Bag = creatOrderList(); // 骑手的背包是一个订单链表
@@ -69,8 +69,8 @@ void riderMove(int rider_id, int pos_x, int pos_y)
     RiderList *p = AllRiderLog;
     while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
         p = p->Nxt_rider;
-    *cur_x = p->Cur_rider->rider_x;
-    *cur_y = p->Cur_rider->rider_y;
+    cur_x = &(p->Cur_rider->rider_x);
+    cur_y = &(p->Cur_rider->rider_y);
     i = *cur_x;
     j = *cur_y;
     // TODO: 测试移动单元
@@ -178,18 +178,22 @@ void AllRiderMove()
     while (tempRider)
     {
         int posX, posY;
+        
         OrderList *findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
-        if (findOrder->Cur_order->status == 1)                       //找到第一个订单对应的位置
+        if (findOrder)
         {
-            posX = findOrder->Cur_order->rest_x;
-            posY = findOrder->Cur_order->rest_y;
+            if (findOrder->Cur_order->status == 1)                       //找到第一个订单对应的位置
+            {
+                posX = findOrder->Cur_order->rest_x;
+                posY = findOrder->Cur_order->rest_y;
+            }
+            else if (findOrder->Cur_order->status == 2)
+            {
+                posX = findOrder->Cur_order->cust_x;
+                posY = findOrder->Cur_order->cust_y;
+            }
+            riderMove(tempRider->Cur_rider->id, posX, posY); //骑手移动
         }
-        else if (findOrder->Cur_order->status == 2)
-        {
-            posX = findOrder->Cur_order->cust_x;
-            posY = findOrder->Cur_order->cust_y;
-        }
-        riderMove(tempRider->Cur_rider->id, posX, posY); //骑手移动
         tempRider = tempRider->Nxt_rider; //换到下一个骑手
     }
 }

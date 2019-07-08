@@ -104,7 +104,7 @@ void outputOnFile()
     HeadRider = HeadRider->Nxt_rider;
     while (HeadRider)
     {
-        fprintf(fPtr, "骑手%d位置: %d, %d; ", HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
+        fprintf(fPtr, "骑手%d位置: %d, %d; ", HeadRider->Cur_rider->id, HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
         fprintf(fPtr, "停靠:");
         printNearBy(HeadRider->Cur_rider, fPtr);
         HeadRider = HeadRider->Nxt_rider;
@@ -223,7 +223,7 @@ void outputMap() // 餐客形式没考虑
         }
         else
         { // 无房子的行
-            for (int j = 0; j <= 16; j++)
+            for (j = 0; j <= 16; j++)
             {
                 if (j % 2 == 0)
                 {
