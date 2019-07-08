@@ -26,7 +26,7 @@ const int COMPANY_Y = 8;         //公司所在Y大小
  */
 int CompanyMoney = 1000;      // 当前公司有多少钱
 int CompanyRiderCount = 0;    // 公司骑手数量
-int Time = 0;                 // 当前时间，即Time个时间单位
+int Time = -1;                // 当前时间，即Time个时间单位
 int CompanyOrderSum = 0;      // 公司接单数
 int CompanyOrderFinish = 0;   // 公司完成单数
 int CompanyOrderOverTime = 0; // 公司超时单数

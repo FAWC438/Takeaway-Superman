@@ -172,7 +172,7 @@ void getBestRider(Order *nowOrder)
 {
     RiderList *chooseRider = AllRiderLog->Nxt_rider;
     int path_min = 0x3f3f3f3f;
-    int path_now = 0x3f3f3f3f, id_min = 0;
+    int path_now = 0x3f3f3f3f, id_min = 0x3f3f3f3f;
     // 找出最佳骑手
     while(chooseRider)
     {

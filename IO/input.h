@@ -18,7 +18,6 @@ int inputFileOrder() // TODO: 处理输入数据和要计算的数据的关系
         p->status = 0;                                  // 未接单状态
         p->end_time = 0x3f3f3f3f; // 破产时间
         p->warn_time = p->begin_time + FINE_FIRST_TIME; // 罚款时间
-        CompanyOrderSum++;                              // 公司的总订单+1
         push_back_order(p, Buffer);                     // 添加到全局订单记录后
         p = (Order *)malloc(sizeof(Order));             // 给p新的空间
     }
@@ -39,7 +38,6 @@ int inputKeyOrder()
         p->status = 0;                                  // 未接单状态
         p->end_time = 0x3f3f3f3f; // 破产时间
         p->warn_time = p->begin_time + FINE_FIRST_TIME; // 罚款时间
-        CompanyOrderSum++;                              // 公司的总订单+1
         push_back_order(p, Buffer);                     // 添加到全局订单记录后
         p = (Order *)malloc(sizeof(Order));             // 给p新的空间
     }

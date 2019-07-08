@@ -76,7 +76,7 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
                 HeadOrder->Cur_order->end_time = Time;
                 //OrderList *newOrder = nowOrder;
                 push_back_order(nowOrder->Cur_order, nowOrder);
-                delete_order(nowOrder);
+                HeadOrder = delete_order(nowOrder);
             }
         }
         HeadOrder = HeadOrder->Nxt_order;
@@ -88,7 +88,7 @@ void complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还
     nowOrder(OrderList *)：目前遍历到的订单，注意，为OrderList指针而非Order指针
     NowRider(Rider *)：目前的骑手，注意，为RiderList指针
  */
-int isComplishOrder(OrderList *NowOrder,RiderList *NowRider)
+int isComplishOrder(OrderList *NowOrder, RiderList *NowRider)
 {
     int judge = 0;
     if (NowOrder->Cur_order->status == 1)
