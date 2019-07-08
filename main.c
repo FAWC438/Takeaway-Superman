@@ -33,7 +33,7 @@ int main()
         //派单之前把骑手背包完成的订单弹出
         initRiderBag();
         //派单算法
-        arrangeNewOrder();  // 此处遍历可优化
+        arrangeNewOrder(); // 此处遍历可优化
         //判断是否超时或破产
         isAnyOrderOverTime();
         //骑手移动
@@ -66,7 +66,7 @@ int main()
         //输出文件
         outputOnFile();
         end_clock() = clock();
-        Sleep(TIME_UNIT*1000 - (end_clock - start_clock));   // 准确2秒刷新
+        Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
     }
     gameSuccess();
     // return 0;
