@@ -44,8 +44,8 @@ void printNearBy(Rider* nowRider, FILE* fPtr)
 */
 void outputOnFile()
 {
-	FILE* fPtr;
-	if ((fPtr = fopen("../output.txt", "a")) == NULL)
+	FILE* fPtr = fopen("../output.txt", "a");
+	if (fPtr == NULL)
 	{
 		printf("Can't not open the output.txt");
 		return;
@@ -110,7 +110,6 @@ void outputOnFile()
 		HeadRider = HeadRider->Nxt_rider;
 		fprintf(fPtr, ";\n");
 	}
-
 	fclose(fPtr);
 }
 /*

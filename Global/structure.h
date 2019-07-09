@@ -1,7 +1,7 @@
 
 /*
-    å…¨å±€ç»“æ„ä½“
-    æ³¨æ„ï¼šæœ¬é¡¹ç›®æ‰€æœ‰é“¾è¡¨éƒ½å…·æœ‰ç©ºå¤´ç»“ç‚¹ï¼ï¼ï¼
+    È«¾Ö½á¹¹Ìå
+    ×¢Òâ£º±¾ÏîÄ¿ËùÓĞÁ´±í¶¼¾ßÓĞ¿ÕÍ·½áµã£¡£¡£¡
  */
 
 #ifndef _STRUCTURE
@@ -9,37 +9,37 @@
 
 #include "header.h"
 
-typedef struct _Order // è®¢å•
+typedef struct _Order // ¶©µ¥
 {
-    int id;             // è®¢å•ID
-    int begin_time;     // èµ·å§‹æ—¶é—´æˆ³
-    int warn_time;      // è¶…æ—¶æ—¶é—´æˆ³
-    int end_time;       // æˆªæ­¢æ—¶é—´æˆ³
-    int rest_x, rest_y; // é¤å…ä½ç½®
-    int cust_x, cust_y; // é¡¾å®¢ä½ç½®
-    int status;         // è®¢å•çŠ¶æ€ 0æœªæ¥å•ï¼Œ1å–é¤ï¼Œ2é€é¤ï¼Œ3å®Œæˆ
+    int id;             // ¶©µ¥ID
+    int begin_time;     // ÆğÊ¼Ê±¼ä´Á
+    int warn_time;      // ³¬Ê±Ê±¼ä´Á
+    int end_time;       // ½ØÖ¹Ê±¼ä´Á
+    int rest_x, rest_y; // ²ÍÌüÎ»ÖÃ
+    int cust_x, cust_y; // ¹Ë¿ÍÎ»ÖÃ
+    int status;         // ¶©µ¥×´Ì¬ 0Î´½Óµ¥£¬1È¡²Í£¬2ËÍ²Í£¬3Íê³É
 } Order;
 
-typedef struct _OrderList // è®¢å•é“¾è¡¨
+typedef struct _OrderList // ¶©µ¥Á´±í
 {
-    struct _OrderList *Pre_order; // ä¸Šä¸€ä¸ªè®¢å•
-    struct _OrderList *Nxt_order; // ä¸‹ä¸€ä¸ªè®¢å•
-    Order *Cur_order;             // å½“å‰è®¢å•
+    struct _OrderList *Pre_order; // ÉÏÒ»¸ö¶©µ¥
+    struct _OrderList *Nxt_order; // ÏÂÒ»¸ö¶©µ¥
+    Order *Cur_order;             // µ±Ç°¶©µ¥
 } OrderList;
 
-typedef struct _Rider // éª‘æ‰‹
+typedef struct _Rider // ÆïÊÖ
 {
-    int id;               // éª‘æ‰‹ID
-    int rider_x, rider_y; // éª‘æ‰‹å½“å‰ä½ç½®
-    OrderList *Bag;       // éª‘æ‰‹èƒŒåŒ…è®¢å•
-    //Order *Cur_order;     // éª‘æ‰‹å½“å‰è®¢å•
+    int id;               // ÆïÊÖID
+    int rider_x, rider_y; // ÆïÊÖµ±Ç°Î»ÖÃ
+    OrderList *Bag;       // ÆïÊÖ±³°ü¶©µ¥
+    //Order *Cur_order;     // ÆïÊÖµ±Ç°¶©µ¥
 } Rider;
 
-typedef struct _RiderList // éª‘æ‰‹åˆ—è¡¨(ä¾¿äºéå†)
+typedef struct _RiderList // ÆïÊÖÁĞ±í(±ãÓÚ±éÀú)
 {
-    struct _RiderList *Pre_rider; // ä¸Šä¸€ä¸ªéª‘æ‰‹
-    struct _RiderList *Nxt_rider; // ä¸‹ä¸€ä¸ªéª‘æ‰‹
-    Rider *Cur_rider;             // å½“å‰éª‘æ‰‹
+    struct _RiderList *Pre_rider; // ÉÏÒ»¸öÆïÊÖ
+    struct _RiderList *Nxt_rider; // ÏÂÒ»¸öÆïÊÖ
+    Rider *Cur_rider;             // µ±Ç°ÆïÊÖ
 } RiderList;
 
 #endif

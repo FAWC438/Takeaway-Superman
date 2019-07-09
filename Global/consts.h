@@ -1,39 +1,39 @@
 
 /*
-    å˜é‡ä¸å¸¸é‡
+    ±äÁ¿Óë³£Á¿
 */
 
 #ifndef _VARIABLE
 #define _VARIABLE
 #include "header.h"
 
-const int TIME_UNIT = 2;         // æ—¶é—´å•ä½ä¸ºTIME_UNITç§’
-const int INIT_MONEY = 1000;     // èµ·å§‹èµ„é‡‘
-const int HIRE_MONEY = 300;      // æ‹›å‹Ÿä¸€ä¸ªäººéœ€è¦çš„èµ„é‡‘
-const int DEAD_TIME = 3;         // è¶…è¿‡DEAD_TIMEæ—¶é—´å•ä½åï¼Œè¢«è§†ä¸ºæ‹’å•
-const int FINE_FIRST_TIME = 30;  // è¶…æ—¶æ—¶é—´ï¼Œç¬¬ä¸€æ¬¡è¶…æ—¶ç½šæ¬¾
-const int FINE_MONEY = 50;       // ç¬¬ä¸€æ¬¡è¶…æ—¶ç½šæ¬¾é‡‘é¢
-const int FINE_SECOND_TIME = 60; // è¶…æ—¶æ—¶é—´ï¼Œç¬¬äºŒæ¬¡è¶…æ—¶å€’é—­
-const int MONEY_GAIN_ONE = 10;   // å®Œæˆä¸€å•è·å¾—çš„é’±
-const int MAP_X = 17;            // åœ°å›¾Xå¤§å°
-const int MAP_Y = 17;            // åœ°å›¾Yå¤§å°
-const int COMPANY_X = 7;         //å…¬å¸æ‰€åœ¨Xå¤§å°
-const int COMPANY_Y = 8;         //å…¬å¸æ‰€åœ¨Yå¤§å°
+const int TIME_UNIT = 2;         // Ê±¼äµ¥Î»ÎªTIME_UNITÃë
+const int INIT_MONEY = 1000;     // ÆğÊ¼×Ê½ğ
+const int HIRE_MONEY = 300;      // ÕĞÄ¼Ò»¸öÈËĞèÒªµÄ×Ê½ğ
+const int DEAD_TIME = 3;         // ³¬¹ıDEAD_TIMEÊ±¼äµ¥Î»ºó£¬±»ÊÓÎª¾Üµ¥
+const int FINE_FIRST_TIME = 30;  // ³¬Ê±Ê±¼ä£¬µÚÒ»´Î³¬Ê±·£¿î
+const int FINE_MONEY = 50;       // µÚÒ»´Î³¬Ê±·£¿î½ğ¶î
+const int FINE_SECOND_TIME = 60; // ³¬Ê±Ê±¼ä£¬µÚ¶ş´Î³¬Ê±µ¹±Õ
+const int MONEY_GAIN_ONE = 10;   // Íê³ÉÒ»µ¥»ñµÃµÄÇ®
+const int MAP_X = 17;            // µØÍ¼X´óĞ¡
+const int MAP_Y = 17;            // µØÍ¼Y´óĞ¡
+const int COMPANY_X = 7;         //¹«Ë¾ËùÔÚX´óĞ¡
+const int COMPANY_Y = 8;         //¹«Ë¾ËùÔÚY´óĞ¡
 
 /*
-    å…¬å¸çŠ¶æ€å˜é‡
-    ä¸ºåŒºåˆ†å…¨å±€å¸¸é‡ï¼Œå…¨å±€å˜é‡å‘½åå¦‚ä¸‹æ‰€ç¤º
+    ¹«Ë¾×´Ì¬±äÁ¿
+    ÎªÇø·ÖÈ«¾Ö³£Á¿£¬È«¾Ö±äÁ¿ÃüÃûÈçÏÂËùÊ¾
  */
-int CompanyMoney = 1000;      // å½“å‰å…¬å¸æœ‰å¤šå°‘é’±
-int CompanyRiderCount = 0;    // å…¬å¸éª‘æ‰‹æ•°é‡
-int Time = -1;                // å½“å‰æ—¶é—´ï¼Œå³Timeä¸ªæ—¶é—´å•ä½
-int CompanyOrderSum = 0;      // å…¬å¸æ¥å•æ•°
-int CompanyOrderFinish = 0;   // å…¬å¸å®Œæˆå•æ•°
-int CompanyOrderOverTime = 0; // å…¬å¸è¶…æ—¶å•æ•°
+int CompanyMoney = INIT_MONEY;      // µ±Ç°¹«Ë¾ÓĞ¶àÉÙÇ®
+int CompanyRiderCount = 0;    // ¹«Ë¾ÆïÊÖÊıÁ¿
+int Time = -1;                // µ±Ç°Ê±¼ä£¬¼´Time¸öÊ±¼äµ¥Î»
+int CompanyOrderSum = 0;      // ¹«Ë¾½Óµ¥Êı
+int CompanyOrderFinish = 0;   // ¹«Ë¾Íê³Éµ¥Êı
+int CompanyOrderOverTime = 0; // ¹«Ë¾³¬Ê±µ¥Êı
 
-OrderList *AllOrderLog; // å…¨éƒ¨è®¢å•è®°å½•(å«æœ‰å¤´ç»“ç‚¹)
-OrderList *Buffer;      // ç¼“å†²åŒº(å«æœ‰å¤´ç»“ç‚¹)
-RiderList *AllRiderLog; // å…¨éƒ¨éª‘æ‰‹è®°å½•(å«æœ‰å¤´ç»“ç‚¹)
-int Map[17][17];        // è¾“å‡ºç”¨ï¼Œ0ä¸ºé“è·¯ï¼Œ1ä¸ºæ™®é€šæˆ¿å±‹ï¼Œ2ä¸ºé¤å…ï¼Œ3ä¸ºå®¿èˆï¼Œ4ä¸ºéª‘æ‰‹
+OrderList *AllOrderLog; // È«²¿¶©µ¥¼ÇÂ¼(º¬ÓĞÍ·½áµã)
+OrderList *Buffer;      // »º³åÇø(º¬ÓĞÍ·½áµã)
+RiderList *AllRiderLog; // È«²¿ÆïÊÖ¼ÇÂ¼(º¬ÓĞÍ·½áµã)
+int Map[17][17];        // Êä³öÓÃ£¬0ÎªµÀÂ·£¬1ÎªÆÕÍ¨·¿Îİ£¬2Îª²ÍÌü£¬3ÎªËŞÉá£¬4ÎªÆïÊÖ
 
 #endif

@@ -1,7 +1,7 @@
 #include "../Global/header.h"
 
 /*
-    å»ºç«‹ç©ºçš„å¤´ç»“ç‚¹
+    ½¨Á¢¿ÕµÄÍ·½áµã
  */
 
 OrderList *creatOrderList()

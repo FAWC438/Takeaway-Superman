@@ -1,16 +1,15 @@
 #include "../Global/header.h"
 /*
-    æŠŠè®¢å•æ”¾å…¥å¯¹åº”éª‘æ‰‹çš„èƒŒåŒ…
-    Var: Orderç±»å‹è®¢å•ã€éª‘æ‰‹ID
+    °Ñ¶©µ¥·ÅÈë¶ÔÓ¦ÆïÊÖµÄ±³°ü
+    Var: OrderÀàĞÍ¶©µ¥¡¢ÆïÊÖID
 */
 void assignOrder(Order *AOrder, int RiderID)
 {
     RiderList *FindRider = AllRiderLog->Nxt_rider;
-    while (FindRider && FindRider->Cur_rider->id != RiderID) //æ‰¾åˆ°IDä¸ºRiderIDçš„éª‘æ‰‹
+    while (FindRider && FindRider->Cur_rider->id != RiderID) //ÕÒµ½IDÎªRiderIDµÄÆïÊÖ
         FindRider = FindRider->Nxt_rider;
-    if (FindRider == NULL) //åˆ¤æ–­æ˜¯å¦èƒ½æ‰¾åˆ°è¯¥éª‘æ‰‹
+    if (FindRider == NULL) //ÅĞ¶ÏÊÇ·ñÄÜÕÒµ½¸ÃÆïÊÖ
     {
-        printf("éª‘æ‰‹IDè¶Šç•Œ\n"); //è‹¥æ‰¾ä¸åˆ°ï¼Œè¿”å›é”™è¯¯ä¿¡æ¯
         return;
     }
     else
@@ -25,25 +24,25 @@ void assignOrder(Order *AOrder, int RiderID)
             }
             nowOrder = nowOrder->Nxt_order;
         }
-        AOrder->status = 1;                                 //è®¢å•çš„çŠ¶æ€å˜ä¸ºâ€œå–é¤â€
-        push_back_order(AOrder, FindRider->Cur_rider->Bag); //å°†è®¢å•æ”¾å…¥éª‘æ‰‹èƒŒåŒ…
+        AOrder->status = 1;                                 //¶©µ¥µÄ×´Ì¬±äÎª¡°È¡²Í¡±
+        push_back_order(AOrder, FindRider->Cur_rider->Bag); //½«¶©µ¥·ÅÈëÆïÊÖ±³°ü
     }
 }
 /*
-    ç»Ÿè®¡æ¨¡æ‹Ÿè·‘åˆ°ç›®çš„åœ°çš„æ­¥é•¿ï¼Œç®—æ³•ä¸riderMoveåŒ
+    Í³¼ÆÄ£ÄâÅÜµ½Ä¿µÄµØµÄ²½³¤£¬Ëã·¨ÓëriderMoveÍ¬
 */
 int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
 {
     int cnt = 0;
-    // ä¼˜åŒ–ç®—æ³•ï¼Œå·²æµ‹è¯•ï¼Œä½†ä¸ç¡®å®šæ˜¯å¦å®Œå…¨æ­£ç¡®...
+    // ÓÅ»¯Ëã·¨£¬ÒÑ²âÊÔ£¬µ«²»È·¶¨ÊÇ·ñÍêÈ«ÕıÈ·...
     if (abs((*cur_y) - pos_y) > 1)
     {
-        if ((*cur_x) % 2 == 1 && ((*cur_y) % 2 == 0)) // æ¨ªå‘é“è·¯
+        if ((*cur_x) % 2 == 1 && ((*cur_y) % 2 == 0)) // ºáÏòµÀÂ·
         {
             cnt += abs((*cur_y) - pos_y) / 2;
             *cur_y = pos_y;
         }
-        else if ((*cur_x) % 2 == 0 && ((*cur_y) % 2 == 1)) // çºµå‘é“è·¯
+        else if ((*cur_x) % 2 == 0 && ((*cur_y) % 2 == 1)) // ×İÏòµÀÂ·
         {
             cnt += abs(((*cur_y)) - pos_y) / 2 + 1;
             *cur_y = pos_y;
@@ -55,12 +54,12 @@ int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
     }
     if (abs((*cur_x) - pos_x) > 1)
     {
-        if ((*cur_x) % 2 == 0 && ((*cur_y) % 2 == 1)) // çºµå‘é“è·¯
+        if ((*cur_x) % 2 == 0 && ((*cur_y) % 2 == 1)) // ×İÏòµÀÂ·
         {
             cnt += abs((*cur_x) - pos_x) / 2;
             *cur_x = pos_x;
         }
-        else if ((*cur_x) % 2 == 1 && ((*cur_y) % 2 == 0)) // æ¨ªå‘é“è·¯
+        else if ((*cur_x) % 2 == 1 && ((*cur_y) % 2 == 0)) // ºáÏòµÀÂ·
         {
             cnt += abs(((*cur_x)) - pos_x) / 2 + 1;
             *cur_x = pos_x;
@@ -83,39 +82,39 @@ int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
         i = *cur_x;
         j = *cur_y;
         cnt++;
-        // å…ˆå·¦å³
+        // ÏÈ×óÓÒ
         if (*cur_y < pos_y - 1 || *cur_y > pos_y + 1)
         {
-            if (i % 2 == 1 && j % 2 == 0) // åœ¨æ¨ªå‘é“è·¯ä¸Š
+            if (i % 2 == 1 && j % 2 == 0) // ÔÚºáÏòµÀÂ·ÉÏ
             {
-                if (*cur_y > pos_y + 1) // åœ¨å³è¾¹å°±è¦å¾€å·¦èµ°
+                if (*cur_y > pos_y + 1) // ÔÚÓÒ±ß¾ÍÒªÍù×ó×ß
                     (*cur_y) -= 2;
-                else if (*cur_y < pos_y - 1) // åœ¨å·¦è¾¹è¦å¾€å³èµ°
+                else if (*cur_y < pos_y - 1) // ÔÚ×ó±ßÒªÍùÓÒ×ß
                     (*cur_y) += 2;
             }
-            else if (i % 2 == 0 && j % 2 == 1) // åœ¨çºµå‘é“è·¯ä¸Š
+            else if (i % 2 == 0 && j % 2 == 1) // ÔÚ×İÏòµÀÂ·ÉÏ
             {
-                if (*cur_y > pos_y + 1) // åœ¨å³è¾¹å°±è¦å¾€å·¦èµ°
+                if (*cur_y > pos_y + 1) // ÔÚÓÒ±ß¾ÍÒªÍù×ó×ß
                 {
-                    if (pos_x >= *cur_x) // ç›®æ ‡åœ¨ä¸‹æˆ–åŒè¡Œ
+                    if (pos_x >= *cur_x) // Ä¿±êÔÚÏÂ»òÍ¬ĞĞ
                     {
                         (*cur_x)++;
                         (*cur_y)--;
                     }
-                    else if (pos_x < *cur_x) // ç›®æ ‡åœ¨ä¸Š
+                    else if (pos_x < *cur_x) // Ä¿±êÔÚÉÏ
                     {
                         (*cur_x)--;
                         (*cur_y)--;
                     }
                 }
-                else if (*cur_y < pos_y + 1) // åœ¨å³è¾¹å°±è¦å¾€å·¦èµ°
+                else if (*cur_y < pos_y + 1) // ÔÚÓÒ±ß¾ÍÒªÍù×ó×ß
                 {
-                    if (pos_x >= *cur_x) // ç›®æ ‡åœ¨ä¸‹æˆ–åŒè¡Œ
+                    if (pos_x >= *cur_x) // Ä¿±êÔÚÏÂ»òÍ¬ĞĞ
                     {
                         (*cur_x)++;
                         (*cur_y)++;
                     }
-                    else if (pos_x < *cur_x) // ç›®æ ‡åœ¨ä¸Š
+                    else if (pos_x < *cur_x) // Ä¿±êÔÚÉÏ
                     {
                         (*cur_x)--;
                         (*cur_y)++;
@@ -123,39 +122,39 @@ int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
                 }
             }
         }
-        // åä¸Šä¸‹
+        // ºóÉÏÏÂ
         else if (i < pos_x - 1 || i > pos_x + 1)
         {
-            if (i % 2 == 0 && j % 2 == 1) // åœ¨çºµå‘é“è·¯ä¸Š
+            if (i % 2 == 0 && j % 2 == 1) // ÔÚ×İÏòµÀÂ·ÉÏ
             {
-                if (*cur_x > pos_x + 1) // åœ¨ä¸‹è¾¹å°±è¦å¾€ä¸Šèµ°
+                if (*cur_x > pos_x + 1) // ÔÚÏÂ±ß¾ÍÒªÍùÉÏ×ß
                     (*cur_x) -= 2;
-                else if (*cur_x < pos_x - 1) // åœ¨ä¸Šè¾¹è¦å¾€ä¸‹èµ°
+                else if (*cur_x < pos_x - 1) // ÔÚÉÏ±ßÒªÍùÏÂ×ß
                     (*cur_x) += 2;
             }
-            else if (i % 2 == 1 && j % 2 == 0) // åœ¨æ¨ªå‘é“è·¯ä¸Š
+            else if (i % 2 == 1 && j % 2 == 0) // ÔÚºáÏòµÀÂ·ÉÏ
             {
-                if (*cur_x > pos_x + 1) // åœ¨ä¸‹è¾¹å°±è¦å¾€ä¸Šèµ°
+                if (*cur_x > pos_x + 1) // ÔÚÏÂ±ß¾ÍÒªÍùÉÏ×ß
                 {
-                    if (pos_y >= *cur_y) // ç›®æ ‡åœ¨å³æˆ–åŒåˆ—
+                    if (pos_y >= *cur_y) // Ä¿±êÔÚÓÒ»òÍ¬ÁĞ
                     {
                         (*cur_y)++;
                         (*cur_x)--;
                     }
-                    else if (pos_y < *cur_y) // ç›®æ ‡åœ¨å·¦
+                    else if (pos_y < *cur_y) // Ä¿±êÔÚ×ó
                     {
                         (*cur_y)--;
                         (*cur_x)--;
                     }
                 }
-                if (*cur_x < pos_x + 1) // åœ¨ä¸Šè¾¹å°±è¦å¾€ä¸‹èµ°
+                if (*cur_x < pos_x + 1) // ÔÚÉÏ±ß¾ÍÒªÍùÏÂ×ß
                 {
-                    if (pos_y >= *cur_y) // ç›®æ ‡åœ¨å³æˆ–åŒåˆ—
+                    if (pos_y >= *cur_y) // Ä¿±êÔÚÓÒ»òÍ¬ÁĞ
                     {
                         (*cur_y)++;
                         (*cur_x)++;
                     }
-                    else if (pos_y < *cur_y) // ç›®æ ‡åœ¨å·¦
+                    else if (pos_y < *cur_y) // Ä¿±êÔÚ×ó
                     {
                         (*cur_y)--;
                         (*cur_x)++;
@@ -168,21 +167,21 @@ int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
     return cnt;
 }
 /*
-    è·å–ä¸¤ç‚¹ä¹‹é—´çš„æ›¼å“ˆé¡¿è·ç¦»
+    »ñÈ¡Á½µãÖ®¼äµÄÂü¹ş¶Ù¾àÀë
  */
 int getDis(int a_x, int a_y, int b_x, int b_y)
 {
     return abs(a_x - b_x) + abs(a_y - b_y);
 }
 /*
-    æ¨¡æ‹Ÿè·‘ä¸€éå½“å‰é˜Ÿåˆ—åŠ æ‹ŸåŠ è®¢å•ï¼Œç®—å‡ºèŠ±è´¹
+    Ä£ÄâÅÜÒ»±éµ±Ç°¶ÓÁĞ¼ÓÄâ¼Ó¶©µ¥£¬Ëã³ö»¨·Ñ
     API: Rider *, Order *
     return: int
  */
 int getPath(Rider *nowRider, Order *nowOrder)
 {
     int sum = 0;
-    int now_x = nowRider->rider_x, now_y = nowRider->rider_y, nxt_x, nxt_y;
+    int now_x = nowRider->rider_x, now_y = nowRider->rider_y;
     OrderList *nowBag = nowRider->Bag->Nxt_order;
     while (nowBag)
     {
@@ -196,17 +195,17 @@ int getPath(Rider *nowRider, Order *nowOrder)
     return sum;
 }
 /*
-    æ‰¾åˆ°æœ€ä½³æ´¾å•éª‘æ‰‹
+    ÕÒµ½×î¼ÑÅÉµ¥ÆïÊÖ
  */
 void getBestRider(Order *nowOrder)
 {
     RiderList *chooseRider = AllRiderLog->Nxt_rider;
     int path_min = 0x3f3f3f3f;
     int path_now = 0x3f3f3f3f, id_min = 0x3f3f3f3f;
-    // æ‰¾å‡ºæœ€ä½³éª‘æ‰‹
+    // ÕÒ³ö×î¼ÑÆïÊÖ
     while (chooseRider)
     {
-        path_now = getPath(chooseRider->Cur_rider, nowOrder); // æŠŠåŒ…è£¹ç»™æ­¤éª‘æ‰‹çš„æ—¶é•¿
+        path_now = getPath(chooseRider->Cur_rider, nowOrder); // °Ñ°ü¹ü¸ø´ËÆïÊÖµÄÊ±³¤
         if (path_min > path_now)
         {
             path_min = path_now;
@@ -214,7 +213,7 @@ void getBestRider(Order *nowOrder)
         }
         chooseRider = chooseRider->Nxt_rider;
     }
-    // å°†è®¢å•åŠ å…¥éª‘æ‰‹èƒŒåŒ…
+    // ½«¶©µ¥¼ÓÈëÆïÊÖ±³°ü
     chooseRider = AllRiderLog->Nxt_rider;
     assignOrder(nowOrder, id_min);
 }

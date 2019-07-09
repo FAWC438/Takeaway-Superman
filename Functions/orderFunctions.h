@@ -1,7 +1,7 @@
 #include "../Global/header.h"
 
 /*
-	æ¯æ¬¡åˆ·æ–°æ—¶é—´ç‚¹ååˆ¤æ–­æ˜¯å¦æœ‰è¶…æ—¶è®¢å•ï¼Œè‹¥ç ´äº§åˆ™ç»“æŸæ¸¸æˆ
+	Ã¿´ÎË¢ĞÂÊ±¼äµãºóÅĞ¶ÏÊÇ·ñÓĞ³¬Ê±¶©µ¥£¬ÈôÆÆ²úÔò½áÊøÓÎÏ·
 */
 void isAnyOrderOverTime()
 {
@@ -13,16 +13,16 @@ void isAnyOrderOverTime()
 		{
 			HeadOrder = HeadOrder->Nxt_order;
 			continue;
-		}// ä¸å¤„ç†å·²å®Œæˆè®¢å•
+		}// ²»´¦ÀíÒÑÍê³É¶©µ¥
 
-		int difference = Time - HeadOrder->Cur_order->begin_time;             // æ—¶é—´å·®
-		if (difference == DEAD_TIME + 1 && HeadOrder->Cur_order->status == 0) //æ‹’å•
+		int difference = Time - HeadOrder->Cur_order->begin_time;             // Ê±¼ä²î
+		if (difference == DEAD_TIME + 1 && HeadOrder->Cur_order->status == 0) //¾Üµ¥
 			// printf("GAMEOVER!!!\n");
 			gameOver(1);
-		if (difference == FINE_SECOND_TIME + 1) // æ¶æ„æ‹–å•
+		if (difference == FINE_SECOND_TIME + 1) // ¶ñÒâÍÏµ¥
 			// printf("GAMEOVER!!!\n");
 			gameOver(2);
-		else if (difference == FINE_FIRST_TIME + 1) // ç½šå•,èµ„é‡‘ä¸ºè´Ÿ
+		else if (difference == FINE_FIRST_TIME + 1) // ·£µ¥,×Ê½ğÎª¸º
 		{
 			CompanyMoney -= FINE_MONEY;
 			CompanyOrderOverTime++;
@@ -34,23 +34,23 @@ void isAnyOrderOverTime()
 	}
 }
 /*
-	è®¢å•å®Œæˆæ—¶è°ƒç”¨å³å¯
-	nowOrder(OrderList *)ï¼šç›®å‰éå†åˆ°çš„è®¢å•ï¼Œæ³¨æ„ï¼Œä¸ºOrderListæŒ‡é’ˆè€ŒéOrderæŒ‡é’ˆ
+	¶©µ¥Íê³ÉÊ±µ÷ÓÃ¼´¿É
+	nowOrder(OrderList *)£ºÄ¿Ç°±éÀúµ½µÄ¶©µ¥£¬×¢Òâ£¬ÎªOrderListÖ¸Õë¶ø·ÇOrderÖ¸Õë
 */
-OrderList* complishOrder(OrderList* nowOrder) // å¯ä»¥é¡ºä¾¿åˆ¤æ–­æ˜¯Aä»»åŠ¡å®Œæˆè¿˜æ˜¯æ•´ä¸ªè®¢å•å®Œæˆ
+OrderList* complishOrder(OrderList* nowOrder) // ¿ÉÒÔË³±ãÅĞ¶ÏÊÇAÈÎÎñÍê³É»¹ÊÇÕû¸ö¶©µ¥Íê³É
 {
 	OrderList* HeadOrder = AllOrderLog->Nxt_order;
 	while (HeadOrder)
 	{
-		if (HeadOrder->Cur_order->id == nowOrder->Cur_order->id) // æ›´æ–°å…¨å±€è®°å½•ä¸­è¯¥è®¢å•çŠ¶æ€
+		if (HeadOrder->Cur_order->id == nowOrder->Cur_order->id) // ¸üĞÂÈ«¾Ö¼ÇÂ¼ÖĞ¸Ã¶©µ¥×´Ì¬
 		{
-			if (nowOrder->Cur_order->status == 2) // TODO: åœé è®°å½•
+			if (nowOrder->Cur_order->status == 2) // TODO: Í£¿¿¼ÇÂ¼
 			{
-				HeadOrder->Cur_order->status = 3; // å˜æˆå·²å®Œæˆ
+				HeadOrder->Cur_order->status = 3; // ±ä³ÉÒÑÍê³É
 				nowOrder->Cur_order->status = 3;
 				nowOrder->Cur_order->end_time = Time;
 				HeadOrder->Cur_order->end_time = Time;
-				//pop_front_order(nowOrder); // å¼¹å‡ºé¡¶éƒ¨è®¢å•
+				//pop_front_order(nowOrder); // µ¯³ö¶¥²¿¶©µ¥
 				CompanyOrderFinish++;
 				CompanyMoney += MONEY_GAIN_ONE;
 				return nowOrder;
@@ -58,7 +58,7 @@ OrderList* complishOrder(OrderList* nowOrder) // å¯ä»¥é¡ºä¾¿åˆ¤æ–­æ˜¯Aä»»åŠ¡å®Œ
 			else if (nowOrder->Cur_order->status == 1)
 			{
 				HeadOrder->Cur_order->status = 2;
-				nowOrder->Cur_order->status = 2; // æ›´æ–°çŠ¶æ€åˆ°é€å•
+				nowOrder->Cur_order->status = 2; // ¸üĞÂ×´Ì¬µ½ËÍµ¥
 				nowOrder->Cur_order->end_time = Time;
 				HeadOrder->Cur_order->end_time = Time;
 				//OrderList *newOrder = nowOrder;
@@ -72,9 +72,9 @@ OrderList* complishOrder(OrderList* nowOrder) // å¯ä»¥é¡ºä¾¿åˆ¤æ–­æ˜¯Aä»»åŠ¡å®Œ
 }
 
 /*
-	åˆ¤æ–­è®¢å•æ˜¯å¦ç»“å•
-	nowOrder(OrderList *)ï¼šç›®å‰éå†åˆ°çš„è®¢å•ï¼Œæ³¨æ„ï¼Œä¸ºOrderListæŒ‡é’ˆè€ŒéOrderæŒ‡é’ˆ
-	NowRider(Rider *)ï¼šç›®å‰çš„éª‘æ‰‹ï¼Œæ³¨æ„ï¼Œä¸ºRiderListæŒ‡é’ˆ
+	ÅĞ¶Ï¶©µ¥ÊÇ·ñ½áµ¥
+	nowOrder(OrderList *)£ºÄ¿Ç°±éÀúµ½µÄ¶©µ¥£¬×¢Òâ£¬ÎªOrderListÖ¸Õë¶ø·ÇOrderÖ¸Õë
+	NowRider(Rider *)£ºÄ¿Ç°µÄÆïÊÖ£¬×¢Òâ£¬ÎªRiderListÖ¸Õë
  */
 int isComplishOrder(OrderList* NowOrder, RiderList* NowRider)
 {
@@ -84,15 +84,15 @@ int isComplishOrder(OrderList* NowOrder, RiderList* NowRider)
 	else if (NowOrder->Cur_order->status == 2)
 		judge = abs((NowOrder->Cur_order->cust_x) - (NowRider->Cur_rider->rider_x)) + abs((NowOrder->Cur_order->cust_y) - (NowRider->Cur_rider->rider_y));
 	else
-		// printf("è®¢å•çŠ¶æ€é”™è¯¯\n");
-		// //exit(0);//ç»ˆæ­¢
+		// printf("¶©µ¥×´Ì¬´íÎó\n");
+		// //exit(0);//ÖÕÖ¹
 		gameOver(3);
 	if (judge == 1)
 		return 1;
 	return 0;
 }
 /*
-	å°†æ–°è®¢å•è¿›è¡Œæ´¾å•
+	½«ĞÂ¶©µ¥½øĞĞÅÉµ¥
 */
 void arrangeNewOrder()
 {

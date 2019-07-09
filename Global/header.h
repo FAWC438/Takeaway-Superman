@@ -1,9 +1,9 @@
 
 /*
-	å…¨å±€é€šç”¨å¤´æ–‡ä»¶
-	æ³¨æ„ï¼è¯·å‹¿è½»æ˜“æ ¼å¼åŒ–è¯¥ä»£ç ï¼å› ä¸ºæ¯è¡Œçš„å‰åæœ‰å…³è”
-	æ–°å¢çš„å¤´æ–‡ä»¶åº”å½“è¡¥å†™åœ¨æœ€ä¸‹æ–¹
-	åˆ‡è®°ï¼åˆ‡è®°ï¼
+	È«¾ÖÍ¨ÓÃÍ·ÎÄ¼ş
+	×¢Òâ£¡ÇëÎğÇáÒ×¸ñÊ½»¯¸Ã´úÂë£¡ÒòÎªÃ¿ĞĞµÄÇ°ºóÓĞ¹ØÁª
+	ĞÂÔöµÄÍ·ÎÄ¼şÓ¦µ±²¹Ğ´ÔÚ×îÏÂ·½
+	ÇĞ¼Ç£¡ÇĞ¼Ç£¡
  */
 
 #ifndef _HEADER
@@ -15,12 +15,12 @@
 #include <string.h>
 #include <time.h>
 #include <Windows.h>
- // è‡ªå»ºå¤´æ–‡ä»¶
- #include "unistd.h"
+ // ×Ô½¨Í·ÎÄ¼ş
+#include "unistd.h"
 #include "structure.h"
-#include "../Functions/creatList.h" // è¯¥æ–‡ä»¶å¿…é¡»æ”¾åœ¨consts.hå‰é¢ï¼Œstructure.håé¢ï¼ï¼ï¼
+#include "../Functions/creatList.h" // ¸ÃÎÄ¼ş±ØĞë·ÅÔÚconsts.hÇ°Ãæ£¬structure.hºóÃæ£¡£¡£¡
 #include "consts.h"
-#include "../Functions/listOperation.h" // è¯¥æ–‡ä»¶ä¸ºå·¥å…·å‡½æ•°é›†ï¼Œä¼˜å…ˆçº§è¾ƒé«˜ï¼Œåº”æ”¾åœ¨ä¸Šé¢
+#include "../Functions/listOperation.h" // ¸ÃÎÄ¼şÎª¹¤¾ßº¯Êı¼¯£¬ÓÅÏÈ¼¶½Ï¸ß£¬Ó¦·ÅÔÚÉÏÃæ
 #include "init.h"
 #include "../Functions/gameOver.h"
 #include "../Functions/algorithm.h"
