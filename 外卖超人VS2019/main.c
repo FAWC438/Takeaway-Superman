@@ -1,5 +1,5 @@
 
-#include "C:/Code/Project/Takeaway-Superman/Global/Header.h"
+#include "../Global/header.h"
 
 int main()
 {

@@ -10,7 +10,7 @@ int inputFileOrder() // TODO: 处理输入数据和要计算的数据的关系
 	//	return 0;
 	//}
 	Order* p = (Order*)malloc(sizeof(Order));
-	FILE* fp = fopen("C:/Code/Project/Takeaway-Superman/sales.txt", "r"); // 打开文件
+	FILE* fp = fopen("../sales.txt", "r"); // 打开文件
 	if (fp == NULL)
 	{
 		free(p);
@@ -27,7 +27,6 @@ int inputFileOrder() // TODO: 处理输入数据和要计算的数据的关系
 		p = (Order*)malloc(sizeof(Order));             // 给p新的空间
 	}
 	free(p); // 释放p的内存
-	fclose(fp);
 	return 1;
 }
 

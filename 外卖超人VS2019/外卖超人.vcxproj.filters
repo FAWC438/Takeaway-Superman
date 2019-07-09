@@ -13,15 +13,133 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\Functions">
+      <UniqueIdentifier>{542a0917-16c0-48e8-9ac6-2bcfb5d78e56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\Global">
+      <UniqueIdentifier>{b947145f-3686-4e0d-9d7a-779382473d44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\IO">
+      <UniqueIdentifier>{11194220-c33b-4a40-80aa-35c3b0792dc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\测试数据">
+      <UniqueIdentifier>{9bce5a4c-1029-40c8-8b1a-4ba984053778}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\测试数据\备用数据">
+      <UniqueIdentifier>{1b1fcb50-3cd3-47d7-af47-a3cf9612c3fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\测试数据\测试样例">
+      <UniqueIdentifier>{76a270d6-9df5-45aa-9c3d-29a8880db415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件\测试数据\规则测试数据">
+      <UniqueIdentifier>{658af34e-1891-4a21-8a06-d07b94cde1c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="外卖超人.c">
+    <ClInclude Include="..\IO\input.h">
+      <Filter>头文件\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\IO\output.h">
+      <Filter>头文件\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Global\consts.h">
+      <Filter>头文件\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Global\header.h">
+      <Filter>头文件\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Global\init.h">
+      <Filter>头文件\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Global\structure.h">
+      <Filter>头文件\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Global\unistd.h">
+      <Filter>头文件\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Functions\algorithm.h">
+      <Filter>头文件\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Functions\creatList.h">
+      <Filter>头文件\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Functions\gameOver.h">
+      <Filter>头文件\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Functions\listOperation.h">
+      <Filter>头文件\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Functions\orderFunctions.h">
+      <Filter>头文件\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Functions\riderFunctions.h">
+      <Filter>头文件\Functions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\文件输入数据\规则测试数据\1.in">
+      <Filter>资源文件\测试数据\规则测试数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\规则测试数据\2.in">
+      <Filter>资源文件\测试数据\规则测试数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\规则测试数据\3.in">
+      <Filter>资源文件\测试数据\规则测试数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\规则测试数据\4.in">
+      <Filter>资源文件\测试数据\规则测试数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\规则测试数据\5.in">
+      <Filter>资源文件\测试数据\规则测试数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\规则测试数据\6.in">
+      <Filter>资源文件\测试数据\规则测试数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\规则测试数据\7.in">
+      <Filter>资源文件\测试数据\规则测试数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\测试样例\1.in">
+      <Filter>资源文件\测试数据\测试样例</Filter>
+    </None>
+    <None Include="..\文件输入数据\测试样例\2.in">
+      <Filter>资源文件\测试数据\测试样例</Filter>
+    </None>
+    <None Include="..\文件输入数据\测试样例\3.in">
+      <Filter>资源文件\测试数据\测试样例</Filter>
+    </None>
+    <None Include="..\文件输入数据\测试样例\4.in">
+      <Filter>资源文件\测试数据\测试样例</Filter>
+    </None>
+    <None Include="..\文件输入数据\测试样例\5.in">
+      <Filter>资源文件\测试数据\测试样例</Filter>
+    </None>
+    <None Include="..\文件输入数据\备用数据\1.in">
+      <Filter>资源文件\测试数据\备用数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\备用数据\2.in">
+      <Filter>资源文件\测试数据\备用数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\备用数据\3.in">
+      <Filter>资源文件\测试数据\备用数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\备用数据\4.in">
+      <Filter>资源文件\测试数据\备用数据</Filter>
+    </None>
+    <None Include="..\文件输入数据\备用数据\5.in">
+      <Filter>资源文件\测试数据\备用数据</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\output.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="..\sales.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="外卖超人.rc">
-      <Filter>资源文件</Filter>
-    </ResourceCompile>
   </ItemGroup>
 </Project>
