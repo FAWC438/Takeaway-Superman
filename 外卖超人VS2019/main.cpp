@@ -152,12 +152,23 @@ int main()
 			}
 			else if (x >= 340 && x <= 640 && y >= 510 && y <= 590)
 			{
+				setfillcolor(RED);
+				fillpoly(4, point_two);
+				floodfillsurface(430, 530, YELLOW);
 				flag = 1;
+				Sleep(2000);
+				delimage(img);
+				//ege::closegraph();
+				//TODO:img();
 				break;
 			}
 			else if (x >= 340 && x <= 640 && y >= 620 && y <= 700)
 			{
+				setfillcolor(RED);
+				fillpoly(4, point_three);
+				floodfillsurface(460, 640, YELLOW);
 				flag = 2;
+				Sleep(2000);
 				break;
 			}
 			else
