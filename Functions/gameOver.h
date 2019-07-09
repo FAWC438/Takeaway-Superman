@@ -83,7 +83,8 @@ void gameOver(int reason)
 	while (p2)
 	{
 		free(p2->Pre_rider);
-		p1 = p2->Cur_rider->Bag;
+		if(p2->Cur_rider)
+			p1 = p2->Cur_rider->Bag;
 		//  Õ∑≈bag
 		while (p1)
 		{
