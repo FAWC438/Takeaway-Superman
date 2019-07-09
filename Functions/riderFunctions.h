@@ -1,27 +1,27 @@
 #include "../Global/header.h"
 
 /*
-	æ‹›å‹Ÿéª‘æ‰‹,è¿”å›éª‘æ‰‹çš„idï¼Œæ³¨æ„ï¼Œå‰ææ¡ä»¶æ˜¯CompanyMoney>=400
-	return(int):éª‘æ‰‹çš„id
+	ÕĞÄ¼ÆïÊÖ,·µ»ØÆïÊÖµÄid£¬×¢Òâ£¬Ç°ÌáÌõ¼şÊÇCompanyMoney>=400
+	return(int):ÆïÊÖµÄid
  */
 int hireRider()
 {
-	CompanyMoney -= 300; // æ‰£é’±
-	CompanyRiderCount++; // åŠ éª‘æ‰‹æ•°é‡
+	CompanyMoney -= 300; // ¿ÛÇ®
+	CompanyRiderCount++; // ¼ÓÆïÊÖÊıÁ¿
 	Rider* newRider = (Rider*)malloc(sizeof(Rider));
-	// åˆå§‹åŒ–æ–°éª‘æ‰‹
+	// ³õÊ¼»¯ĞÂÆïÊÖ
 	newRider->id = CompanyRiderCount - 1;
 	newRider->rider_x = COMPANY_X;
 	newRider->rider_y = COMPANY_Y;
-	newRider->Bag = creatOrderList(); // éª‘æ‰‹çš„èƒŒåŒ…æ˜¯ä¸€ä¸ªè®¢å•é“¾è¡¨
-	//å°†è¯¥éª‘æ‰‹æ·»åŠ åˆ°éª‘æ‰‹åˆ—è¡¨
+	newRider->Bag = creatOrderList(); // ÆïÊÖµÄ±³°üÊÇÒ»¸ö¶©µ¥Á´±í
+	//½«¸ÃÆïÊÖÌí¼Óµ½ÆïÊÖÁĞ±í
 	push_back_rider(newRider, AllRiderLog);
 	return newRider->id;
 }
 /*
-	è¾“å…¥éª‘æ‰‹idè¿”å›OrderæŒ‡é’ˆ
-	int rider_id:éª‘æ‰‹id
-	return(Order *):æ£‹æ‰‹å½“å‰è®¢å•çš„æŒ‡é’ˆ
+	ÊäÈëÆïÊÖid·µ»ØOrderÖ¸Õë
+	int rider_id:ÆïÊÖid
+	return(Order *):ÆåÊÖµ±Ç°¶©µ¥µÄÖ¸Õë
  */
 Order* getRiderCurOrder(int rider_id)
 {
@@ -31,9 +31,9 @@ Order* getRiderCurOrder(int rider_id)
 	return p->Cur_rider->Bag->Cur_order;
 }
 /*
-	è¾“å…¥éª‘æ‰‹idè¿”å›OrderListæŒ‡é’ˆ
-	int rider_id:éª‘æ‰‹id
-	return(OrderList *):æ£‹æ‰‹å½“å‰èƒŒåŒ…çš„æŒ‡é’ˆ
+	ÊäÈëÆïÊÖid·µ»ØOrderListÖ¸Õë
+	int rider_id:ÆïÊÖid
+	return(OrderList *):ÆåÊÖµ±Ç°±³°üµÄÖ¸Õë
  */
 OrderList* getRiderCurBag(int rider_id)
 {
@@ -44,10 +44,10 @@ OrderList* getRiderCurBag(int rider_id)
 }
 
 /*
-	è¿”å›éª‘æ‰‹ä½ç½®ï¼Œæ³¨æ„ä¼ å…¥çš„åæ ‡ä¸ºæŒ‡é’ˆ
-	int rider_id:éª‘æ‰‹id
-	int *x:éª‘æ‰‹æ¨ªåæ ‡æŒ‡é’ˆ
-	int *y:éª‘æ‰‹çºµåæ ‡æŒ‡é’ˆ
+	·µ»ØÆïÊÖÎ»ÖÃ£¬×¢Òâ´«ÈëµÄ×ø±êÎªÖ¸Õë
+	int rider_id:ÆïÊÖid
+	int *x:ÆïÊÖºá×ø±êÖ¸Õë
+	int *y:ÆïÊÖ×İ×ø±êÖ¸Õë
  */
 void getRiderCurPos(int rider_id, int* x, int* y)
 {
@@ -58,10 +58,10 @@ void getRiderCurPos(int rider_id, int* x, int* y)
 	*y = p->Cur_rider->rider_y;
 }
 /*
-	å…¥éª‘æ‰‹idå’Œç›®çš„åœ°ï¼ˆæˆ¿å­åæ ‡ï¼‰ï¼Œæ ¹æ®éª‘æ‰‹å½“å‰ä½ç½®ï¼Œå…ˆå·¦å³ï¼Œåä¸Šä¸‹ï¼Œç§»åŠ¨ä¸€ä¸ªå•ä½ï¼Œé»˜è®¤å·²ç»åˆ¤æ–­æ˜¯å¦åœé ï¼Œä¸å†é‡æ–°æ£€æŸ¥
-	int rider_id:éª‘æ‰‹id
-	int pos_x:ç›®çš„åœ°æ¨ªåæ ‡
-	int pos_y:ç›®çš„åœ°çºµåæ ‡
+	ÈëÆïÊÖidºÍÄ¿µÄµØ£¨·¿×Ó×ø±ê£©£¬¸ù¾İÆïÊÖµ±Ç°Î»ÖÃ£¬ÏÈ×óÓÒ£¬ºóÉÏÏÂ£¬ÒÆ¶¯Ò»¸öµ¥Î»£¬Ä¬ÈÏÒÑ¾­ÅĞ¶ÏÊÇ·ñÍ£¿¿£¬²»ÔÙÖØĞÂ¼ì²é
+	int rider_id:ÆïÊÖid
+	int pos_x:Ä¿µÄµØºá×ø±ê
+	int pos_y:Ä¿µÄµØ×İ×ø±ê
  */
 void riderMove(int rider_id, int pos_x, int pos_y)
 {
@@ -73,104 +73,104 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 	cur_y = &(p->Cur_rider->rider_y);
 	i = *cur_x;
 	j = *cur_y;
-	// TODO: æµ‹è¯•ç§»åŠ¨å•å…ƒ
-	// å…ˆå·¦å³
+	// TODO: ²âÊÔÒÆ¶¯µ¥Ôª
+	// ÏÈ×óÓÒ
 	if (*cur_y < pos_y - 1 || *cur_y > pos_y + 1)
 	{
-		if (i % 2 == 1 && j % 2 == 0) // åœ¨æ¨ªå‘é“è·¯ä¸Š
+		if (i % 2 == 1 && j % 2 == 0) // ÔÚºáÏòµÀÂ·ÉÏ
 		{
-			if (*cur_y > pos_y + 1) // åœ¨å³è¾¹å°±è¦å¾€å·¦èµ°
+			if (*cur_y > pos_y + 1) // ÔÚÓÒ±ß¾ÍÒªÍù×ó×ß
 				(*cur_y) -= 2;
-			else if (*cur_y < pos_y - 1) // åœ¨å·¦è¾¹è¦å¾€å³èµ°
+			else if (*cur_y < pos_y - 1) // ÔÚ×ó±ßÒªÍùÓÒ×ß
 				(*cur_y) += 2;
 		}
-		else if (i % 2 == 0 && j % 2 == 1) // åœ¨çºµå‘é“è·¯ä¸Š
+		else if (i % 2 == 0 && j % 2 == 1) // ÔÚ×İÏòµÀÂ·ÉÏ
 		{
-			if (*cur_y > pos_y + 1) // åœ¨å³è¾¹å°±è¦å¾€å·¦èµ°
+			if (*cur_y > pos_y + 1) // ÔÚÓÒ±ß¾ÍÒªÍù×ó×ß
 			{
-				if (pos_x >= *cur_x) // ç›®æ ‡åœ¨ä¸‹æˆ–åŒè¡Œ
+				if (pos_x >= *cur_x) // Ä¿±êÔÚÏÂ»òÍ¬ĞĞ
 				{
 					(*cur_x)++;
 					(*cur_y)--;
 				}
-				else if (pos_x < *cur_x) // ç›®æ ‡åœ¨ä¸Š
+				else if (pos_x < *cur_x) // Ä¿±êÔÚÉÏ
 				{
 					(*cur_x)--;
 					(*cur_y)--;
 				}
 			}
-			else if (*cur_y < pos_y + 1) // åœ¨å³è¾¹å°±è¦å¾€å·¦èµ°
+			else if (*cur_y < pos_y + 1) // ÔÚÓÒ±ß¾ÍÒªÍù×ó×ß
 			{
-				if (pos_x >= *cur_x) // ç›®æ ‡åœ¨ä¸‹æˆ–åŒè¡Œ
+				if (pos_x >= *cur_x) // Ä¿±êÔÚÏÂ»òÍ¬ĞĞ
 				{
 					(*cur_x)++;
 					(*cur_y)++;
 				}
-				else if (pos_x < *cur_x) // ç›®æ ‡åœ¨ä¸Š
+				else if (pos_x < *cur_x) // Ä¿±êÔÚÉÏ
 				{
 					(*cur_x)--;
 					(*cur_y)++;
 				}
 			}
 		}
-		else // å¼‚å¸¸æƒ…å†µå¤„ç†
+		else // Òì³£Çé¿ö´¦Àí
 		{
-			// // TODO: åŠ å…¥ç»ˆæ­¢å‡½æ•°ï¼Ÿ
-			// printf("å’‹éª‘æ‰‹è·‘åˆ°æˆ¿å­é‡Œäº†ï¼Ÿ\n");
+			// // TODO: ¼ÓÈëÖÕÖ¹º¯Êı£¿
+			// printf("Õ¦ÆïÊÖÅÜµ½·¿×ÓÀïÁË£¿\n");
 			// //exit(0);
 			gameOver(5);
 		}
 	}
-	// åä¸Šä¸‹
+	// ºóÉÏÏÂ
 	else if (i < pos_x - 1 || i > pos_x + 1)
 	{
-		if (i % 2 == 0 && j % 2 == 1) // åœ¨çºµå‘é“è·¯ä¸Š
+		if (i % 2 == 0 && j % 2 == 1) // ÔÚ×İÏòµÀÂ·ÉÏ
 		{
-			if (*cur_x > pos_x + 1) // åœ¨ä¸‹è¾¹å°±è¦å¾€ä¸Šèµ°
+			if (*cur_x > pos_x + 1) // ÔÚÏÂ±ß¾ÍÒªÍùÉÏ×ß
 				(*cur_x) -= 2;
-			else if (*cur_x < pos_x - 1) // åœ¨ä¸Šè¾¹è¦å¾€ä¸‹èµ°
+			else if (*cur_x < pos_x - 1) // ÔÚÉÏ±ßÒªÍùÏÂ×ß
 				(*cur_x) += 2;
 		}
-		else if (i % 2 == 1 && j % 2 == 0) // åœ¨æ¨ªå‘é“è·¯ä¸Š
+		else if (i % 2 == 1 && j % 2 == 0) // ÔÚºáÏòµÀÂ·ÉÏ
 		{
-			if (*cur_x > pos_x + 1) // åœ¨ä¸‹è¾¹å°±è¦å¾€ä¸Šèµ°
+			if (*cur_x > pos_x + 1) // ÔÚÏÂ±ß¾ÍÒªÍùÉÏ×ß
 			{
-				if (pos_y > * cur_y || (pos_y == *cur_y && pos_y == 0)) // ç›®æ ‡åœ¨å³æˆ–åŒåˆ—
+				if (pos_y > * cur_y || (pos_y == *cur_y && pos_y == 0)) // Ä¿±êÔÚÓÒ»òÍ¬ÁĞ
 				{
 					(*cur_y)++;
 					(*cur_x)--;
 				}
-				else  // ç›®æ ‡åœ¨å·¦
+				else  // Ä¿±êÔÚ×ó
 				{
 					(*cur_y)--;
 					(*cur_x)--;
 				}
 			}
-			if (*cur_x < pos_x + 1) // åœ¨ä¸Šè¾¹å°±è¦å¾€ä¸‹èµ°
+			if (*cur_x < pos_x + 1) // ÔÚÉÏ±ß¾ÍÒªÍùÏÂ×ß
 			{
-				if (pos_y > * cur_y || (pos_y == *cur_y && pos_y == 0)) // ç›®æ ‡åœ¨å³æˆ–åŒåˆ—
+				if (pos_y > * cur_y || (pos_y == *cur_y && pos_y == 0)) // Ä¿±êÔÚÓÒ»òÍ¬ÁĞ
 				{
 					(*cur_y)++;
 					(*cur_x)++;
 				}
-				else // ç›®æ ‡åœ¨å·¦
+				else // Ä¿±êÔÚ×ó
 				{
 					(*cur_y)--;
 					(*cur_x)++;
 				}
 			}
 		}
-		else // å¼‚å¸¸æƒ…å†µå¤„ç†
-			// // TODO: åŠ å…¥ç»ˆæ­¢å‡½æ•°ï¼Ÿ
-			// printf("å’‹éª‘æ‰‹è·‘åˆ°æˆ¿å­é‡Œäº†ï¼Ÿ\n");
+		else // Òì³£Çé¿ö´¦Àí
+			// // TODO: ¼ÓÈëÖÕÖ¹º¯Êı£¿
+			// printf("Õ¦ÆïÊÖÅÜµ½·¿×ÓÀïÁË£¿\n");
 			// //exit(0);
 			gameOver(5);
 	}
 }
 
 /*
-	æ‰€æœ‰éª‘æ‰‹è¿›è¡Œç§»åŠ¨ï¼Œä½œä¸ºä¸»å‡½æ•°çš„ä¸€éƒ¨åˆ†ï¼Œæ— å‚æ•°å’Œè¿”å›å€¼
-	ç›®å‰çš„ç­–ç•¥æ˜¯æ´¾èƒŒåŒ…é‡Œçš„ç¬¬ä¸€ä¸ªå•
+	ËùÓĞÆïÊÖ½øĞĞÒÆ¶¯£¬×÷ÎªÖ÷º¯ÊıµÄÒ»²¿·Ö£¬ÎŞ²ÎÊıºÍ·µ»ØÖµ
+	Ä¿Ç°µÄ²ßÂÔÊÇÅÉ±³°üÀïµÄµÚÒ»¸öµ¥
  */
 void AllRiderMove()
 {
@@ -178,10 +178,10 @@ void AllRiderMove()
 	while (tempRider)
 	{
 		int posX, posY;
-		OrderList* findOrder = tempRider->Cur_rider->Bag->Nxt_order; //æ‰¾åˆ°åŒ…é‡Œç¬¬ä¸€ä¸ªè®¢å•
+		OrderList* findOrder = tempRider->Cur_rider->Bag->Nxt_order; //ÕÒµ½°üÀïµÚÒ»¸ö¶©µ¥
 		if (findOrder)
 		{
-			if (findOrder->Cur_order->status == 1) //æ‰¾åˆ°ç¬¬ä¸€ä¸ªè®¢å•å¯¹åº”çš„ä½ç½®
+			if (findOrder->Cur_order->status == 1) //ÕÒµ½µÚÒ»¸ö¶©µ¥¶ÔÓ¦µÄÎ»ÖÃ
 			{
 				posX = findOrder->Cur_order->rest_x;
 				posY = findOrder->Cur_order->rest_y;
@@ -191,8 +191,8 @@ void AllRiderMove()
 				posX = findOrder->Cur_order->cust_x;
 				posY = findOrder->Cur_order->cust_y;
 			}
-			riderMove(tempRider->Cur_rider->id, posX, posY); //éª‘æ‰‹ç§»åŠ¨
+			riderMove(tempRider->Cur_rider->id, posX, posY); //ÆïÊÖÒÆ¶¯
 		}
-		tempRider = tempRider->Nxt_rider; //æ¢åˆ°ä¸‹ä¸€ä¸ªéª‘æ‰‹
+		tempRider = tempRider->Nxt_rider; //»»µ½ÏÂÒ»¸öÆïÊÖ
 	}
 }

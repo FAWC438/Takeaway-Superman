@@ -34,7 +34,6 @@ int isAllOrderFinished()
 void gameOver(int reason)
 {
 	printf("------------------------------------------------\n");
-	printf("%d\n", reason);
 	printf("公司已经破产！！！\n");
 	printf("公司破产原因:");
 	if (reason == 0)

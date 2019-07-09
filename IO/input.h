@@ -1,16 +1,16 @@
 #include "../Global/header.h"
 /*
-	ä»Žæ–‡ä»¶è¾“å…¥
+	´ÓÎÄ¼þÊäÈë
  */
-int inputFileOrder() // TODO: å¤„ç†è¾“å…¥æ•°æ®å’Œè¦è®¡ç®—çš„æ•°æ®çš„å…³ç³»
+int inputFileOrder() // TODO: ´¦ÀíÊäÈëÊý¾ÝºÍÒª¼ÆËãµÄÊý¾ÝµÄ¹ØÏµ
 {
-	//if (_access("D:/code/cpp/å°å­¦æœŸè®¡å¯¼/å¤§ä½œä¸š/Takeaway-Superman/sales.txt", 0) == -1)
+	//if (_access("D:/code/cpp/Ð¡Ñ§ÆÚ¼Æµ¼/´ó×÷Òµ/Takeaway-Superman/sales.txt", 0) == -1)
 	//{
-	//	// åˆ¤æ–­æ˜¯å¦å­˜åœ¨æ–‡ä»¶ï¼Œä¸å­˜åœ¨åˆ™è¿”å›ž0
+	//	// ÅÐ¶ÏÊÇ·ñ´æÔÚÎÄ¼þ£¬²»´æÔÚÔò·µ»Ø0
 	//	return 0;
 	//}
 	Order* p = (Order*)malloc(sizeof(Order));
-	FILE* fp = fopen("../sales.txt", "r"); // æ‰“å¼€æ–‡ä»¶
+	FILE* fp = fopen("../sales.txt", "r"); // ´ò¿ªÎÄ¼þ
 	if (fp == NULL)
 	{
 		free(p);
@@ -20,18 +20,18 @@ int inputFileOrder() // TODO: å¤„ç†è¾“å…¥æ•°æ®å’Œè¦è®¡ç®—çš„æ•°æ®çš„å…³ç³»
 		&p->rest_x, &p->rest_y,
 		&p->cust_x, &p->cust_y)) != EOF)
 	{
-		p->status = 0;                                  // æœªæŽ¥å•çŠ¶æ€
-		p->end_time = 0x3f3f3f3f; // ç ´äº§æ—¶é—´
-		p->warn_time = p->begin_time + FINE_FIRST_TIME; // ç½šæ¬¾æ—¶é—´
-		push_back_order(p, Buffer);                     // æ·»åŠ åˆ°å…¨å±€è®¢å•è®°å½•åŽ
-		p = (Order*)malloc(sizeof(Order));             // ç»™pæ–°çš„ç©ºé—´
+		p->status = 0;                                  // Î´½Óµ¥×´Ì¬
+		p->end_time = 0x3f3f3f3f; // ÆÆ²úÊ±¼ä
+		p->warn_time = p->begin_time + FINE_FIRST_TIME; // ·£¿îÊ±¼ä
+		push_back_order(p, Buffer);                     // Ìí¼Óµ½È«¾Ö¶©µ¥¼ÇÂ¼ºó
+		p = (Order*)malloc(sizeof(Order));             // ¸øpÐÂµÄ¿Õ¼ä
 	}
-	free(p); // é‡Šæ”¾pçš„å†…å­˜
+	free(p); // ÊÍ·ÅpµÄÄÚ´æ
 	return 1;
 }
 
 /*
-	ä»Žé”®ç›˜è¾“å…¥
+	´Ó¼üÅÌÊäÈë
  */
 int inputKeyOrder()
 {
@@ -40,12 +40,12 @@ int inputKeyOrder()
 		&p->rest_x, &p->rest_y,
 		&p->cust_x, &p->cust_y) != EOF)
 	{
-		p->status = 0;                                  // æœªæŽ¥å•çŠ¶æ€
-		p->end_time = 0x3f3f3f3f; // ç ´äº§æ—¶é—´
-		p->warn_time = p->begin_time + FINE_FIRST_TIME; // ç½šæ¬¾æ—¶é—´
-		push_back_order(p, Buffer);                     // æ·»åŠ åˆ°å…¨å±€è®¢å•è®°å½•åŽ
-		p = (Order*)malloc(sizeof(Order));             // ç»™pæ–°çš„ç©ºé—´
+		p->status = 0;                                  // Î´½Óµ¥×´Ì¬
+		p->end_time = 0x3f3f3f3f; // ÆÆ²úÊ±¼ä
+		p->warn_time = p->begin_time + FINE_FIRST_TIME; // ·£¿îÊ±¼ä
+		push_back_order(p, Buffer);                     // Ìí¼Óµ½È«¾Ö¶©µ¥¼ÇÂ¼ºó
+		p = (Order*)malloc(sizeof(Order));             // ¸øpÐÂµÄ¿Õ¼ä
 	}
-	free(p); // é‡Šæ”¾pçš„å†…å­˜
+	free(p); // ÊÍ·ÅpµÄÄÚ´æ
 	return 1;
 }

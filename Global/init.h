@@ -9,18 +9,18 @@ void initMap()
 	{
 		for (j = 0; j <= 16; j++)
 		{
-			if ((i % 2) != (j % 2)) // åˆå§‹åŒ–é“è·¯
+			if ((i % 2) != (j % 2)) // ³õÊ¼»¯µÀÂ·
 			{
 				Map[i][j] = 0;
 			}
 			else
-				Map[i][j] = 1; // åˆå§‹åŒ–æˆ¿å±‹
+				Map[i][j] = 1; // ³õÊ¼»¯·¿ÎÝ
 		}
 	}
 }
 
 /*
-	åˆå§‹åŒ–éª‘æ‰‹èƒŒåŒ…ï¼Œåˆå§‹åŒ–ç»“æŸæ—¶éª‘æ‰‹èƒŒåŒ…éƒ½æ˜¯æœªå®Œæˆè®¢å•
+	³õÊ¼»¯ÆïÊÖ±³°ü£¬³õÊ¼»¯½áÊøÊ±ÆïÊÖ±³°ü¶¼ÊÇÎ´Íê³É¶©µ¥
  */
 void initRiderBag()
 {
@@ -30,7 +30,7 @@ void initRiderBag()
 		OrderList *order = rider->Cur_rider->Bag->Nxt_order;
 		while (order)
 		{
-			if (order->Cur_order->status == 3) //æŠŠçŠ¶æ€ä¸ºå®Œæˆçš„è®¢å•åˆ é™¤
+			if (order->Cur_order->status == 3) //°Ñ×´Ì¬ÎªÍê³ÉµÄ¶©µ¥É¾³ý
 				order = delete_order(order);
 			order = order->Nxt_order;
 		}

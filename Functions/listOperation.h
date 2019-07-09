@@ -1,8 +1,8 @@
 #include "../Global/header.h"
 
 /*
-    ä¼ å…¥é“¾è¡¨ï¼Œåˆ é™¤å¤´éƒ¨è®¢å•
-    Listï¼šè®¢å•é“¾è¡¨
+    ´«ÈëÁ´±í£¬É¾³ýÍ·²¿¶©µ¥
+    List£º¶©µ¥Á´±í
  */
 void pop_front_order(OrderList *List)
 {
@@ -12,9 +12,9 @@ void pop_front_order(OrderList *List)
     free(p);
 }
 /*
-    æ·»åŠ å°¾éƒ¨è®¢å•
-    NewOrderï¼šæ·»åŠ çš„è®¢å•
-    Listï¼šè®¢å•åˆ—è¡¨
+    Ìí¼ÓÎ²²¿¶©µ¥
+    NewOrder£ºÌí¼ÓµÄ¶©µ¥
+    List£º¶©µ¥ÁÐ±í
  */
 void push_back_order(Order *NewOrder, OrderList *List)
 {
@@ -28,9 +28,9 @@ void push_back_order(Order *NewOrder, OrderList *List)
     NewOrderList->Nxt_order = NULL;
 }
 /*
-    éª‘æ‰‹é˜Ÿåˆ—å°¾éƒ¨æ·»åŠ éª‘æ‰‹
-    NewRiderï¼šæ–°çš„éª‘æ‰‹
-    Listï¼šéª‘æ‰‹åˆ—è¡¨
+    ÆïÊÖ¶ÓÁÐÎ²²¿Ìí¼ÓÆïÊÖ
+    NewRider£ºÐÂµÄÆïÊÖ
+    List£ºÆïÊÖÁÐ±í
  */
 void push_back_rider(Rider *NewRider, RiderList *List)
 {
@@ -44,7 +44,7 @@ void push_back_rider(Rider *NewRider, RiderList *List)
     NewRiderList->Nxt_rider = NULL;
 }
 /*
-    è®¢å•åˆ—è¡¨äº¤æ¢
+    ¶©µ¥ÁÐ±í½»»»
  */
 void swap_order(OrderList *List1, OrderList *List2)
 {
@@ -53,14 +53,14 @@ void swap_order(OrderList *List1, OrderList *List2)
     List2->Cur_order = TempOrder;
 }
 /*
-    åˆ é™¤è®¢å•ï¼Œè¿”å›žè¯¥è®¢å•çš„å‰ä¸€ä¸ªè®¢å•
-    tOrderï¼šç›®æ ‡è®¢å•
+    É¾³ý¶©µ¥£¬·µ»Ø¸Ã¶©µ¥µÄÇ°Ò»¸ö¶©µ¥
+    tOrder£ºÄ¿±ê¶©µ¥
  */
 OrderList *delete_order(OrderList *tOrder)
 {
     OrderList *tempOrder = tOrder->Pre_order;
     tOrder->Pre_order->Nxt_order = tOrder->Nxt_order;
-    if (tOrder->Nxt_order) //å¦‚æžœåŽé©±ç»“ç‚¹å­˜åœ¨ï¼Œæ”¹å˜åŽé©±ç»“ç‚¹çš„å‰ä¸€ä¸ªç»“ç‚¹çš„æŒ‡å‘
+    if (tOrder->Nxt_order) //Èç¹ûºóÇý½áµã´æÔÚ£¬¸Ä±äºóÇý½áµãµÄÇ°Ò»¸ö½áµãµÄÖ¸Ïò
         tOrder->Nxt_order->Pre_order = tOrder->Pre_order;
     free(tOrder);
     return tempOrder;
