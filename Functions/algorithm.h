@@ -182,7 +182,7 @@ int getDis(int a_x, int a_y, int b_x, int b_y)
 int getPath(Rider *nowRider, Order *nowOrder)
 {
     int sum = 0;
-    int now_x = nowRider->rider_x, now_y = nowRider->rider_y, nxt_x, nxt_y;
+    int now_x = nowRider->rider_x, now_y = nowRider->rider_y;
     OrderList *nowBag = nowRider->Bag->Nxt_order;
     while (nowBag)
     {
