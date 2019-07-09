@@ -151,10 +151,45 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="外卖超人.c" />
+    <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="外卖超人.rc" />
+    <ClInclude Include="..\Functions\algorithm.h" />
+    <ClInclude Include="..\Functions\creatList.h" />
+    <ClInclude Include="..\Functions\gameOver.h" />
+    <ClInclude Include="..\Functions\listOperation.h" />
+    <ClInclude Include="..\Functions\orderFunctions.h" />
+    <ClInclude Include="..\Functions\riderFunctions.h" />
+    <ClInclude Include="..\Global\consts.h" />
+    <ClInclude Include="..\Global\header.h" />
+    <ClInclude Include="..\Global\init.h" />
+    <ClInclude Include="..\Global\structure.h" />
+    <ClInclude Include="..\Global\unistd.h" />
+    <ClInclude Include="..\IO\input.h" />
+    <ClInclude Include="..\IO\output.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\文件输入数据\备用数据\1.in" />
+    <None Include="..\文件输入数据\备用数据\2.in" />
+    <None Include="..\文件输入数据\备用数据\3.in" />
+    <None Include="..\文件输入数据\备用数据\4.in" />
+    <None Include="..\文件输入数据\备用数据\5.in" />
+    <None Include="..\文件输入数据\测试样例\1.in" />
+    <None Include="..\文件输入数据\测试样例\2.in" />
+    <None Include="..\文件输入数据\测试样例\3.in" />
+    <None Include="..\文件输入数据\测试样例\4.in" />
+    <None Include="..\文件输入数据\测试样例\5.in" />
+    <None Include="..\文件输入数据\规则测试数据\1.in" />
+    <None Include="..\文件输入数据\规则测试数据\2.in" />
+    <None Include="..\文件输入数据\规则测试数据\3.in" />
+    <None Include="..\文件输入数据\规则测试数据\4.in" />
+    <None Include="..\文件输入数据\规则测试数据\5.in" />
+    <None Include="..\文件输入数据\规则测试数据\6.in" />
+    <None Include="..\文件输入数据\规则测试数据\7.in" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\output.txt" />
+    <Text Include="..\sales.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

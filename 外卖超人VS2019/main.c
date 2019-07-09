@@ -1,5 +1,5 @@
 
-#include <D:/code/cpp/小学期计导/大作业/Takeaway-Superman/Global/header.h>
+#include "../Global/header.h"
 
 int main()
 {

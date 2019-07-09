@@ -45,7 +45,7 @@ void printNearBy(Rider* nowRider, FILE* fPtr)
 void outputOnFile()
 {
 	FILE* fPtr;
-	if ((fPtr = fopen("D:\output.txt", "a")) == NULL)
+	if ((fPtr = fopen("../output.txt", "a")) == NULL)
 	{
 		printf("Can't not open the output.txt");
 		return;
