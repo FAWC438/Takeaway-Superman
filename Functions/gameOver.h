@@ -82,18 +82,25 @@ void gameOver(int reason)
 	// ÊÍ·ÅAllRiderLog
 	while (p2)
 	{
-		free(p2->Pre_rider);
-		p1 = p2->Cur_rider->Bag;
-		// ÊÍ·Åbag
-		while (p1)
+		if (p2->Cur_rider)
 		{
-			free(p1->Pre_order);
-			free(p1->Cur_order);
-			p1->Pre_order = NULL;
-			p1->Cur_order = NULL;
-			p1 = p1->Nxt_order;
+			free(p2->Pre_rider);
+			p1 = p2->Cur_rider->Bag;
+			// ÊÍ·Åbag
+			while (p1)
+			{
+				free(p1->Pre_order);
+				free(p1->Cur_order);
+				p1->Pre_order = NULL;
+				p1->Cur_order = NULL;
+				p1 = p1->Nxt_order;
+			}
+			free(p2->Cur_rider);
 		}
-		free(p2->Cur_rider);
+		else
+		{
+			break;
+		}
 		p2->Pre_rider = NULL;
 		p2->Cur_rider = NULL;
 		p2 = p2->Nxt_rider;
