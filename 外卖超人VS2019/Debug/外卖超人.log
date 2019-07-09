@@ -1,4 +1,4 @@
-﻿  main.c
+﻿  main.cpp
   C:\Code\Project\Takeaway-Superman\Global\header.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   C:\Code\Project\Takeaway-Superman\Global\structure.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
   C:\Code\Project\Takeaway-Superman\Global\header.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
@@ -13,5 +13,4 @@ C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: 
 C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: C:\Code\Project\Takeaway-Superman\Functions\riderFunctions.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: C:\Code\Project\Takeaway-Superman\IO\input.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
 C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: C:\Code\Project\Takeaway-Superman\Functions\orderFunctions.h(72) : warning C4715: “complishOrder”: 不是所有的控件路径都返回值
-  LINK : 没有找到 C:\Code\Project\Takeaway-Superman\外卖超人VS2019\Debug\外卖超人.exe 或上一个增量链接没有生成它；正在执行完全链接
   外卖超人.vcxproj -> C:\Code\Project\Takeaway-Superman\外卖超人VS2019\Debug\外卖超人.exe
