@@ -1,7 +1,8 @@
 
 #include "../Global/header.h"
+#include <graphics.h>
 
-int main()
+void console()
 {
 	AllOrderLog = creatOrderList(); // 全部订单记录(含有头结点)
 	Buffer = creatOrderList();      // 缓冲区(含有头结点)
@@ -73,5 +74,20 @@ int main()
 		Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
 	}
 	gameSuccess();
-	return 0;
+}
+
+void img()
+{
+	/*
+		TODO
+	*/
+}
+
+int main()
+{
+	initgraph(1000, 750);   // 初始化为640*480大小的窗口
+	circle(200, 200, 100); // 画圆，圆心(200, 200)，半径100
+	getch();               // 等待用户按键，按任意键继续
+	console();
+	closegraph();
 }
