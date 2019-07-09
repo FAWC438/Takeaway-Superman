@@ -1,14 +1,45 @@
-﻿  main.cpp
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\header.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\structure.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\header.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\creatList.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\consts.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\listOperation.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\init.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\algorithm.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\orderFunctions.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\riderFunctions.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\IO\input.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\orderFunctions.h(72) : warning C4715: “complishOrder”: 不是所有的控件路径都返回值
-  外卖超人.vcxproj -> D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\外卖超人VS2019\Debug\外卖超人.exe
+﻿  egeball2.cpp
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(46,31): warning C4244:  “=”: 从“double”转换到“float”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(81,35): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(81,25): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(81,20): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(81,15): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(133,11): warning C4244:  “初始化”: 从“int”转换到“float”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(133,28): warning C4244:  “初始化”: 从“int”转换到“float”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(133,45): warning C4244:  “初始化”: 从“int”转换到“float”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(138,10): warning C4244:  “=”: 从“int”转换到“float”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(223,1): error C4996:  'ege::swappage': This function is deprecated, more info visit http://tcgraphics.sourceforge.net/
+C:\VS2019\VC\Tools\MSVC\14.21.27702\include\ege.h(800): message :  参见“ege::swappage”的声明
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(229,1): error C4996:  'ege::swappage': This function is deprecated, more info visit http://tcgraphics.sourceforge.net/
+C:\VS2019\VC\Tools\MSVC\14.21.27702\include\ege.h(800): message :  参见“ege::swappage”的声明
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egeball2.cpp(245,1): error C4996:  'ege::GetMouseMsg': This function is deprecated, more info visit http://tcgraphics.sourceforge.net/
+  egecatharine.cpp
+C:\VS2019\VC\Tools\MSVC\14.21.27702\include\ege.h(1364): message :  参见“ege::GetMouseMsg”的声明
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egecatharine.cpp(59,35): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
+  egejulia.cpp
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egecatharine.cpp(59,27): warning C4244:  “参数”: 从“float”转换到“int”，可能丢失数据
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egecatharine.cpp(59,27): warning C4244: D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egejulia.cpp: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egejulia.cpp(70,23): warning C4273:  “log2”: dll 链接不一致
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\corecrt_math.h(518,47): message :  参见“log2”的前一个定义
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egejulia.cpp(389,25): warning C4477:  “sscanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“HWND *”
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egejulia.cpp(404,5): error C3861:  “FlushMouseMsgBuffer”: 找不到标识符
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egejulia.cpp(386,1): error C4996:  'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(549): message :  参见“stricmp”的声明
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egejulia.cpp(393,1): error C4996:  'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details.
+  egelines.cpp
+  egestar.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(549): message :  参见“stricmp”的声明
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egestar.cpp(49,26): warning C4477:  “sscanf”: 格式字符串“%d”需要类型“int *”的参数，但可变参数 1 拥有了类型“HWND *”
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egestar.cpp(47,1): error C4996:  'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(549): message :  参见“stricmp”的声明
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\egestar.cpp(54,1): error C4996:  'stricmp': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _stricmp. See online help for details.
+  egetetris.cpp
+  MandelbrotSetBase.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(549): message :  参见“stricmp”的声明
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\MandelbrotSetBase.cpp(80,13): warning C4101:  “z”: 未引用的局部变量
+D:\code\cpp\Introduction to Computing\final works\ege19.01_all\demo\src\MandelbrotSetBase.cpp(123,1): error C4996:  'ege::GetMouseMsg': This function is deprecated, more info visit http://tcgraphics.sourceforge.net/
+  test_setviewport.cpp
+  main.cpp
+  正在生成代码...
+C:\VS2019\VC\Tools\MSVC\14.21.27702\include\ege.h(1364): message :  参见“ege::GetMouseMsg”的声明
+C:\VS2019\VC\Tools\MSVC\14.21.27702\include\ege.h(1364): message : D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\orderFunctions.h(72) : warning C4715: “complishOrder”: 不是所有的控件路径都返回值

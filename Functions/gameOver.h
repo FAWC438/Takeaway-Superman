@@ -34,7 +34,7 @@ int isAllOrderFinished()
 void gameOver(int reason)
 {
 	printf("------------------------------------------------\n");
-	printf("公司已经破产！！！\n");
+	printf("公司已经破产!!!\n");
 	printf("公司破产原因:");
 	if (reason == 0)
 		printf("破产\n");
@@ -43,13 +43,13 @@ void gameOver(int reason)
 	else if (reason == 2)
 		printf("恶意废单\n");
 	else
-		printf("异常原因，错误代码为%d\n", reason);
-	printf("本次公司所在地址:（%d，%d）\n", COMPANY_X, COMPANY_Y);
-	printf("公司剩余现金数：%d\n", CompanyMoney);
-	printf("公司骑手数量：%d\n", CompanyRiderCount);
-	printf("公司收益利润：%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
-	printf("破产时间：%d个时间单位\n", Time);
-	printf("公司接单数：%d\n", CompanyOrderSum);
+		printf("异常原因,错误代码为%d\n", reason);
+	printf("本次公司所在地址:(%d，%d)\n", COMPANY_X, COMPANY_Y);
+	printf("公司剩余现金数:%d\n", CompanyMoney);
+	printf("公司骑手数量:%d\n", CompanyRiderCount);
+	printf("公司收益利润:%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
+	printf("破产时间:%d个时间单位\n", Time);
+	printf("公司接单数:%d\n", CompanyOrderSum);
 	printf("公司完成单数:%d\n", CompanyOrderFinish);
 	printf("公司超时单数:%d\n", CompanyOrderOverTime);
 
@@ -121,13 +121,13 @@ void gameOver(int reason)
 void gameSuccess()
 {
 	printf("------------------------------------------------\n");
-	printf("公司存活到了最后！！！You are the true Takeaway Superman！\n");
-	printf("本次公司所在地址:（%d，%d）\n", COMPANY_X, COMPANY_Y);
-	printf("公司剩余现金数：%d\n", CompanyMoney);
-	printf("公司骑手数量：%d\n", CompanyRiderCount);
-	printf("公司收益利润：%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
-	printf("坚持时间：%d个时间单位\n", Time);
-	printf("公司接单数：%d\n", CompanyOrderSum);
+	printf("公司存活到了最后!!!You are the true Takeaway Superman!\n");
+	printf("本次公司所在地址:(%d，%d)\n", COMPANY_X, COMPANY_Y);
+	printf("公司剩余现金数:%d\n", CompanyMoney);
+	printf("公司骑手数量:%d\n", CompanyRiderCount);
+	printf("公司收益利润:%d\n", CompanyMoney + CompanyRiderCount * HIRE_MONEY - INIT_MONEY);
+	printf("坚持时间:%d个时间单位\n", Time);
+	printf("公司接单数:%d\n", CompanyOrderSum);
 	printf("公司完成单数:%d\n", CompanyOrderFinish);
 	printf("公司超时单数:%d\n", CompanyOrderOverTime);
 

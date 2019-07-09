@@ -8,7 +8,7 @@
 #include "header.h"
 
 const int TIME_UNIT = 2;         // 时间单位为TIME_UNIT秒
-const int INIT_MONEY = 100;     // 起始资金
+const int INIT_MONEY = 1000;     // 起始资金
 const int HIRE_MONEY = 300;      // 招募一个人需要的资金
 const int DEAD_TIME = 3;         // 超过DEAD_TIME时间单位后，被视为拒单
 const int FINE_FIRST_TIME = 30;  // 超时时间，第一次超时罚款
