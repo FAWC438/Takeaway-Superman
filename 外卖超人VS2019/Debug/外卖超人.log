@@ -1,16 +1,17 @@
 ﻿  main.c
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\header.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\structure.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\header.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\creatList.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\consts.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\listOperation.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Global\init.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\algorithm.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\algorithm.h(185,70): warning C4101:  “nxt_y”: 未引用的局部变量
-D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101:  “nxt_x”: 未引用的局部变量
-D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\orderFunctions.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\riderFunctions.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\IO\input.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
-D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\orderFunctions.h(72) : warning C4715: “complishOrder”: 不是所有的控件路径都返回值
-  外卖超人.vcxproj -> D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\外卖超人VS2019\Debug\外卖超人.exe
+  C:\Code\Project\Takeaway-Superman\Global\header.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  C:\Code\Project\Takeaway-Superman\Global\structure.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  C:\Code\Project\Takeaway-Superman\Global\header.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  C:\Code\Project\Takeaway-Superman\Functions\creatList.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  C:\Code\Project\Takeaway-Superman\Global\consts.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  C:\Code\Project\Takeaway-Superman\Functions\listOperation.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  C:\Code\Project\Takeaway-Superman\Global\init.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+  C:\Code\Project\Takeaway-Superman\Functions\algorithm.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,70): warning C4101:  “nxt_y”: 未引用的局部变量
+C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101:  “nxt_x”: 未引用的局部变量
+C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: C:\Code\Project\Takeaway-Superman\Functions\orderFunctions.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: C:\Code\Project\Takeaway-Superman\Functions\riderFunctions.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: C:\Code\Project\Takeaway-Superman\IO\input.h: warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Code\Project\Takeaway-Superman\Functions\algorithm.h(185,63): warning C4101: C:\Code\Project\Takeaway-Superman\Functions\orderFunctions.h(72) : warning C4715: “complishOrder”: 不是所有的控件路径都返回值
+  LINK : 没有找到 C:\Code\Project\Takeaway-Superman\外卖超人VS2019\Debug\外卖超人.exe 或上一个增量链接没有生成它；正在执行完全链接
+  外卖超人.vcxproj -> C:\Code\Project\Takeaway-Superman\外卖超人VS2019\Debug\外卖超人.exe
