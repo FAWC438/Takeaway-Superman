@@ -1,4 +1,3 @@
-
 #include "../Global/header.h"
 
 // TODO: 打印骑手轨迹以调整。
@@ -45,7 +44,7 @@ void printNearBy(Rider* nowRider, FILE* fPtr)
 void outputOnFile()
 {
 	FILE* fPtr;
-	if ((fPtr = fopen("D:\output.txt", "a")) == NULL)
+	if ((fPtr = fopen("C:/Code/Project/Takeaway-Superman/output.txt", "a")) == NULL)
 	{
 		printf("Can't not open the output.txt");
 		return;
