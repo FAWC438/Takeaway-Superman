@@ -195,6 +195,10 @@
     <Text Include="..\output.txt" />
     <Text Include="..\sales.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="1.jpg" />
+    <Image Include="C:\Users\qq185\桌面\外卖超人.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -142,4 +142,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="C:\Users\qq185\桌面\外卖超人.jpg">
+      <Filter>源文件</Filter>
+    </Image>
+    <Image Include="1.jpg">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

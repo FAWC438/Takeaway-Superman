@@ -85,9 +85,95 @@ void img()
 
 int main()
 {
-	initgraph(1000, 750);   // 初始化为640*480大小的窗口
-	circle(200, 200, 100); // 画圆，圆心(200, 200)，半径100
-	getch();               // 等待用户按键，按任意键继续
-	console();
-	closegraph();
+	int x, y, flag = 2;
+	int point_one[] = { 340,480,340,400,640,400,640,480 },
+		point_two[] = { 340,590,340,510,640,510,640,590 },
+		point_three[] = { 340,700,340,620,640,620,640,700 };
+	mouse_msg msg = { 0 };
+
+	initgraph(1000, 750);   // 初始化为1000*750大小的窗口
+	setcaption("Takeaway Superman");
+	setbkcolor(YELLOW);// 背景色
+	PIMAGE img;
+	img = newimage();
+	getimage(img, "./final-logo.png", 0, 0);// 背景
+	putimage(-100, 0, img);
+	setfillcolor(YELLOW);// 方块填充色
+	setcolor(YELLOW);// 方块边线色
+
+	/*
+		键盘/文件输入按钮
+	*/
+	// bar(340, 480, 640, 400);
+	fillpoly(4, point_one);
+	setfont(40, 0, "微软雅黑");
+	setcolor(BLACK);// 字体颜色
+	outtextrect(395, 420, 640, 380, "键盘/文件输入");
+
+	/*
+		鼠标输入按钮
+	*/
+	setcolor(YELLOW);
+	// bar(340, 590, 640, 510);
+	fillpoly(4, point_two);
+	setfont(40, 0, "微软雅黑");
+	setcolor(BLACK);
+	outtextrect(430, 530, 640, 490, "鼠标输入");
+
+	/*
+		退出按钮
+	*/
+	setcolor(YELLOW);
+	// bar(340, 700, 640, 620);
+	fillpoly(4, point_three);
+	setfont(40, 0, "微软雅黑");
+	setcolor(BLACK);
+	outtextrect(460, 640, 640, 500, "退出");
+	for (; is_run(); delay_fps(60))
+	{
+
+		while (mousemsg())// 获取鼠标消息，这个函数会等待，等待到有消息为止
+		{
+			msg = getmouse();// 将鼠标信息存入鼠标结构体
+		}
+		x = msg.x, y = msg.y;
+		if (msg.is_left() || msg.is_right())// 左键右键均可
+		{
+			if (x >= 340 && x <= 640 && y >= 400 && y <= 480)
+			{
+				setfillcolor(RED);
+				fillpoly(4, point_one);
+				floodfillsurface(395, 420, YELLOW);
+				flag = 0;
+				Sleep(2000);
+				delimage(img);
+				ege::closegraph();
+				break;
+			}
+			else if (x >= 340 && x <= 640 && y >= 510 && y <= 590)
+			{
+				flag = 1;
+				break;
+			}
+			else if (x >= 340 && x <= 640 && y >= 620 && y <= 700)
+			{
+				flag = 2;
+				break;
+			}
+			else
+				continue;
+		}
+	}
+
+	if (flag == 0)
+		console();
+	else if (flag == 1)
+		;
+	else
+	{
+		ege::closegraph();
+		exit(0);
+	}
+	delimage(img);
+	ege::closegraph();
 }

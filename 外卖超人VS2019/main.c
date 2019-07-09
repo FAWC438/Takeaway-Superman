@@ -1,11 +1,8 @@
 
 #include "../Global/header.h"
-#include <graphics.h>
 
 int main()
 {
-	initgraph(1000, 750);
-	getch();
 	AllOrderLog = creatOrderList(); // 全部订单记录(含有头结点)
 	Buffer = creatOrderList();      // 缓冲区(含有头结点)
 	AllRiderLog = creatRiderList(); // 全部骑手记录(含有头结点)
