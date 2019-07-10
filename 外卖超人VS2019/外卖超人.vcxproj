@@ -30,7 +30,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pairtest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Functions\algorithm.h" />
@@ -171,6 +172,7 @@
     <ClInclude Include="..\Global\unistd.h" />
     <ClInclude Include="..\IO\input.h" />
     <ClInclude Include="..\IO\output.h" />
+    <ClInclude Include="pairtest.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\文件输入数据\备用数据\1.in" />
@@ -192,8 +194,8 @@
     <None Include="..\文件输入数据\规则测试数据\7.in" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\output.txt" />
-    <Text Include="..\sales.txt" />
+    <Text Include="doc\output.txt" />
+    <Text Include="doc\sales.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
