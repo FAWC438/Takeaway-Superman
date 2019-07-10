@@ -6,8 +6,6 @@
 
 using namespace std;
 
-// extern int Map[17][17];
-
 const int HWID = 50;
 const int RWID = 25;
 
@@ -15,7 +13,7 @@ struct Pair
 {
 	int start_x, start_y;
 	int end_x, end_y;
-	int is_start, is_end;
+	int is_start = 0, is_end = 0;
 };
 
 void createGraph()
@@ -65,6 +63,7 @@ void createMap(Pair par)
 			}
 			else
 				putimage_transparent(NULL, img[Map[i * 2][j * 2]], RWID + (HWID + RWID) * j, HWID + (HWID + RWID) * i, BLACK);
+			//putimage(RWID + (HWID + RWID) * j, HWID + (HWID + RWID) * i, img[Map[i * 2][j * 2]]);
 		}
 	//	if(sub_cnt)
 	//	{
@@ -100,9 +99,9 @@ int graphYToMapX(int now_y)
 	return now_y;
 }
 
-void clickMap(Pair *par)
+void clickMap(Pair* par, int* sum)
 {
-	mouse_msg msg = {0};
+	mouse_msg msg = { 0 };
 	int now_x = -1;
 	int now_y = -1;
 	int sub_cnt = 0;
@@ -142,7 +141,17 @@ void clickMap(Pair *par)
 				par->is_start = 0;
 				par->is_end = 0;
 				sub_cnt = 1;
-				// TODO: 输入
+				// 向Buffer内输入
+				Order* p = (Order*)malloc(sizeof(Order));
+				p->id = (*sum)++;
+				p->rest_x = par->start_x * 2;
+				p->rest_y = par->start_y * 2;
+				p->cust_x = par->end_x * 2;
+				p->cust_y = par->end_y * 2;
+				p->begin_time = Time;
+				p->end_time = 0x3f3f3f3f;
+				push_back_order(p, Buffer);
+				free(p);
 			}
 			else if (msg.x >= 700 && msg.y >= 605 && msg.x <= 965 && msg.y <= 690)
 			{
@@ -155,19 +164,77 @@ void clickMap(Pair *par)
 
 void mainFunction()
 {
+	initMap();
+	int sum = 0;	// 记录总输入数量，便于编写ID。
 	Pair par;
-	for (int i = 0; i <= 16; i++)
-		for (int j = 0; j <= 16; j++)
-			Map[i][j] = 1;
-	Map[4][4] = 2;
-	Map[8][10] = 3;
 	initgraph(1000, 750);
 	createGraph();
 
 	for (; is_run(); delay_fps(120))
 	{
-		clickMap(&par);
+		clickMap(&par, &sum);
 		createMap(par);
 	}
 	closegraph(); // 关闭图形界面
+
+
+
+
+	//while (Buffer->Nxt_order || !isAllOrderFinished()) // 结束条件是缓冲区为空
+	//{
+	//	Time++;
+	//	//将缓冲区中的订单放到全局订单记录中
+	//	OrderList* tempOrderList = Buffer->Nxt_order;
+	//	while (tempOrderList)
+	//	{
+	//		if (tempOrderList->Cur_order->begin_time == Time)
+	//		{
+	//			push_back_order(tempOrderList->Cur_order, AllOrderLog);
+	//			tempOrderList = delete_order(tempOrderList);
+	//			CompanyOrderSum++; // 公司的总订单+1
+	//		}
+	//		tempOrderList = tempOrderList->Nxt_order;
+	//	}
+	//	//招募骑手
+
+	//	while (CompanyMoney >= 400)
+	//	{
+	//		hireRider();
+	//	}
+	//	//派单之前把骑手背包完成的订单弹出
+	//	initRiderBag();
+	//	//派单算法
+	//	arrangeNewOrder(); // 此处遍历可优化
+	//	//判断是否超时或破产
+	//	isAnyOrderOverTime();
+	//	//骑手移动
+	//	AllRiderMove();
+	//	//判断每一个订单是否完成
+	//	//完成每一个需要完成的订单 但是在骑手背包里不弹出刚完成的订单 （输出文件时判断停靠使用）
+	//	int isAnyOrderComplish = 0;
+	//	RiderList* tempRider = AllRiderLog->Nxt_rider;
+	//	while (tempRider) // 骑手
+	//	{
+	//		OrderList* tempOrder = tempRider->Cur_rider->Bag->Nxt_order;
+	//		while (tempOrder) // 背包
+	//		{
+	//			if (isComplishOrder(tempOrder, tempRider))
+	//			{
+	//				tempOrder = complishOrder(tempOrder);
+	//				isAnyOrderComplish = 1;
+	//			}
+	//			tempOrder = tempOrder->Nxt_order;
+	//		}
+	//		tempRider = tempRider->Nxt_rider;
+	//	}
+	//	//有订单完成时，命令行输出刷新一次
+	//	if (isAnyOrderComplish)
+	//	{
+	//		system("cls");
+	//		outputMap();
+	//		outputKey();
+	//	}
+	//	//输出文件
+	//	outputOnFile();
+	//}
 }

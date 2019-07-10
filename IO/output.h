@@ -10,6 +10,7 @@ void printNearBy(Rider* nowRider, FILE* fPtr)
 	int i;
 	const int dx[] = { -1, 1, 0, 0 };
 	const int dy[] = { 0, 0, 1, -1 };
+	int flag = 0;
 	int restFlag = 0, dustFlag = 0;
 
 	for (i = 0; i <= 3; i++)
@@ -23,21 +24,25 @@ void printNearBy(Rider* nowRider, FILE* fPtr)
 		{
 			if (tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->end_time == Time) // 说明此位置房子作为餐厅有任务完成
 			{
+				flag = 1;
 				restFlag = 1;
 			}
 			if (tmpOrder->Cur_order->cust_x == now_x && tmpOrder->Cur_order->cust_y == now_y && tmpOrder->Cur_order->end_time == Time) // 说明此位置房子作为宿舍有任务完成
 			{
+				flag = 1;
 				dustFlag = 1;
 			}
 			if (dustFlag && restFlag)
-				fprintf(fPtr, "餐客 %d %d", now_x, now_y);
+				fprintf(fPtr, "餐客 %d %d;", now_x, now_y);
 			else if (restFlag)
-				fprintf(fPtr, "餐厅 %d %d", now_x, now_y);
+				fprintf(fPtr, "餐馆 %d %d;", now_x, now_y);
 			else if (dustFlag)
-				fprintf(fPtr, "食客 %d %d", now_x, now_y);
+				fprintf(fPtr, "食客 %d %d;", now_x, now_y);
 			tmpOrder = tmpOrder->Nxt_order;
 		}
 	}
+	if (!flag)
+		fprintf(fPtr, ";");
 }
 /*
 	输出在文件中
@@ -108,7 +113,7 @@ void outputOnFile()
 		fprintf(fPtr, "停靠:");
 		printNearBy(HeadRider->Cur_rider, fPtr);
 		HeadRider = HeadRider->Nxt_rider;
-		fprintf(fPtr, ";\n");
+		fprintf(fPtr, "\n");
 	}
 	fclose(fPtr);
 }

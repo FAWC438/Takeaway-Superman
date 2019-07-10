@@ -2,6 +2,10 @@
 #include "../Global/header.h"
 #include <graphics.h>
 
+
+/*
+	文件/控制台输出主程序
+*/
 void console()
 {
 	AllOrderLog = creatOrderList(); // 全部订单记录(含有头结点)
@@ -103,12 +107,16 @@ void console()
 		//输出文件
 		outputOnFile();
 		end_clock = clock();
-		Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
+		// TIME_UNIT * 1000 - (end_clock - start_clock)
+		// Sleep(100); // 准确2秒刷新
 	}
 	gameSuccess();
 }
 
-int main()
+/*
+	开始界面
+*/
+int startScreen()
 {
 	int x, y, flag = 2;
 	int point_one[] = { 340,480,340,400,640,400,640,480 },
@@ -171,8 +179,6 @@ int main()
 				floodfillsurface(395, 420, YELLOW);
 				flag = 0;
 				Sleep(2000);
-				delimage(img);
-				ege::closegraph();
 				break;
 			}
 			else if (x >= 340 && x <= 640 && y >= 510 && y <= 590)// 鼠标输入
@@ -186,7 +192,6 @@ int main()
 				floodfillsurface(430, 530, YELLOW);
 				flag = 1;
 				Sleep(2000);
-				delimage(img);
 				break;
 			}
 			else if (x >= 340 && x <= 640 && y >= 620 && y <= 700)// 退出
@@ -196,18 +201,30 @@ int main()
 				floodfillsurface(460, 640, YELLOW);
 				flag = 2;
 				Sleep(2000);
-				delimage(img);
 				break;
 			}
 			else
 				continue;
 		}
 	}
+	delimage(img);
 	ege::closegraph();
+	return flag;
+}
+
+int main()
+{
+	int flag = 2;
+	flag = startScreen();
 	if (flag == 0)
 		console();// 键盘/文件输入主程序
 	else if (flag == 1)
+	{
+		AllOrderLog = creatOrderList(); // 全部订单记录(含有头结点)
+		Buffer = creatOrderList();      // 缓冲区(含有头结点)
+		AllRiderLog = creatRiderList(); // 全部骑手记录(含有头结点)
+		clock_t start_clock, end_clock; // 用于计算程序运行时间
 		mainFunction();// 鼠标输入主程序
-
+	}
 	exit(0);
 }
