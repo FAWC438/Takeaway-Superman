@@ -20,6 +20,7 @@ const int MAP_Y = 17;            // 地图Y大小
 const int COMPANY_X = 7;         //公司所在X大小
 const int COMPANY_Y = 8;         //公司所在Y大小
 
+
 /*
     公司状态变量
     为区分全局常量，全局变量命名如下所示

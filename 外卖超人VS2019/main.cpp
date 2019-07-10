@@ -1,6 +1,6 @@
 
 #include "../Global/header.h"
-#include <graphics.h>
+//#include <graphics.h>
 
 void console()
 {
@@ -85,9 +85,11 @@ void img()
 
 int main()
 {
-	initgraph(1000, 750);   // 初始化为640*480大小的窗口
-	circle(200, 200, 100); // 画圆，圆心(200, 200)，半径100
-	getch();               // 等待用户按键，按任意键继续
+	//initgraph(1000, 750);   // 初始化为640*480大小的窗口
+	//circle(200, 200, 100); // 画圆，圆心(200, 200)，半径100
+	//getch();               // 等待用户按键，按任意键继续
 	console();
-	closegraph();
+	//closegraph();
+
+	return 0;
 }
