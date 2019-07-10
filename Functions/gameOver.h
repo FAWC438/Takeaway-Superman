@@ -33,7 +33,7 @@ int isAllOrderFinished()
 */
 void gameOver(int reason)
 {
-	printf("------------------------------------------------\n");
+	printf("\n------------------------------------------------\n");
 	printf("公司已经破产!!!\n");
 	printf("公司破产原因:");
 	if (reason == 0)
@@ -120,7 +120,7 @@ void gameOver(int reason)
 
 void gameSuccess()
 {
-	printf("------------------------------------------------\n");
+	printf("\n------------------------------------------------\n");
 	printf("公司存活到了最后!!!You are the true Takeaway Superman!\n");
 	printf("本次公司所在地址:(%d，%d)\n", COMPANY_X, COMPANY_Y);
 	printf("公司剩余现金数:%d\n", CompanyMoney);

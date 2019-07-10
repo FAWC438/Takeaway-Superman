@@ -4,13 +4,8 @@
  */
 int inputFileOrder() // TODO: 处理输入数据和要计算的数据的关系
 {
-	//if (_access("D:/code/cpp/小学期计导/大作业/Takeaway-Superman/sales.txt", 0) == -1)
-	//{
-	//	// 判断是否存在文件，不存在则返回0
-	//	return 0;
-	//}
 	Order* p = (Order*)malloc(sizeof(Order));
-	FILE* fp = fopen("../sales.txt", "r"); // 打开文件
+	FILE* fp = fopen("sales.txt", "r"); // 打开文件
 	if (fp == NULL)
 	{
 		free(p);

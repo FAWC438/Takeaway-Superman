@@ -1,6 +1,7 @@
 
 #include "../Global/header.h"
-//#include <graphics.h>
+#include "./pairtest.h"
+#include <graphics.h>
 
 void console()
 {
@@ -8,10 +9,42 @@ void console()
 	Buffer = creatOrderList();      // 缓冲区(含有头结点)
 	AllRiderLog = creatRiderList(); // 全部骑手记录(含有头结点)
 	clock_t start_clock, end_clock; // 用于计算程序运行时间
+	int flag = 0;
 	if (inputFileOrder())
 		;
 	else
-		inputKeyOrder();
+	{
+		printf("不存在文件sales.txt!\n");
+		printf("1. 从键盘输入\n");
+		printf("2. 从鼠标输入\n");
+		printf("请输入数字:\n");
+		for (;;)
+		{
+			scanf("%d", &flag);
+			if (flag == 1)
+			{
+				system("cls");
+				inputKeyOrder();
+				break;
+			}
+			else if (flag == 2)
+			{
+				HWND hwnd;
+				hwnd = FindWindow("ConsoleWindowClass", NULL);	//处理顶级窗口的类名和窗口名称匹配指定的字符串,不搜索子窗口。
+				if (hwnd)
+					ShowWindow(hwnd, SW_HIDE);				//设置指定窗口的显示状态（关闭控制台）
+				mainFunction();
+				exit(0);
+			}
+			else
+			{
+				printf("输入错误，请重新输入!\n");
+				printf("1. 从键盘输入\n");
+				printf("2. 从鼠标输入\n");
+				printf("请输入数字:\n");
+			}
+		}
+	}
 
 	while (Buffer->Nxt_order || !isAllOrderFinished()) // 结束条件是缓冲区为空
 	{
@@ -71,7 +104,7 @@ void console()
 		//输出文件
 		outputOnFile();
 		end_clock = clock();
-		Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
+		//Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
 	}
 	gameSuccess();
 }
@@ -85,11 +118,104 @@ void img()
 
 int main()
 {
-	//initgraph(1000, 750);   // 初始化为640*480大小的窗口
-	//circle(200, 200, 100); // 画圆，圆心(200, 200)，半径100
-	//getch();               // 等待用户按键，按任意键继续
-	console();
-	//closegraph();
+	int x, y, flag = 2;
+	int point_one[] = { 340,480,340,400,640,400,640,480 },
+		point_two[] = { 340,590,340,510,640,510,640,590 },
+		point_three[] = { 340,700,340,620,640,620,640,700 };
+	mouse_msg msg = { 0 };
 
-	return 0;
+	initgraph(1000, 750);   // 初始化为1000*750大小的窗口
+	setcaption("Takeaway Superman");
+	setbkcolor(YELLOW);// 背景色
+	PIMAGE img;
+	img = newimage();
+	getimage(img, "final-logo.png", 0, 0);// 背景
+	putimage(-100, 0, img);
+	setfillcolor(YELLOW);// 方块填充色
+	setcolor(YELLOW);// 方块边线色
+
+	/*
+		键盘/文件输入按钮
+	*/
+	// bar(340, 480, 640, 400);
+	fillpoly(4, point_one);
+	setfont(40, 0, "微软雅黑");
+	setcolor(BLACK);// 字体颜色
+	outtextrect(395, 420, 640, 380, "键盘/文件输入");
+
+	/*
+		鼠标输入按钮
+	*/
+	setcolor(YELLOW);
+	// bar(340, 590, 640, 510);
+	fillpoly(4, point_two);
+	setfont(40, 0, "微软雅黑");
+	setcolor(BLACK);
+	outtextrect(430, 530, 640, 490, "鼠标输入");
+
+	/*
+		退出按钮
+	*/
+	setcolor(YELLOW);
+	// bar(340, 700, 640, 620);
+	fillpoly(4, point_three);
+	setfont(40, 0, "微软雅黑");
+	setcolor(BLACK);
+	outtextrect(460, 640, 640, 500, "退出");
+	for (; is_run(); delay_fps(60))
+	{
+
+		while (mousemsg())// 获取鼠标消息，这个函数会等待，等待到有消息为止
+		{
+			msg = getmouse();// 将鼠标信息存入鼠标结构体
+		}
+		x = msg.x, y = msg.y;
+		if (msg.is_left() || msg.is_right())// 左键右键均可
+		{
+			if (x >= 340 && x <= 640 && y >= 400 && y <= 480)// 键盘/文件输入
+			{
+				setfillcolor(RED);
+				fillpoly(4, point_one);
+				floodfillsurface(395, 420, YELLOW);
+				flag = 0;
+				Sleep(2000);
+				delimage(img);
+				ege::closegraph();
+				break;
+			}
+			else if (x >= 340 && x <= 640 && y >= 510 && y <= 590)// 鼠标输入
+			{
+				HWND hwnd;
+				hwnd = FindWindow("ConsoleWindowClass", NULL);	//处理顶级窗口的类名和窗口名称匹配指定的字符串,不搜索子窗口。
+				if (hwnd)
+					ShowWindow(hwnd, SW_HIDE);				//设置指定窗口的显示状态（关闭控制台）
+				setfillcolor(RED);
+				fillpoly(4, point_two);
+				floodfillsurface(430, 530, YELLOW);
+				flag = 1;
+				Sleep(2000);
+				delimage(img);
+				break;
+			}
+			else if (x >= 340 && x <= 640 && y >= 620 && y <= 700)// 退出
+			{
+				setfillcolor(RED);
+				fillpoly(4, point_three);
+				floodfillsurface(460, 640, YELLOW);
+				flag = 2;
+				Sleep(2000);
+				delimage(img);
+				break;
+			}
+			else
+				continue;
+		}
+	}
+	ege::closegraph();
+	if (flag == 0)
+		console();// 键盘/文件输入主程序
+	else if (flag == 1)
+		mainFunction();// TODO:img();
+
+	exit(0);
 }
