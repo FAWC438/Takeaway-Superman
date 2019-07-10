@@ -30,11 +30,11 @@ void printNearBy(Rider* nowRider, FILE* fPtr)
 				dustFlag = 1;
 			}
 			if (dustFlag && restFlag)
-				fprintf(fPtr, "餐客 %d %d", now_x, now_y);
+				fprintf(fPtr, " 餐客 %d %d", now_x, now_y);
 			else if (restFlag)
-				fprintf(fPtr, "餐厅 %d %d", now_x, now_y);
+				fprintf(fPtr, " 餐厅 %d %d", now_x, now_y);
 			else if (dustFlag)
-				fprintf(fPtr, "食客 %d %d", now_x, now_y);
+				fprintf(fPtr, " 食客 %d %d", now_x, now_y);
 			tmpOrder = tmpOrder->Nxt_order;
 		}
 	}
@@ -44,17 +44,17 @@ void printNearBy(Rider* nowRider, FILE* fPtr)
 */
 void outputOnFile()
 {
-	FILE* fPtr = fopen("./doc/output.txt", "a");
+	FILE* fPtr = fopen("../output.txt", "a");
 	if (fPtr == NULL)
 	{
 		printf("Can't not open the output.txt");
 		return;
 	}
-	fprintf(fPtr, "时间:%d\n", Time);
-	fprintf(fPtr, "钱:%d\n", CompanyMoney);
-	fprintf(fPtr, "接单数:%d\n", CompanyOrderSum);
-	fprintf(fPtr, "完成数:%d;", CompanyOrderFinish);
-	fprintf(fPtr, "结单:");
+	fprintf(fPtr, "时间: %d\n", Time);
+	fprintf(fPtr, "钱: %d\n", CompanyMoney);
+	fprintf(fPtr, "接单数: %d\n", CompanyOrderSum);
+	fprintf(fPtr, "完成数: %d; ", CompanyOrderFinish);
+	fprintf(fPtr, "结单: ");
 	// 遍历全部订单判断是否有此时刻结单的
 	OrderList* HeadOrder = AllOrderLog;
 	HeadOrder = HeadOrder->Nxt_order;
@@ -76,8 +76,8 @@ void outputOnFile()
 		HeadOrder = HeadOrder->Nxt_order;
 	}
 	fprintf(fPtr, ";\n");
-	fprintf(fPtr, "超时数:%d;", CompanyOrderOverTime);
-	fprintf(fPtr, "罚单:");
+	fprintf(fPtr, "超时数: %d;", CompanyOrderOverTime);
+	fprintf(fPtr, "罚单: ");
 	// 遍历此时刻是否有罚单的
 	HeadOrder = AllOrderLog;
 	HeadOrder = HeadOrder->Nxt_order;
@@ -104,7 +104,7 @@ void outputOnFile()
 	HeadRider = HeadRider->Nxt_rider;
 	while (HeadRider)
 	{
-		fprintf(fPtr, "骑手%d位置:%d,%d;", HeadRider->Cur_rider->id, HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
+		fprintf(fPtr, "骑手%d位置: %d, %d; ", HeadRider->Cur_rider->id, HeadRider->Cur_rider->rider_x, HeadRider->Cur_rider->rider_y);
 		fprintf(fPtr, "停靠:");
 		printNearBy(HeadRider->Cur_rider, fPtr);
 		HeadRider = HeadRider->Nxt_rider;
