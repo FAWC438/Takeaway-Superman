@@ -1,5 +1,6 @@
 
 #include "../Global/header.h"
+#include "./pairtest.h"
 #include <graphics.h>
 
 void console()
@@ -71,7 +72,7 @@ void console()
 		//输出文件
 		outputOnFile();
 		end_clock = clock();
-		Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
+		//Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
 	}
 	gameSuccess();
 }
@@ -96,7 +97,7 @@ int main()
 	setbkcolor(YELLOW);// 背景色
 	PIMAGE img;
 	img = newimage();
-	getimage(img, "./final-logo.png", 0, 0);// 背景
+	getimage(img, "./img/final-logo.png", 0, 0);// 背景
 	putimage(-100, 0, img);
 	setfillcolor(YELLOW);// 方块填充色
 	setcolor(YELLOW);// 方块边线色
@@ -139,7 +140,7 @@ int main()
 		x = msg.x, y = msg.y;
 		if (msg.is_left() || msg.is_right())// 左键右键均可
 		{
-			if (x >= 340 && x <= 640 && y >= 400 && y <= 480)
+			if (x >= 340 && x <= 640 && y >= 400 && y <= 480)// 键盘/文件输入
 			{
 				setfillcolor(RED);
 				fillpoly(4, point_one);
@@ -150,45 +151,39 @@ int main()
 				ege::closegraph();
 				break;
 			}
-			else if (x >= 340 && x <= 640 && y >= 510 && y <= 590)
+			else if (x >= 340 && x <= 640 && y >= 510 && y <= 590)// 鼠标输入
 			{
 				HWND hwnd;
 				hwnd = FindWindow("ConsoleWindowClass", NULL);	//处理顶级窗口的类名和窗口名称匹配指定的字符串,不搜索子窗口。
 				if (hwnd)
-				{
 					ShowWindow(hwnd, SW_HIDE);				//设置指定窗口的显示状态（关闭控制台）
-				}
 				setfillcolor(RED);
 				fillpoly(4, point_two);
 				floodfillsurface(430, 530, YELLOW);
 				flag = 1;
 				Sleep(2000);
 				delimage(img);
-				//ege::closegraph();
-				//TODO:img();
 				break;
 			}
-			else if (x >= 340 && x <= 640 && y >= 620 && y <= 700)
+			else if (x >= 340 && x <= 640 && y >= 620 && y <= 700)// 退出
 			{
 				setfillcolor(RED);
 				fillpoly(4, point_three);
 				floodfillsurface(460, 640, YELLOW);
 				flag = 2;
 				Sleep(2000);
+				delimage(img);
 				break;
 			}
 			else
 				continue;
 		}
 	}
-	if (flag == 0)
-		console();
-	else if (flag == 1)
-		;
-	else
-	{
-		ege::closegraph();
-		exit(0);
-	}
 	ege::closegraph();
+	if (flag == 0)
+		console();// 键盘/文件输入主程序
+	else if (flag == 1)
+		mainFunction();// TODO:img();
+	
+	exit(0);
 }

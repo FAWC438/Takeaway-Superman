@@ -1,3 +1,4 @@
 ﻿  main.cpp
-  D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\orderFunctions.h(72) : warning C4715: “complishOrder”: 不是所有的控件路径都返回值
+D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\外卖超人VS2019\pairtest.h(2,19): warning C4091:  “extern ”: 没有声明变量时忽略“Pair”的左侧
+D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\外卖超人VS2019\pairtest.h(2,19): warning C4091: D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\Functions\orderFunctions.h(72) : warning C4715: “complishOrder”: 不是所有的控件路径都返回值
   外卖超人.vcxproj -> D:\code\cpp\Introduction to Computing\final works\Takeaway-Superman\外卖超人VS2019\Debug\外卖超人.exe

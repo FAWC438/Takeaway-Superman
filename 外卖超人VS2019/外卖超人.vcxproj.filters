@@ -34,6 +34,9 @@
     <Filter Include="资源文件\测试数据\规则测试数据">
       <UniqueIdentifier>{658af34e-1891-4a21-8a06-d07b94cde1c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="资源文件\图片">
+      <UniqueIdentifier>{871fd65b-873a-4b39-a5e3-2721bfb8d64e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\IO\input.h">
@@ -74,6 +77,9 @@
     </ClInclude>
     <ClInclude Include="..\Functions\riderFunctions.h">
       <Filter>头文件\Functions</Filter>
+    </ClInclude>
+    <ClInclude Include="pairtest.h">
+      <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -130,10 +136,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\output.txt">
+    <Text Include="doc\sales.txt">
       <Filter>资源文件</Filter>
     </Text>
-    <Text Include="..\sales.txt">
+    <Text Include="doc\output.txt">
       <Filter>资源文件</Filter>
     </Text>
   </ItemGroup>
@@ -141,13 +147,8 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="C:\Users\qq185\桌面\外卖超人.jpg">
+    <ClCompile Include="pairtest.cpp">
       <Filter>源文件</Filter>
-    </Image>
-    <Image Include="1.jpg">
-      <Filter>资源文件</Filter>
-    </Image>
+    </ClCompile>
   </ItemGroup>
 </Project>
