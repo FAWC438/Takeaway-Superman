@@ -2,9 +2,11 @@
 #include <graphics.h>
 #include <iostream>
 #include <windows.h>
+#include "../Global/header.h"
+
 using namespace std;
 
-extern int Map[17][17];
+// extern int Map[17][17];
 
 const int HWID = 50;
 const int RWID = 25;

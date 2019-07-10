@@ -1,6 +1,5 @@
 
 #include "../Global/header.h"
-#include "./pairtest.h"
 #include <graphics.h>
 
 void console()
@@ -104,16 +103,9 @@ void console()
 		//输出文件
 		outputOnFile();
 		end_clock = clock();
-		//Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
+		Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
 	}
 	gameSuccess();
-}
-
-void img()
-{
-	/*
-		TODO
-	*/
 }
 
 int main()
@@ -215,7 +207,7 @@ int main()
 	if (flag == 0)
 		console();// 键盘/文件输入主程序
 	else if (flag == 1)
-		mainFunction();// TODO:img();
+		mainFunction();// 鼠标输入主程序
 
 	exit(0);
 }

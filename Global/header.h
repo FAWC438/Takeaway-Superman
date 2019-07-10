@@ -28,5 +28,6 @@
 #include "../Functions/riderFunctions.h"
 #include "../IO/input.h"
 #include "../IO/output.h"
+#include "../Functions/pairtest.h"
 
 #endif

@@ -81,8 +81,8 @@
     <ClInclude Include="..\Functions\riderFunctions.h">
       <Filter>头文件\Functions</Filter>
     </ClInclude>
-    <ClInclude Include="pairtest.h">
-      <Filter>源文件</Filter>
+    <ClInclude Include="..\Functions\pairtest.h">
+      <Filter>头文件\Functions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="pairtest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

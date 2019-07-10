@@ -156,7 +156,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="pairtest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Functions\algorithm.h" />
@@ -164,6 +163,7 @@
     <ClInclude Include="..\Functions\gameOver.h" />
     <ClInclude Include="..\Functions\listOperation.h" />
     <ClInclude Include="..\Functions\orderFunctions.h" />
+    <ClInclude Include="..\Functions\pairtest.h" />
     <ClInclude Include="..\Functions\riderFunctions.h" />
     <ClInclude Include="..\Global\consts.h" />
     <ClInclude Include="..\Global\header.h" />
@@ -172,7 +172,6 @@
     <ClInclude Include="..\Global\unistd.h" />
     <ClInclude Include="..\IO\input.h" />
     <ClInclude Include="..\IO\output.h" />
-    <ClInclude Include="pairtest.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\文件输入数据\备用数据\1.in" />
