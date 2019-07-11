@@ -8,8 +8,11 @@ using namespace std;
 
 int mapsignal = 0; // 是否更新骑手动画
 
-HANDLE hMutex1, hMutex2, hMutex3;
+HANDLE hMutex1, hMutex2, hMutex3;// 互斥锁
 
+/*
+	基本图像建立
+ */
 void createGraph()
 {
 	// 背景
@@ -32,6 +35,9 @@ void createGraph()
 	outtextxy(770, 635, "退出");
 }
 
+/*
+	建立地图
+ */
 void createMap(Pair par)
 {
 	PIMAGE img[7];
@@ -74,6 +80,11 @@ void createMap(Pair par)
 	for (int i = 1; i <= 6; i++)
 		delimage(img[i]);
 }
+
+/*
+	以下四个函数为地图坐标与画面坐标的转化
+ */
+
 // 地图中的x坐标转成输出画面的左上角y坐标
 int mapXToGraphY(int now_x)
 {
@@ -101,6 +112,12 @@ int graphYToMapX(int now_y)
 	return now_y;
 }
 
+/*
+	接收用户鼠标点击操作
+	Pair *par：
+	int *sum：计数器，用于记录向Buffer输入的订单ID
+
+ */
 void clickMap(Pair *par, int *sum)
 {
 	mouse_msg msg = {0};
@@ -163,6 +180,9 @@ void clickMap(Pair *par, int *sum)
 	}
 }
 
+/*
+	建立道路的图像
+ */
 void createRoad()
 {
 	//声明一个img图片对象
@@ -202,6 +222,9 @@ void createRoad()
 		delimage(img[i]);
 }
 
+/*
+	绘制骑手，并控制骑手移动
+ */
 void DrawRider(int *countTime)
 {
 	PIMAGE rider_img = newimage();
@@ -471,10 +494,12 @@ void DrawRider(int *countTime)
 	delimage(rider_img);
 }
 
+/*
+	屏幕右上方的文字输出
+ */
 void printText()
 {
 	char s[110];
-
 	setfillcolor(EGERGB(220, 220, 220));
 	bar(690, 50, 975, 485);
 	setfontbkcolor(EGERGB(220, 220, 220));
@@ -529,6 +554,9 @@ unsigned __stdcall runGraph(void *pArgument)
 	return 0;
 }
 
+/*
+	鼠标输入，动画输出的主函数
+ */
 void mainFunction()
 {
 	updateMap();

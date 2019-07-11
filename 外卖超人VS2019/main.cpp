@@ -180,10 +180,10 @@ int startScreen()
 			}
 			else if (x >= 340 && x <= 640 && y >= 510 && y <= 590) // 鼠标输入
 			{
-				//HWND hwnd;
-				//hwnd = FindWindow("ConsoleWindowClass", NULL);	//处理顶级窗口的类名和窗口名称匹配指定的字符串,不搜索子窗口。
-				//if (hwnd)
-				//	ShowWindow(hwnd, SW_HIDE);				//设置指定窗口的显示状态（关闭控制台）
+				HWND hwnd;
+				hwnd = FindWindow("ConsoleWindowClass", NULL);	//处理顶级窗口的类名和窗口名称匹配指定的字符串,不搜索子窗口。
+				if (hwnd)
+					ShowWindow(hwnd, SW_HIDE);				//设置指定窗口的显示状态（关闭控制台）
 				setfillcolor(RED);
 				fillpoly(4, point_two);
 				floodfillsurface(430, 530, YELLOW);
@@ -208,6 +208,10 @@ int startScreen()
 	ege::closegraph();
 	return flag;
 }
+
+/*
+	main函数，程序的入口
+ */
 
 int main()
 {

@@ -4,6 +4,9 @@
     建立空的头结点
  */
 
+/*
+    订单链表
+ */
 OrderList *creatOrderList()
 {
     OrderList *p = (OrderList *)malloc(sizeof(OrderList));
@@ -13,6 +16,9 @@ OrderList *creatOrderList()
     return p;
 }
 
+/*
+    骑手链表
+ */
 RiderList *creatRiderList()
 {
     RiderList *p = (RiderList *)malloc(sizeof(RiderList));

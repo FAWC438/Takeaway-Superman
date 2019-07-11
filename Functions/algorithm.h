@@ -1,4 +1,5 @@
 #include "../Global/header.h"
+
 /*
     把订单放入对应骑手的背包
     Var: Order类型订单、骑手ID
@@ -28,6 +29,7 @@ void assignOrder(Order *AOrder, int RiderID)
         push_back_order(AOrder, FindRider->Cur_rider->Bag); //将订单放入骑手背包
     }
 }
+
 /*
     统计模拟跑到目的地的步长，算法与riderMove同
 */
@@ -78,6 +80,7 @@ int virtualRun(int *cur_x, int *cur_y, int pos_x, int pos_y)
     }
     return cnt;
 }
+
 /*
     获取两点之间的曼哈顿距离
  */
@@ -85,6 +88,7 @@ int getDis(int a_x, int a_y, int b_x, int b_y)
 {
     return abs(a_x - b_x) + abs(a_y - b_y);
 }
+
 /*
     模拟跑一遍当前队列加拟加订单，算出花费
     API: Rider *, Order *
@@ -106,6 +110,7 @@ int getPath(Rider *nowRider, Order *nowOrder)
     sum += virtualRun(&now_x, &now_y, nowOrder->rest_x, nowOrder->rest_y);
     return sum;
 }
+
 /*
     找到最佳派单骑手
  */

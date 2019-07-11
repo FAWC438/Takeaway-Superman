@@ -5,6 +5,7 @@
 
 /*
 	判断每个订单是否完成
+	完成返回1，未完成返回0
 */
 int isAllOrderFinished()
 {
