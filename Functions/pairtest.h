@@ -439,12 +439,12 @@ unsigned __stdcall runGraph(void* pArgument)
 		printText();
 		if (mapsignal)
 		{
-			WaitForSingleObject(hMutex2, INFINITE);
+			//WaitForSingleObject(hMutex2, INFINITE);
 			DrawRider(&countTime);
 			mapsignal = 0;
 			countTime = 0;
 			//  //пе╨е
-			ReleaseMutex(hMutex2);
+			//ReleaseMutex(hMutex2);
 		}
 		else
 			DrawRider(&countTime);
@@ -519,10 +519,10 @@ void mainFunction()
 			}
 			tempRider = tempRider->Nxt_rider;
 		}
-		hMutex2 = CreateMutex(NULL, FALSE, NULL);
-		WaitForSingleObject(hMutex2, INFINITE);
+		//hMutex2 = CreateMutex(NULL, FALSE, NULL);
+		//WaitForSingleObject(hMutex2, INFINITE);
 		updateMap();
-		ReleaseMutex(hMutex2);
+		//ReleaseMutex(hMutex2);
 		mapsignal = 1;
 		end_clock = clock();
 		// TIME_UNIT * 1000 - (end_clock - start_clock)

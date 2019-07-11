@@ -88,25 +88,25 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 		{
 			if (*cur_y > pos_y + 1) // 在右边就要往左走
 			{
-				if (pos_x >= *cur_x) // 目标在下或同行
+				if (pos_x > *cur_x || (pos_y == *cur_y && pos_y == 0)) // 目标在下或同行
 				{
 					(*cur_x)++;
 					(*cur_y)--;
 				}
-				else if (pos_x < *cur_x) // 目标在上
+				else // 目标在上
 				{
 					(*cur_x)--;
 					(*cur_y)--;
 				}
 			}
-			else if (*cur_y < pos_y + 1) // 在右边就要往左走
+			else if (*cur_y < pos_y + 1) // 在左边就要往右走
 			{
-				if (pos_x >= *cur_x) // 目标在下或同行
+				if (pos_x > *cur_x || (pos_x == *cur_x && pos_x == 0)) // 目标在下或同行
 				{
 					(*cur_x)++;
 					(*cur_y)++;
 				}
-				else if (pos_x < *cur_x) // 目标在上
+				else// 目标在上
 				{
 					(*cur_x)--;
 					(*cur_y)++;

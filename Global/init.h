@@ -52,16 +52,16 @@ int predRiderPath(Rider* nowRider)
 		{
 			if (cur_y > pos_y + 1) // 在右边就要往左走
 			{
-				if (pos_x >= cur_x) // 目标在下或同行
+				if (pos_x >= cur_x || (pos_x == cur_x && pos_x == 0)) // 目标在下或同行
 					return 4;//左下
-				else if (pos_x < cur_x) // 目标在上
+				else // 目标在上
 					return 1;//左上
 			}
 			else if (cur_y < pos_y + 1) // 在右边就要往左走
 			{
-				if (pos_x >= cur_x) // 目标在下或同行
+				if (pos_x > cur_x || (pos_x == cur_x && pos_x == 0)) // 目标在下或同行
 					return 5;//右下
-				else if (pos_x < cur_x) // 目标在上
+				else // 目标在上
 					return 2;//右上
 			}
 		}
@@ -125,7 +125,7 @@ void updateMap()
 		else if (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time)
 		{
 			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_y] = 2; // 餐厅地图更新
-			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_y] = -3;	// 停靠宿舍
+			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_y] = -3;	// 停靠宿舍
 		}
 		else if ((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3) || (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time))
 		{
