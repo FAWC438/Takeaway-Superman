@@ -8,7 +8,7 @@ int hireRider()
 {
 	CompanyMoney -= 300; // 扣钱
 	CompanyRiderCount++; // 加骑手数量
-	Rider* newRider = (Rider*)malloc(sizeof(Rider));
+	Rider *newRider = (Rider *)malloc(sizeof(Rider));
 	// 初始化新骑手
 	newRider->id = CompanyRiderCount - 1;
 	newRider->rider_x = COMPANY_X;
@@ -24,9 +24,9 @@ int hireRider()
 	int rider_id:骑手id
 	return(Order *):棋手当前订单的指针
  */
-Order* getRiderCurOrder(int rider_id)
+Order *getRiderCurOrder(int rider_id)
 {
-	RiderList* p = AllRiderLog;
+	RiderList *p = AllRiderLog;
 	while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
 		p = p->Nxt_rider;
 	return p->Cur_rider->Bag->Cur_order;
@@ -36,9 +36,9 @@ Order* getRiderCurOrder(int rider_id)
 	int rider_id:骑手id
 	return(OrderList *):棋手当前背包的指针
  */
-OrderList* getRiderCurBag(int rider_id)
+OrderList *getRiderCurBag(int rider_id)
 {
-	RiderList* p = AllRiderLog;
+	RiderList *p = AllRiderLog;
 	while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
 		p = p->Nxt_rider;
 	return p->Cur_rider->Bag;
@@ -50,9 +50,9 @@ OrderList* getRiderCurBag(int rider_id)
 	int *x:骑手横坐标指针
 	int *y:骑手纵坐标指针
  */
-void getRiderCurPos(int rider_id, int* x, int* y)
+void getRiderCurPos(int rider_id, int *x, int *y)
 {
-	RiderList* p = AllRiderLog;
+	RiderList *p = AllRiderLog;
 	while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
 		p = p->Nxt_rider;
 	*x = p->Cur_rider->rider_x;
@@ -66,8 +66,8 @@ void getRiderCurPos(int rider_id, int* x, int* y)
  */
 void riderMove(int rider_id, int pos_x, int pos_y)
 {
-	int* cur_x, * cur_y, i, j;
-	RiderList* p = AllRiderLog->Nxt_rider;
+	int *cur_x, *cur_y, i, j;
+	RiderList *p = AllRiderLog->Nxt_rider;
 	while (p->Cur_rider != NULL && p->Cur_rider->id != rider_id)
 		p = p->Nxt_rider;
 	cur_x = &(p->Cur_rider->rider_x);
@@ -81,9 +81,16 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 		if (i % 2 == 1 && j % 2 == 0) // 在横向道路上
 		{
 			if (*cur_y > pos_y + 1) // 在右边就要往左走
+			{
 				(*cur_y) -= 2;
+				p->Cur_rider->path_mode = 3;
+			}
+
 			else if (*cur_y < pos_y - 1) // 在左边要往右走
+			{
 				(*cur_y) += 2;
+				p->Cur_rider->path_mode = 0;
+			}
 		}
 		else if (i % 2 == 0 && j % 2 == 1) // 在纵向道路上
 		{
@@ -93,11 +100,13 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 				{
 					(*cur_x)++;
 					(*cur_y)--;
+					p->Cur_rider->path_mode = 4;
 				}
 				else // 目标在上
 				{
 					(*cur_x)--;
 					(*cur_y)--;
+					p->Cur_rider->path_mode = 1;
 				}
 			}
 			else if (*cur_y < pos_y + 1) // 在左边就要往右走
@@ -106,20 +115,22 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 				{
 					(*cur_x)++;
 					(*cur_y)++;
+					p->Cur_rider->path_mode = 5;
 				}
-				else// 目标在上
+				else // 目标在上
 				{
 					(*cur_x)--;
 					(*cur_y)++;
+					p->Cur_rider->path_mode = 2;
 				}
 			}
 		}
 		else // 异常情况处理
 		{
-			// // TODO: 加入终止函数？
-			// printf("咋骑手跑到房子里了？\n");
-			// //exit(0);
-			gameOver(5);
+			if (outputFlag == 1)
+				gameOver(5);
+			else if (outputFlag == 2)
+				isEnd = 3;
 		}
 	}
 	// 后上下
@@ -128,44 +139,57 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 		if (i % 2 == 0 && j % 2 == 1) // 在纵向道路上
 		{
 			if (*cur_x > pos_x + 1) // 在下边就要往上走
+			{
 				(*cur_x) -= 2;
+				p->Cur_rider->path_mode = 0;
+			}
+
 			else if (*cur_x < pos_x - 1) // 在上边要往下走
+			{
 				(*cur_x) += 2;
+				p->Cur_rider->path_mode = 3;
+			}
 		}
 		else if (i % 2 == 1 && j % 2 == 0) // 在横向道路上
 		{
 			if (*cur_x > pos_x + 1) // 在下边就要往上走
 			{
-				if (pos_y > * cur_y || (pos_y == *cur_y && pos_y == 0)) // 目标在右或同列
+				if (pos_y > *cur_y || (pos_y == *cur_y && pos_y == 0)) // 目标在右或同列
 				{
 					(*cur_y)++;
 					(*cur_x)--;
+					p->Cur_rider->path_mode = 1;
 				}
-				else  // 目标在左
+				else // 目标在左
 				{
 					(*cur_y)--;
 					(*cur_x)--;
+					p->Cur_rider->path_mode = 4;
 				}
 			}
 			if (*cur_x < pos_x + 1) // 在上边就要往下走
 			{
-				if (pos_y > * cur_y || (pos_y == *cur_y && pos_y == 0)) // 目标在右或同列
+				if (pos_y > *cur_y || (pos_y == *cur_y && pos_y == 0)) // 目标在右或同列
 				{
 					(*cur_y)++;
 					(*cur_x)++;
+					p->Cur_rider->path_mode = 2;
 				}
 				else // 目标在左
 				{
 					(*cur_y)--;
 					(*cur_x)++;
+					p->Cur_rider->path_mode = 5;
 				}
 			}
 		}
-		else // 异常情况处理
-			// // TODO: 加入终止函数？
-			// printf("咋骑手跑到房子里了？\n");
-			// //exit(0);
-			gameOver(5);
+		else
+		{
+			if (outputFlag == 1)
+				gameOver(1);
+			else if (outputFlag == 2)
+				isEnd = 3;
+		}
 	}
 }
 
@@ -175,11 +199,11 @@ void riderMove(int rider_id, int pos_x, int pos_y)
  */
 void AllRiderMove()
 {
-	RiderList* tempRider = AllRiderLog->Nxt_rider;
+	RiderList *tempRider = AllRiderLog->Nxt_rider;
 	while (tempRider)
 	{
 		int posX, posY;
-		OrderList* findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
+		OrderList *findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
 		if (findOrder)
 		{
 			if (findOrder->Cur_order->status == 1) //找到第一个订单对应的位置
@@ -194,6 +218,8 @@ void AllRiderMove()
 			}
 			riderMove(tempRider->Cur_rider->id, posX, posY); //骑手移动
 		}
+		else
+			tempRider->Cur_rider->path_mode = 6;
 		tempRider = tempRider->Nxt_rider; //换到下一个骑手
 	}
 }

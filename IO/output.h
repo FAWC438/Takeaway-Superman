@@ -5,11 +5,11 @@
 /*
 	停靠判断并输出
 */
-void printNearBy(Rider* nowRider, FILE* fPtr)
+void printNearBy(Rider *nowRider, FILE *fPtr)
 {
 	int i;
-	const int dx[] = { -1, 1, 0, 0 };
-	const int dy[] = { 0, 0, 1, -1 };
+	const int dx[] = {-1, 1, 0, 0};
+	const int dy[] = {0, 0, 1, -1};
 	int flag = 0;
 	int restFlag = 0, dustFlag = 0;
 
@@ -19,37 +19,58 @@ void printNearBy(Rider* nowRider, FILE* fPtr)
 		dustFlag = 0;
 		int now_x = nowRider->rider_x + dx[i];
 		int now_y = nowRider->rider_y + dy[i];
-		OrderList* tmpOrder = nowRider->Bag->Nxt_order;
+		OrderList *tmpOrder = nowRider->Bag->Nxt_order;
 		while (tmpOrder)
 		{
 			if (tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->end_time == Time) // 说明此位置房子作为餐厅有任务完成
 			{
-				flag = 1;
 				restFlag = 1;
 			}
 			if (tmpOrder->Cur_order->cust_x == now_x && tmpOrder->Cur_order->cust_y == now_y && tmpOrder->Cur_order->end_time == Time) // 说明此位置房子作为宿舍有任务完成
 			{
-				flag = 1;
 				dustFlag = 1;
 			}
 			if (dustFlag && restFlag)
-				fprintf(fPtr, "餐客 %d %d;", now_x, now_y);
+			{
+				if (!flag)
+				{
+					fprintf(fPtr, "餐客 %d %d", now_x, now_y);
+					flag = 1;
+				}
+				else
+					fprintf(fPtr, " 餐客 %d %d", now_x, now_y);
+			}
+
 			else if (restFlag)
-				fprintf(fPtr, "餐馆 %d %d;", now_x, now_y);
+			{
+				if (!flag)
+				{
+					fprintf(fPtr, "餐馆 %d %d", now_x, now_y);
+					flag = 1;
+				}
+				else
+					fprintf(fPtr, " 餐馆 %d %d", now_x, now_y);
+			}
 			else if (dustFlag)
-				fprintf(fPtr, "食客 %d %d;", now_x, now_y);
+			{
+				if (!flag)
+				{
+					fprintf(fPtr, "食客 %d %d", now_x, now_y);
+					flag = 1;
+				}
+				else
+					fprintf(fPtr, " 食客 %d %d", now_x, now_y);
+			}
 			tmpOrder = tmpOrder->Nxt_order;
 		}
 	}
-	if (!flag)
-		fprintf(fPtr, ";");
 }
 /*
 	输出在文件中
 */
 void outputOnFile()
 {
-	FILE* fPtr = fopen("output.txt", "a");
+	FILE *fPtr = fopen("output.txt", "a");
 	if (fPtr == NULL)
 	{
 		printf("Can't not open the output.txt");
@@ -61,7 +82,7 @@ void outputOnFile()
 	fprintf(fPtr, "完成数:%d;", CompanyOrderFinish);
 	fprintf(fPtr, "结单:");
 	// 遍历全部订单判断是否有此时刻结单的
-	OrderList* HeadOrder = AllOrderLog;
+	OrderList *HeadOrder = AllOrderLog;
 	HeadOrder = HeadOrder->Nxt_order;
 	int flag = 0; // 判断是否为第一个输出的订单号
 	while (HeadOrder)
@@ -105,7 +126,7 @@ void outputOnFile()
 	}
 	fprintf(fPtr, ";\n");
 	// 输出各骑手状态
-	RiderList* HeadRider = AllRiderLog;
+	RiderList *HeadRider = AllRiderLog;
 	HeadRider = HeadRider->Nxt_rider;
 	while (HeadRider)
 	{
@@ -113,7 +134,7 @@ void outputOnFile()
 		fprintf(fPtr, "停靠:");
 		printNearBy(HeadRider->Cur_rider, fPtr);
 		HeadRider = HeadRider->Nxt_rider;
-		fprintf(fPtr, "\n");
+		fprintf(fPtr, ";\n");
 	}
 	fclose(fPtr);
 }
@@ -137,7 +158,7 @@ void outputMap() // 餐客形式没考虑
 
 	initMap(); // 初始化地图
 	// 初始化房屋类型
-	OrderList* HeadOrder = AllOrderLog;
+	OrderList *HeadOrder = AllOrderLog;
 	HeadOrder = HeadOrder->Nxt_order;
 	while (HeadOrder)
 	{
@@ -150,7 +171,7 @@ void outputMap() // 餐客形式没考虑
 		HeadOrder = HeadOrder->Nxt_order;
 	}
 	// 初始化骑手位置
-	RiderList* HeadRider = AllRiderLog;
+	RiderList *HeadRider = AllRiderLog;
 	HeadRider = HeadRider->Nxt_rider;
 	while (HeadRider)
 	{
