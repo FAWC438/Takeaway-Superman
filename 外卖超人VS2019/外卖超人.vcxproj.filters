@@ -40,6 +40,9 @@
     <Filter Include="资源文件\输入和输出文件">
       <UniqueIdentifier>{9bc99acf-381f-4709-bf0b-b8f57901cfdd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\Graphics">
+      <UniqueIdentifier>{fc3a695f-ab77-44e5-b69c-6e8ff57c2f29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\IO\input.h">
@@ -81,8 +84,11 @@
     <ClInclude Include="..\Functions\riderFunctions.h">
       <Filter>头文件\Functions</Filter>
     </ClInclude>
-    <ClInclude Include="..\Functions\pairtest.h">
-      <Filter>头文件\Functions</Filter>
+    <ClInclude Include="..\Graphics\pairtest.h">
+      <Filter>头文件\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Graphics\pairtestTool.h">
+      <Filter>头文件\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

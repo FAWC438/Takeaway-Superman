@@ -30,6 +30,8 @@
 #include "../Functions/riderFunctions.h"
 #include "../IO/input.h"
 #include "../IO/output.h"
-#include "../Functions/pairtest.h"
+#include "../Graphics/pairtestTool.h"
+#include "../Graphics/pairtest.h"
+
 
 #endif

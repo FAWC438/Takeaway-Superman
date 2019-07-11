@@ -202,7 +202,7 @@ void AllRiderMove()
 	RiderList *tempRider = AllRiderLog->Nxt_rider;
 	while (tempRider)
 	{
-		int posX, posY;
+		int posX = 0, posY = 0;
 		OrderList *findOrder = tempRider->Cur_rider->Bag->Nxt_order; //找到包里第一个订单
 		if (findOrder)
 		{
@@ -223,7 +223,7 @@ void AllRiderMove()
 			tempRider->Cur_rider->path_mode = 6;
 			//riderMove(tempRider->Cur_rider->id, COMPANY_X + 1, COMPANY_Y);
 		}
-			
+
 		tempRider = tempRider->Nxt_rider; //换到下一个骑手
 	}
 }

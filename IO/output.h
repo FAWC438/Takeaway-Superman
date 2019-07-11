@@ -22,6 +22,10 @@ void printNearBy(Rider *nowRider, FILE *fPtr)
 		OrderList *tmpOrder = nowRider->Bag->Nxt_order;
 		while (tmpOrder)
 		{
+			if (restFlag)
+				restFlag++;
+			if (dustFlag)
+				dustFlag++;
 			if (tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->turn_time == Time) // 说明此位置房子作为餐厅有任务完成
 			{
 				restFlag = 1;
@@ -30,7 +34,7 @@ void printNearBy(Rider *nowRider, FILE *fPtr)
 			{
 				dustFlag = 1;
 			}
-			if (dustFlag && restFlag)
+			if ((dustFlag == 1 && restFlag) || (dustFlag && restFlag == 1))
 			{
 				if (!flag)
 				{
@@ -41,7 +45,7 @@ void printNearBy(Rider *nowRider, FILE *fPtr)
 					fprintf(fPtr, " 餐客 %d %d", now_x, now_y);
 			}
 
-			else if (restFlag)
+			else if (restFlag == 1)
 			{
 				if (!flag)
 				{
@@ -51,7 +55,7 @@ void printNearBy(Rider *nowRider, FILE *fPtr)
 				else
 					fprintf(fPtr, " 餐馆 %d %d", now_x, now_y);
 			}
-			else if (dustFlag)
+			else if (dustFlag == 1)
 			{
 				if (!flag)
 				{

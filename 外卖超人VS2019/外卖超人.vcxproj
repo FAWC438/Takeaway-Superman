@@ -163,13 +163,14 @@
     <ClInclude Include="..\Functions\gameOver.h" />
     <ClInclude Include="..\Functions\listOperation.h" />
     <ClInclude Include="..\Functions\orderFunctions.h" />
-    <ClInclude Include="..\Functions\pairtest.h" />
     <ClInclude Include="..\Functions\riderFunctions.h" />
     <ClInclude Include="..\Global\consts.h" />
     <ClInclude Include="..\Global\header.h" />
     <ClInclude Include="..\Global\init.h" />
     <ClInclude Include="..\Global\structure.h" />
     <ClInclude Include="..\Global\unistd.h" />
+    <ClInclude Include="..\Graphics\pairtest.h" />
+    <ClInclude Include="..\Graphics\pairtestTool.h" />
     <ClInclude Include="..\IO\input.h" />
     <ClInclude Include="..\IO\output.h" />
   </ItemGroup>
