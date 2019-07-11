@@ -117,17 +117,22 @@ void updateMap()
 	HeadOrder = HeadOrder->Nxt_order;
 	while (HeadOrder)
 	{
-		if (HeadOrder->Cur_order->status == 2 && HeadOrder->Cur_order->end_time == Time)
+		if (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->turn_time == Time && HeadOrder->Cur_order->end_time == Time)
 		{
 			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_y] = -2; // 停靠餐厅
-			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_y] = 3;
+			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_y] = -3;
+		}
+		else if (HeadOrder->Cur_order->status == 2 && HeadOrder->Cur_order->turn_time == Time)
+		{
+			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_y] = -2;  // 餐厅地图更新
+			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_y] = 3; // 停靠宿舍
 		}
 		else if (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time)
 		{
 			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_y] = 2;  // 餐厅地图更新
 			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_y] = -3; // 停靠宿舍
 		}
-		else if ((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3) || (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time))
+		else if ((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3))
 		{
 			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_y] = 2; // 餐厅地图更新
 			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_y] = 3; // 宿舍地图更新

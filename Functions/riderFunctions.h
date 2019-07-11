@@ -127,10 +127,10 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 		}
 		else // 异常情况处理
 		{
-			if (outputFlag == 1)
+			if (OutputFlag == 1)
 				gameOver(5);
-			else if (outputFlag == 2)
-				isEnd = 3;
+			else if (OutputFlag == 2)
+				IsEnd = 3;
 		}
 	}
 	// 后上下
@@ -185,10 +185,10 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 		}
 		else
 		{
-			if (outputFlag == 1)
+			if (OutputFlag == 1)
 				gameOver(1);
-			else if (outputFlag == 2)
-				isEnd = 3;
+			else if (OutputFlag == 2)
+				IsEnd = 3;
 		}
 	}
 }
@@ -219,7 +219,11 @@ void AllRiderMove()
 			riderMove(tempRider->Cur_rider->id, posX, posY); //骑手移动
 		}
 		else
+		{
 			tempRider->Cur_rider->path_mode = 6;
+			//riderMove(tempRider->Cur_rider->id, COMPANY_X + 1, COMPANY_Y);
+		}
+			
 		tempRider = tempRider->Nxt_rider; //换到下一个骑手
 	}
 }

@@ -22,7 +22,7 @@ void printNearBy(Rider *nowRider, FILE *fPtr)
 		OrderList *tmpOrder = nowRider->Bag->Nxt_order;
 		while (tmpOrder)
 		{
-			if (tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->end_time == Time) // 说明此位置房子作为餐厅有任务完成
+			if (tmpOrder->Cur_order->rest_x == now_x && tmpOrder->Cur_order->rest_y == now_y && tmpOrder->Cur_order->turn_time == Time) // 说明此位置房子作为餐厅有任务完成
 			{
 				restFlag = 1;
 			}

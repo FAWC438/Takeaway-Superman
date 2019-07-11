@@ -5,42 +5,42 @@
 */
 void isAnyOrderOverTime()
 {
-	OrderList *HeadOrder = AllOrderLog;
-	HeadOrder = HeadOrder->Nxt_order;
-	while (HeadOrder)
+	OrderList *headOrder = AllOrderLog;
+	headOrder = headOrder->Nxt_order;
+	while (headOrder)
 	{
-		if (HeadOrder->Cur_order->status == 3)
+		if (headOrder->Cur_order->status == 3)
 		{
-			HeadOrder = HeadOrder->Nxt_order;
+			headOrder = headOrder->Nxt_order;
 			continue;
 		} // 不处理已完成订单
 
-		int difference = Time - HeadOrder->Cur_order->begin_time;			  // 时间差
-		if (difference == DEAD_TIME + 1 && HeadOrder->Cur_order->status == 0) //拒单
+		int difference = Time - headOrder->Cur_order->begin_time;			  // 时间差
+		if (difference == DEAD_TIME + 1 && headOrder->Cur_order->status == 0) //拒单
 		{
-			if (outputFlag == 1)
+			if (OutputFlag == 1)
 				gameOver(1);
-			else if (outputFlag == 2)
-				isEnd = 4;
+			else if (OutputFlag == 2)
+				IsEnd = 4;
 		}
 		if (difference == FINE_SECOND_TIME + 1) // 恶意拖单
 		{
-			if (outputFlag == 1)
+			if (OutputFlag == 1)
 				gameOver(2);
-			else if (outputFlag == 2)
-				isEnd = 3;
+			else if (OutputFlag == 2)
+				IsEnd = 3;
 		}
 		else if (difference == FINE_FIRST_TIME + 1) // 罚单,资金为负
 		{
 			CompanyMoney -= FINE_MONEY;
 			CompanyOrderOverTime++;
 			if (CompanyMoney < 0)
-				if (outputFlag == 1)
+				if (OutputFlag == 1)
 					gameOver(0);
-				else if (outputFlag == 2)
-					isEnd = 3;
+				else if (OutputFlag == 2)
+					IsEnd = 3;
 		}
-		HeadOrder = HeadOrder->Nxt_order;
+		headOrder = headOrder->Nxt_order;
 	}
 }
 /*
@@ -49,17 +49,17 @@ void isAnyOrderOverTime()
 */
 OrderList *complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还是整个订单完成
 {
-	OrderList *HeadOrder = AllOrderLog->Nxt_order;
-	while (HeadOrder)
+	OrderList *headOrder = AllOrderLog->Nxt_order;
+	while (headOrder)
 	{
-		if (HeadOrder->Cur_order->id == nowOrder->Cur_order->id) // 更新全局记录中该订单状态
+		if (headOrder->Cur_order->id == nowOrder->Cur_order->id) // 更新全局记录中该订单状态
 		{
 			if (nowOrder->Cur_order->status == 2) // TODO: 停靠记录
 			{
-				HeadOrder->Cur_order->status = 3; // 变成已完成
+				headOrder->Cur_order->status = 3; // 变成已完成
 				nowOrder->Cur_order->status = 3;
 				nowOrder->Cur_order->end_time = Time;
-				HeadOrder->Cur_order->end_time = Time;
+				headOrder->Cur_order->end_time = Time;
 				//pop_front_order(nowOrder); // 弹出顶部订单
 				CompanyOrderFinish++;
 				if (Time - nowOrder->Cur_order->begin_time <= FINE_FIRST_TIME)
@@ -68,17 +68,17 @@ OrderList *complishOrder(OrderList *nowOrder) // 可以顺便判断是A任务完成还是整个
 			}
 			else if (nowOrder->Cur_order->status == 1)
 			{
-				HeadOrder->Cur_order->status = 2;
+				headOrder->Cur_order->status = 2;
 				nowOrder->Cur_order->status = 2; // 更新状态到送单
-				nowOrder->Cur_order->end_time = Time;
-				HeadOrder->Cur_order->end_time = Time;
+				nowOrder->Cur_order->turn_time = Time;
+				headOrder->Cur_order->turn_time = Time;
 				//OrderList *newOrder = nowOrder;
 				Order *tOrder = nowOrder->Cur_order;
 				push_back_order(tOrder, nowOrder);
 				return delete_order(nowOrder);
 			}
 		}
-		HeadOrder = HeadOrder->Nxt_order;
+		headOrder = headOrder->Nxt_order;
 	}
 }
 
@@ -96,10 +96,10 @@ int isComplishOrder(OrderList *NowOrder, RiderList *NowRider)
 		judge = abs((NowOrder->Cur_order->cust_x) - (NowRider->Cur_rider->rider_x)) + abs((NowOrder->Cur_order->cust_y) - (NowRider->Cur_rider->rider_y));
 	else
 	{
-		if (outputFlag == 1)
+		if (OutputFlag == 1)
 			gameOver(3);
-		else if (outputFlag == 2)
-			isEnd = 3;
+		else if (OutputFlag == 2)
+			IsEnd = 3;
 	}
 	if (judge == 1)
 		return 1;

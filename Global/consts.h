@@ -17,10 +17,10 @@ const int FINE_SECOND_TIME = 60; // 超时时间，第二次超时倒闭
 const int MONEY_GAIN_ONE = 10;   // 完成一单获得的钱
 const int MAP_X = 17;			 // 地图X大小
 const int MAP_Y = 17;			 // 地图Y大小
-const int COMPANY_X = 7;		 //公司所在X大小
-const int COMPANY_Y = 8;		 //公司所在Y大小
-const int HWID = 50;
-const int RWID = 25;
+const int COMPANY_X = 7;		 // 公司所在X大小
+const int COMPANY_Y = 8;		 // 公司所在Y大小
+const int HWID = 50;			 // 地图房屋的边长
+const int RWID = 25;			 // 地图道路的边长
 
 /*
 	公司状态变量
@@ -32,8 +32,8 @@ int Time = -1;				   // 当前时间，即Time个时间单位
 int CompanyOrderSum = 0;	   // 公司接单数
 int CompanyOrderFinish = 0;	// 公司完成单数
 int CompanyOrderOverTime = 0;  // 公司超时单数
-int outputFlag = 0;			   // 区分动画或命令行输出
-int isEnd = 0;				   // 是否结束动画输入 0：初始值 1:鼠标点击退出 2：正常结束程序 3：破产 4：吊销执照
+int OutputFlag = 0;			   // 区分动画或命令行输出
+int IsEnd = 0;				   // 是否结束动画输入 0：初始值 1:鼠标点击退出 2：正常结束程序 3：破产 4：吊销执照
 
 OrderList *AllOrderLog; // 全部订单记录(含有头结点)
 OrderList *Buffer;		// 缓冲区(含有头结点)

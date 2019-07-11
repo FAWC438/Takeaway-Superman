@@ -117,7 +117,7 @@ void gameOver(int reason)
 
 void gameOverG()
 {
-	char s[1100];
+	char s[201];
 	PIMAGE img[2];
 	img[0] = newimage();
 	img[1] = newimage();
@@ -129,12 +129,12 @@ void gameOverG()
 	bar(690, 50, 975, 485);
 	setfontbkcolor(EGERGB(220, 220, 220));
 	setfont(30, 0, "微软雅黑");
-	if (isEnd == 3)
+	if (IsEnd == 3)
 	{
 		sprintf(s, "公司已破产！\n");
 		outtextrect(700, 60, 965, 475, s);
 	}
-	else if (isEnd == 4)
+	else if (IsEnd == 4)
 	{
 		sprintf(s, "公司已被吊销执照！\n");
 		outtextrect(700, 60, 965, 475, s);
@@ -285,7 +285,7 @@ void gameSuccess()
 
 void gameSuccessG()
 {
-	char s[1100];
+	char s[201];
 	PIMAGE img[2];
 	img[0] = newimage();
 	img[1] = newimage();

@@ -38,7 +38,7 @@ void createGraph()
 /*
 	建立地图
  */
-void createMap(Pair par)
+void createMap(Pair par, int *sum)
 {
 	PIMAGE img[7];
 	for (int i = 1; i <= 6; i++)
@@ -57,12 +57,24 @@ void createMap(Pair par)
 				setfillcolor(LIGHTGRAY);
 				bar(RWID + (HWID + RWID) * j, HWID + (HWID + RWID) * i, HWID + RWID + (HWID + RWID) * j, 2 * HWID + (HWID + RWID) * i);
 				putimage_alphatransparent(NULL, img[abs(Map[i * 2][j * 2])], RWID + (HWID + RWID) * j, HWID + (HWID + RWID) * i, BLACK, 0x80);
+				char s[11];
+				setfont(30, 0, "微软雅黑");
+				setcolor(BLACK);
+				setbkmode(TRANSPARENT);
+				sprintf(s, "%d", (*sum) + 1);
+				outtextrect(RWID + (HWID + RWID) * j + 20, HWID + (HWID + RWID) * i + 10, HWID + RWID + (HWID + RWID) * j, 2 * HWID + (HWID + RWID) * i, s);
 			}
 			else if ((par.is_end && par.end_x == i && par.end_y == j))
 			{
 				setfillcolor(LIGHTGRAY);
 				bar(RWID + (HWID + RWID) * j, HWID + (HWID + RWID) * i, HWID + RWID + (HWID + RWID) * j, 2 * HWID + (HWID + RWID) * i);
 				putimage_alphatransparent(NULL, img[abs(Map[i * 2][j * 2])], RWID + (HWID + RWID) * j, HWID + (HWID + RWID) * i, BLACK, 0x20);
+				char s[11];
+				setfont(30, 0, "微软雅黑");
+				setcolor(BLACK);
+				setbkmode(TRANSPARENT);
+				sprintf(s, "%d", (*sum) + 1);
+				outtextrect(RWID + (HWID + RWID) * j + 20, HWID + (HWID + RWID) * i + 10, HWID + RWID + (HWID + RWID) * j, 2 * HWID + (HWID + RWID) * i, s);
 			}
 			else if (Map[i * 2][j * 2] < 0) // 停靠
 			{
@@ -167,6 +179,7 @@ void clickMap(Pair *par, int *sum)
 				p->cust_x = par->end_x * 2;
 				p->cust_y = par->end_y * 2;
 				p->begin_time = Time + 1;
+				p->turn_time = 0x3f3f3f3f;
 				p->end_time = 0x3f3f3f3f;
 				p->status = 0;
 				push_back_order(p, Buffer);
@@ -174,7 +187,7 @@ void clickMap(Pair *par, int *sum)
 			}
 			else if (msg.x >= 700 && msg.y >= 605 && msg.x <= 965 && msg.y <= 690)
 			{
-				isEnd = 1;
+				IsEnd = 1;
 			}
 		}
 	}
@@ -225,7 +238,7 @@ void createRoad()
 /*
 	绘制骑手，并控制骑手移动
  */
-void DrawRider(int *countTime)
+void drawRider(int *countTime, int *cnt_hire)
 {
 	PIMAGE rider_img = newimage();
 
@@ -490,7 +503,15 @@ void DrawRider(int *countTime)
 		}
 		nowRider = nowRider->Nxt_rider;
 	}
-
+	if (*cnt_hire)
+	{
+		char s[11];
+		setfont(30, 0, "微软雅黑");
+		setcolor(RED);
+		setbkmode(TRANSPARENT);
+		sprintf(s, "骑手+%d", *cnt_hire);
+		outtextrect(RWID + 4 * (HWID + RWID), HWID + 3 * (HWID + RWID) + HWID, 975, 485, s);
+	}
 	delimage(rider_img);
 }
 
@@ -503,13 +524,35 @@ void printText()
 	setfillcolor(EGERGB(220, 220, 220));
 	bar(690, 50, 975, 485);
 	setfontbkcolor(EGERGB(220, 220, 220));
-	setfont(50, 0, "微软雅黑");
+	setcolor(BLACK);
+	setfont(40, 0, "微软雅黑");
 	sprintf(s, "时间: %d\n钱: %d\n接单数: %d\n完成数: %d\n超时数: %d", Time, CompanyMoney, CompanyOrderSum, CompanyOrderFinish, CompanyOrderOverTime);
 	outtextrect(700, 60, 965, 475, s);
+	PIMAGE img[3];
+	for (int i = 0; i < 3; i++)
+		img[i] = newimage();
+	getimage(img[0], "House.png", 0, 0);
+	getimage(img[1], "Restaurant.png", 0, 0);
+	getimage(img[2], "Dormitory.png", 0, 0);
+	putimage(700, 330, img[0]);
+	putimage(800, 330, img[1]);
+	putimage(900, 330, img[2]);
+	setfont(20, 0, "宋体");
+	setcolor(BLACK);
+	setbkmode(TRANSPARENT);
+	//sprintf(s, "%d", (*sum);
+	outtextrect(705, 380, 810, 380, "房屋");
+	outtextrect(800, 380, 810, 380, "餐馆(A)");
+	outtextrect(900, 380, 810, 380, "宿舍(B)");
+	setfont(25, 0, "微软雅黑");
+	outtextrect(700, 400, 810, 380, "*房屋轻透明选中餐厅\n*重透明选中宿舍\n*变红表示停靠");
+	for (int i = 0; i < 3; i++)
+		delimage(img[i]);
 }
 
-unsigned __stdcall runGraph(void *pArgument)
+unsigned __stdcall runGraph(void *cnt_hire)
 {
+	int* cnt = (int*)cnt_hire;
 	int sum = 0; // 记录总输入数量，便于编写ID
 	Pair par;
 	int countTime = 0;
@@ -517,20 +560,20 @@ unsigned __stdcall runGraph(void *pArgument)
 	createGraph();
 	for (; is_run(); delay_fps(160))
 	{
-		createMap(par);
+		createMap(par, &sum);
 		clickMap(&par, &sum);
 		createRoad();
-		if (isEnd == 2)
+		if (IsEnd == 2)
 		{
 			gameSuccessG();
 			break;
 		}
-		else if (isEnd == 3)
+		else if (IsEnd == 3)
 		{
 			gameOverG();
 			break;
 		}
-		else if (isEnd == 4)
+		else if (IsEnd == 4)
 		{
 			gameOverG();
 			break;
@@ -538,15 +581,12 @@ unsigned __stdcall runGraph(void *pArgument)
 		printText();
 		if (mapsignal)
 		{
-			//WaitForSingleObject(hMutex2, INFINITE);
-			DrawRider(&countTime);
+			drawRider(&countTime, cnt);
 			mapsignal = 0;
 			countTime = 0;
-			//  //信号
-			//ReleaseMutex(hMutex2);
 		}
 		else
-			DrawRider(&countTime);
+			drawRider(&countTime, cnt);
 		countTime++;
 	}
 	getch();
@@ -559,16 +599,18 @@ unsigned __stdcall runGraph(void *pArgument)
  */
 void mainFunction()
 {
+	int cnt_hire = 0; // 记录每次招募骑手数量
 	updateMap();
 	HANDLE hThread;
 	clock_t start_clock, end_clock; // 用于计算程序运行时间
 	//initMap();
 	unsigned int ThreadID = 1;
-	hThread = (HANDLE)_beginthreadex(NULL, 0, runGraph, NULL, 0, &ThreadID);
+	hThread = (HANDLE)_beginthreadex(NULL, 0, runGraph, (void *)&cnt_hire, 0, &ThreadID);
 	hMutex1 = CreateMutex(NULL, FALSE, NULL);
 	//while (Buffer->Nxt_order || !isAllOrderFinished()) // 结束条件是缓冲区为空
-	while (!(isEnd == 1 && isAllOrderFinished()))
+	while (!(IsEnd == 1 && isAllOrderFinished()))
 	{
+		cnt_hire = 0;
 		start_clock = clock();
 		Time++;
 		//将缓冲区中的订单放到全局订单记录中
@@ -586,16 +628,18 @@ void mainFunction()
 		}
 		ReleaseMutex(hMutex1);
 		//招募骑手
-
 		while (CompanyMoney >= 400)
+		{
 			hireRider();
+			cnt_hire++;
+		}
 		//派单之前把骑手背包完成的订单弹出
 		initRiderBag();
 		//派单算法
 		arrangeNewOrder(); // 此处遍历可优化
 		//判断是否超时或破产
 		isAnyOrderOverTime();
-		if (isEnd == 3 || isEnd == 4)
+		if (IsEnd == 3 || IsEnd == 4)
 		{
 			break;
 		}
@@ -604,7 +648,8 @@ void mainFunction()
 		mapsignal = 1;
 		//判断每一个订单是否完成
 		//完成每一个需要完成的订单 但是在骑手背包里不弹出刚完成的订单 （输出文件时判断停靠使用）
-		api_sleep(TIME_UNIT * 2000); // 准确2秒刷新
+		end_clock = clock();
+		api_sleep(TIME_UNIT * 1500 - (end_clock - start_clock)); // 准确2秒刷新
 
 		int isAnyOrderComplish = 0;
 		RiderList *tempRider = AllRiderLog->Nxt_rider;
@@ -626,8 +671,8 @@ void mainFunction()
 		////end_clock = clock();
 		// TIME_UNIT * 1000 - (end_clock - start_clock)
 	}
-	if (!(isEnd == 3 || isEnd == 4))
-		isEnd = 2;
+	if (!(IsEnd == 3 || IsEnd == 4))
+		IsEnd = 2;
 	WaitForSingleObject(hThread, INFINITE);
 	CloseHandle(hThread);
 	closegraph(); // 关闭图形界面

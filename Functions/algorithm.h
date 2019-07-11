@@ -6,10 +6,10 @@
 */
 void assignOrder(Order *AOrder, int RiderID)
 {
-    RiderList *FindRider = AllRiderLog->Nxt_rider;
-    while (FindRider && FindRider->Cur_rider->id != RiderID) //找到ID为RiderID的骑手
-        FindRider = FindRider->Nxt_rider;
-    if (FindRider == NULL) //判断是否能找到该骑手
+    RiderList *findRider = AllRiderLog->Nxt_rider;
+    while (findRider && findRider->Cur_rider->id != RiderID) //找到ID为RiderID的骑手
+        findRider = findRider->Nxt_rider;
+    if (findRider == NULL) //判断是否能找到该骑手
     {
         return;
     }
@@ -26,7 +26,7 @@ void assignOrder(Order *AOrder, int RiderID)
             nowOrder = nowOrder->Nxt_order;
         }
         AOrder->status = 1;                                 //订单的状态变为“取餐”
-        push_back_order(AOrder, FindRider->Cur_rider->Bag); //将订单放入骑手背包
+        push_back_order(AOrder, findRider->Cur_rider->Bag); //将订单放入骑手背包
     }
 }
 
