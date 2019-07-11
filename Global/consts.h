@@ -1,6 +1,6 @@
 
 /*
-    变量与常量
+	变量与常量
 */
 
 #ifndef _VARIABLE
@@ -19,10 +19,12 @@ const int MAP_X = 17;            // 地图X大小
 const int MAP_Y = 17;            // 地图Y大小
 const int COMPANY_X = 7;         //公司所在X大小
 const int COMPANY_Y = 8;         //公司所在Y大小
+const int HWID = 50;
+const int RWID = 25;
 
 /*
-    公司状态变量
-    为区分全局常量，全局变量命名如下所示
+	公司状态变量
+	为区分全局常量，全局变量命名如下所示
  */
 int CompanyMoney = INIT_MONEY;      // 当前公司有多少钱
 int CompanyRiderCount = 0;    // 公司骑手数量
@@ -30,10 +32,13 @@ int Time = -1;                // 当前时间，即Time个时间单位
 int CompanyOrderSum = 0;      // 公司接单数
 int CompanyOrderFinish = 0;   // 公司完成单数
 int CompanyOrderOverTime = 0; // 公司超时单数
+int mapsignal = 0;	// 是否更新骑手动画
 
-OrderList *AllOrderLog; // 全部订单记录(含有头结点)
-OrderList *Buffer;      // 缓冲区(含有头结点)
-RiderList *AllRiderLog; // 全部骑手记录(含有头结点)
-int Map[17][17];        // 输出用，0为道路，1为普通房屋，2为餐厅，3为宿舍，4为骑手
+OrderList* AllOrderLog; // 全部订单记录(含有头结点)
+OrderList* Buffer;      // 缓冲区(含有头结点)
+RiderList* AllRiderLog; // 全部骑手记录(含有头结点)
+int Map[17][17];        // 输出用，0为道路，1为普通房屋，2为餐厅，3为宿舍，4为骑手，-2为停靠餐厅，-3为停靠宿舍
+
+HANDLE hMutex1, hMutex2, hMutex3;
 
 #endif

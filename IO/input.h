@@ -28,7 +28,7 @@ int inputFileOrder() // TODO: 处理输入数据和要计算的数据的关系
 /*
 	从键盘输入
  */
-int inputKeyOrder()
+void inputKeyOrder()
 {
 	Order* p = (Order*)malloc(sizeof(Order));
 	while (scanf_s("%d %d %d %d %d %d\n", &p->id, &p->begin_time,
@@ -42,5 +42,4 @@ int inputKeyOrder()
 		p = (Order*)malloc(sizeof(Order));             // 给p新的空间
 	}
 	free(p); // 释放p的内存
-	return 1;
 }

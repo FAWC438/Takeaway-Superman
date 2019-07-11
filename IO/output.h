@@ -144,8 +144,8 @@ void outputMap() // 餐客形式没考虑
 		// 待与停靠函数协调
 		if ((HeadOrder->Cur_order->status != 0 && HeadOrder->Cur_order->status != 3) || (HeadOrder->Cur_order->status == 3 && HeadOrder->Cur_order->end_time == Time))
 		{
-			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_x] = 2; // 餐厅地图更新
-			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_x] = 3; // 宿舍地图更新
+			Map[HeadOrder->Cur_order->rest_x][HeadOrder->Cur_order->rest_y] = 2; // 餐厅地图更新
+			Map[HeadOrder->Cur_order->cust_x][HeadOrder->Cur_order->cust_y] = 3; // 宿舍地图更新
 		}
 		HeadOrder = HeadOrder->Nxt_order;
 	}

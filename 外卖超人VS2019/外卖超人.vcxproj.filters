@@ -144,14 +144,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="output.txt">
-      <Filter>资源文件\输入和输出文件</Filter>
-    </Text>
-    <Text Include="sales.txt">
-      <Filter>资源文件\输入和输出文件</Filter>
-    </Text>
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Dormitory.png">
       <Filter>资源文件\图片</Filter>
     </Image>
@@ -164,5 +156,13 @@
     <Image Include="Restaurant.png">
       <Filter>资源文件\图片</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="output.txt">
+      <Filter>资源文件\输入和输出文件</Filter>
+    </Text>
+    <Text Include="sales.txt">
+      <Filter>资源文件\输入和输出文件</Filter>
+    </Text>
   </ItemGroup>
 </Project>

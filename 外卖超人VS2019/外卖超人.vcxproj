@@ -193,14 +193,14 @@
     <None Include="..\文件输入数据\规则测试数据\7.in" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="output.txt" />
-    <Text Include="sales.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Image Include="Dormitory.png" />
     <Image Include="final-logo.png" />
     <Image Include="House.png" />
     <Image Include="Restaurant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="output.txt" />
+    <Text Include="sales.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

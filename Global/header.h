@@ -15,6 +15,8 @@
 #include <string.h>
 #include <time.h>
 #include <Windows.h>
+#include <graphics.h>
+#include <process.h>
  // 自建头文件
 #include "unistd.h"
 #include "structure.h"

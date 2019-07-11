@@ -48,7 +48,7 @@ void console()
 			}
 		}
 	}
-
+	//initMap();
 	while (Buffer->Nxt_order || !isAllOrderFinished()) // 结束条件是缓冲区为空
 	{
 		start_clock = clock();
@@ -183,10 +183,10 @@ int startScreen()
 			}
 			else if (x >= 340 && x <= 640 && y >= 510 && y <= 590)// 鼠标输入
 			{
-				HWND hwnd;
-				hwnd = FindWindow("ConsoleWindowClass", NULL);	//处理顶级窗口的类名和窗口名称匹配指定的字符串,不搜索子窗口。
-				if (hwnd)
-					ShowWindow(hwnd, SW_HIDE);				//设置指定窗口的显示状态（关闭控制台）
+				//HWND hwnd;
+				//hwnd = FindWindow("ConsoleWindowClass", NULL);	//处理顶级窗口的类名和窗口名称匹配指定的字符串,不搜索子窗口。
+				//if (hwnd)
+				//	ShowWindow(hwnd, SW_HIDE);				//设置指定窗口的显示状态（关闭控制台）
 				setfillcolor(RED);
 				fillpoly(4, point_two);
 				floodfillsurface(430, 530, YELLOW);
@@ -223,7 +223,6 @@ int main()
 		AllOrderLog = creatOrderList(); // 全部订单记录(含有头结点)
 		Buffer = creatOrderList();      // 缓冲区(含有头结点)
 		AllRiderLog = creatRiderList(); // 全部骑手记录(含有头结点)
-		clock_t start_clock, end_clock; // 用于计算程序运行时间
 		mainFunction();// 鼠标输入主程序
 	}
 	exit(0);

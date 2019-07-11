@@ -58,7 +58,7 @@ void getRiderCurPos(int rider_id, int* x, int* y)
 	*y = p->Cur_rider->rider_y;
 }
 /*
-	入骑手id和目的地（房子坐标），根据骑手当前位置，先左右，后上下，移动一个单位，默认已经判断是否停靠，不再重新检查
+	输入骑手id和目的地（房子坐标），根据骑手当前位置，先左右，后上下，移动一个单位，默认已经判断是否停靠，不再重新检查
 	int rider_id:骑手id
 	int pos_x:目的地横坐标
 	int pos_y:目的地纵坐标
