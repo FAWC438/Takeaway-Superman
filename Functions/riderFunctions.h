@@ -14,6 +14,7 @@ int hireRider()
 	newRider->rider_x = COMPANY_X;
 	newRider->rider_y = COMPANY_Y;
 	newRider->Bag = creatOrderList(); // 骑手的背包是一个订单链表
+	newRider->path_mode = 6;
 	//将该骑手添加到骑手列表
 	push_back_rider(newRider, AllRiderLog);
 	return newRider->id;
@@ -88,7 +89,7 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 		{
 			if (*cur_y > pos_y + 1) // 在右边就要往左走
 			{
-				if (pos_x > *cur_x || (pos_y == *cur_y && pos_y == 0)) // 目标在下或同行
+				if (pos_x > *cur_x || (pos_x == *cur_x && pos_x == 0)) // 目标在下或同行
 				{
 					(*cur_x)++;
 					(*cur_y)--;

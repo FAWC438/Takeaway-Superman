@@ -32,6 +32,7 @@ typedef struct _Rider // 骑手
 	int id;               // 骑手ID
 	int rider_x, rider_y; // 骑手当前位置
 	OrderList* Bag;       // 骑手背包订单
+	int path_mode;
 	//Order *Cur_order;     // 骑手当前订单
 } Rider;
 

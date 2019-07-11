@@ -140,7 +140,8 @@ void updateMap()
 	while (HeadRider)
 	{
 		//if (HeadRider->Cur_rider->Bag->Nxt_order)
-		Map[HeadRider->Cur_rider->rider_x][HeadRider->Cur_rider->rider_y] = 4 + predRiderPath(HeadRider->Cur_rider); // 骑手地图更新
+		Map[HeadRider->Cur_rider->rider_x][HeadRider->Cur_rider->rider_y] = 4; // 骑手地图更新
+		HeadRider->Cur_rider->path_mode = predRiderPath(HeadRider->Cur_rider);		
 		HeadRider = HeadRider->Nxt_rider;
 	}
 }

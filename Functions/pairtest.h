@@ -200,215 +200,425 @@ void createRoad()
 		delimage(img[i]);
 }
 
+//void DrawRider(int* countTime)
+//{
+//	PIMAGE rider_img = newimage();
+//	for (int i = 0; i < 17; i++)
+//	{
+//		for (int j = 0; j < 17; j++)
+//		{
+//			if (Map[i][j] >= 4 && Map[i][j] <= 9)
+//			{
+//				int pathMode = Map[i][j] - 4;
+//				if (i % 2 == 1 && j % 2 == 0)	//横向道路
+//				{
+//					if (pathMode >= 0 && pathMode <= 2)					//先往右走
+//					{
+//						if (*countTime <= 152)	//往右走
+//						{
+//							getimage(rider_img, "Rider(right).png", 26, 24);
+//							putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+//						}
+//						else if (*countTime > 152 && *countTime <= 300)	//再往不同方向走
+//						{
+//							switch (pathMode)
+//							{
+//							case 0:			//往右走
+//								getimage(rider_img, "Rider(right).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 9, BLACK);
+//								break;
+//							case 1:			//往上走
+//								getimage(rider_img, "Rider(up).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (*countTime - 152) / 4, BLACK);
+//								break;
+//							case 2:			//往下走
+//								getimage(rider_img, "Rider(down).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (*countTime - 152) / 4, BLACK);
+//								break;
+//							}
+//						}
+//						else											//停一会(防止误差)
+//						{
+//							switch (pathMode)
+//							{
+//							case 0:
+//								getimage(rider_img, "Rider(right).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (300) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 9, BLACK);
+//								break;
+//							case 1:
+//								getimage(rider_img, "Rider(up).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4, BLACK);
+//								break;
+//							case 2:
+//								getimage(rider_img, "Rider(down).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4, BLACK);
+//								break;
+//							}
+//						}
+//
+//					}
+//					else												//先往左走
+//					{
+//						if (*countTime <= 152)	//往左走
+//						{
+//							getimage(rider_img, "Rider(left).png", 26, 24);
+//							putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+//						}
+//						else if (*countTime > 152 && *countTime <= 300)	//再往不同方向走
+//						{
+//							switch (pathMode)
+//							{
+//							case 3:			//往左走
+//								getimage(rider_img, "Rider(left).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+//								break;
+//							case 4:			//往上走
+//								getimage(rider_img, "Rider(up).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (*countTime - 152) / 4, BLACK);
+//								break;
+//							case 5:			//往下走
+//								getimage(rider_img, "Rider(down).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (*countTime - 152) / 4, BLACK);
+//								break;
+//							}
+//						}
+//						else											//停一会(防止误差)
+//						{
+//							switch (pathMode)
+//							{
+//							case 3:
+//								getimage(rider_img, "Rider(left).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (300) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+//								break;
+//							case 4:
+//								getimage(rider_img, "Rider(up).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4, BLACK);
+//								break;
+//							case 5:
+//								getimage(rider_img, "Rider(down).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4, BLACK);
+//								break;
+//							}
+//						}
+//					}
+//				}
+//				else if (i % 2 == 0 && j % 2 == 1)	//纵向道路
+//				{
+//					if (pathMode >= 0 && pathMode <= 2)					//先往上走
+//					{
+//						if (*countTime <= 152)	//往上走
+//						{
+//							getimage(rider_img, "Rider(up).png", 17, 26);
+//							putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (*countTime) / 4, BLACK);
+//						}
+//						else if (*countTime > 152 && *countTime <= 300)		//再往其他方向走
+//						{
+//							switch (pathMode)
+//							{
+//							case 0:			//往上走
+//								getimage(rider_img, "Rider(up).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (*countTime) / 4, BLACK);
+//								break;
+//							case 1:			//往左走
+//								getimage(rider_img, "Rider(left).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+//								break;
+//							case 2:			//往右走
+//								getimage(rider_img, "Rider(right).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+//								break;
+//							}
+//						}
+//						else											//停一会(防止误差)
+//						{
+//							switch (pathMode)
+//							{
+//							case 0:
+//								getimage(rider_img, "Rider(up).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (300) / 4, BLACK);
+//								break;
+//							case 1:
+//								getimage(rider_img, "Rider(left).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+//								break;
+//							case 2:
+//								getimage(rider_img, "Rider(right).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+//								break;
+//							}
+//						}
+//					}
+//					else												//先往下走
+//					{
+//						if (*countTime <= 152)	//往下走
+//						{
+//							getimage(rider_img, "Rider(down).png", 17, 26);
+//							putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (*countTime) / 4, BLACK);
+//						}
+//						else if (*countTime > 152 && *countTime <= 300)	//再往其他方向走
+//						{
+//							switch (pathMode)
+//							{
+//							case 3:			//往下走
+//								getimage(rider_img, "Rider(down).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (*countTime) / 4, BLACK);
+//								break;
+//							case 4:			//往左走
+//								getimage(rider_img, "Rider(left).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+//								break;
+//							case 5:			//往右走
+//								getimage(rider_img, "Rider(right).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+//								break;
+//							}
+//						}
+//						else											//停一会(防止误差)
+//						{
+//							switch (pathMode)
+//							{
+//							case 3:
+//								getimage(rider_img, "Rider(down).png", 17, 26);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (300) / 4, BLACK);
+//								break;
+//							case 4:
+//								getimage(rider_img, "Rider(left).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+//								break;
+//							case 5:
+//								getimage(rider_img, "Rider(right).png", 26, 24);
+//								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+//								break;
+//							}
+//						}
+//					}
+//				}
+//			}
+//			else if (Map[i][j] == 10)
+//			{
+//				if (i % 2 == 1 && j % 2 == 0)//横向道路
+//				{
+//					getimage(rider_img, "Rider(right).png", 26, 24);
+//					putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+//				}
+//				else if (i % 2 == 0 && j % 2 == 1)
+//				{
+//					getimage(rider_img, "Rider(down).png", 17, 26);
+//					putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1, BLACK);
+//				}
+//			}
+//		}
+//	}
+//	delimage(rider_img);
+//}
+
 void DrawRider(int* countTime)
 {
 	PIMAGE rider_img = newimage();
-	for (int i = 0; i < 17; i++)
-	{
-		for (int j = 0; j < 17; j++)
-		{
-			if (Map[i][j] >= 4 && Map[i][j] <= 9)
-			{
-				int pathMode = Map[i][j] - 4;
-				if (i % 2 == 1 && j % 2 == 0)	//横向道路
-				{
-					if (pathMode >= 0 && pathMode <= 2)					//先往右走
-					{
-						if (*countTime <= 152)	//往右走
-						{
-							getimage(rider_img, "Rider(right).png", 26, 24);
-							putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
-						}
-						else if (*countTime > 152 && *countTime <= 300)	//再往不同方向走
-						{
-							switch (pathMode)
-							{
-							case 0:			//往右走
-								getimage(rider_img, "Rider(right).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 9, BLACK);
-								break;
-							case 1:			//往上走
-								getimage(rider_img, "Rider(up).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (*countTime - 152) / 4, BLACK);
-								break;
-							case 2:			//往下走
-								getimage(rider_img, "Rider(down).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (*countTime - 152) / 4, BLACK);
-								break;
-							}
-						}
-						else											//停一会(防止误差)
-						{
-							switch (pathMode)
-							{
-							case 0:
-								getimage(rider_img, "Rider(right).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (300) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 9, BLACK);
-								break;
-							case 1:
-								getimage(rider_img, "Rider(up).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4, BLACK);
-								break;
-							case 2:
-								getimage(rider_img, "Rider(down).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4, BLACK);
-								break;
-							}
-						}
 
-					}
-					else												//先往左走
-					{
-						if (*countTime <= 152)	//往左走
-						{
-							getimage(rider_img, "Rider(left).png", 26, 24);
-							putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
-						}
-						else if (*countTime > 152 && *countTime <= 300)	//再往不同方向走
-						{
-							switch (pathMode)
-							{
-							case 3:			//往左走
-								getimage(rider_img, "Rider(left).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
-								break;
-							case 4:			//往上走
-								getimage(rider_img, "Rider(up).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (*countTime - 152) / 4, BLACK);
-								break;
-							case 5:			//往下走
-								getimage(rider_img, "Rider(down).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (*countTime - 152) / 4, BLACK);
-								break;
-							}
-						}
-						else											//停一会(防止误差)
-						{
-							switch (pathMode)
-							{
-							case 3:
-								getimage(rider_img, "Rider(left).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (300) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
-								break;
-							case 4:
-								getimage(rider_img, "Rider(up).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4, BLACK);
-								break;
-							case 5:
-								getimage(rider_img, "Rider(down).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4, BLACK);
-								break;
-							}
-						}
-					}
-				}
-				else if (i % 2 == 0 && j % 2 == 1)	//纵向道路
-				{
-					if (pathMode >= 0 && pathMode <= 2)					//先往上走
-					{
-						if (*countTime <= 152)	//往上走
-						{
-							getimage(rider_img, "Rider(up).png", 17, 26);
-							putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (*countTime) / 4, BLACK);
-						}
-						else if (*countTime > 152 && *countTime <= 300)		//再往其他方向走
-						{
-							switch (pathMode)
-							{
-							case 0:			//往上走
-								getimage(rider_img, "Rider(up).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (*countTime) / 4, BLACK);
-								break;
-							case 1:			//往左走
-								getimage(rider_img, "Rider(left).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
-								break;
-							case 2:			//往右走
-								getimage(rider_img, "Rider(right).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
-								break;
-							}
-						}
-						else											//停一会(防止误差)
-						{
-							switch (pathMode)
-							{
-							case 0:
-								getimage(rider_img, "Rider(up).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (300) / 4, BLACK);
-								break;
-							case 1:
-								getimage(rider_img, "Rider(left).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
-								break;
-							case 2:
-								getimage(rider_img, "Rider(right).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
-								break;
-							}
-						}
-					}
-					else												//先往下走
-					{
-						if (*countTime <= 152)	//往下走
-						{
-							getimage(rider_img, "Rider(down).png", 17, 26);
-							putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (*countTime) / 4, BLACK);
-						}
-						else if (*countTime > 152 && *countTime <= 300)	//再往其他方向走
-						{
-							switch (pathMode)
-							{
-							case 3:			//往下走
-								getimage(rider_img, "Rider(down).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (*countTime) / 4, BLACK);
-								break;
-							case 4:			//往左走
-								getimage(rider_img, "Rider(left).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
-								break;
-							case 5:			//往右走
-								getimage(rider_img, "Rider(right).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
-								break;
-							}
-						}
-						else											//停一会(防止误差)
-						{
-							switch (pathMode)
-							{
-							case 3:
-								getimage(rider_img, "Rider(down).png", 17, 26);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (300) / 4, BLACK);
-								break;
-							case 4:
-								getimage(rider_img, "Rider(left).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
-								break;
-							case 5:
-								getimage(rider_img, "Rider(right).png", 26, 24);
-								putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
-								break;
-							}
-						}
-					}
-				}
-			}
-			else if (Map[i][j] == 10)
+	RiderList* nowRider = AllRiderLog->Nxt_rider;
+	while (nowRider)
+	{
+
+		int i = nowRider->Cur_rider->rider_x;
+		int j = nowRider->Cur_rider->rider_y;
+		int pathMode = nowRider->Cur_rider->path_mode;
+		if (i % 2 == 1 && j % 2 == 0)	//横向道路
+		{
+			if (pathMode >= 0 && pathMode <= 2)					//先往右走
 			{
-				if (i % 2 == 1 && j % 2 == 0)//横向道路
+				if (*countTime <= 152)	//往右走
 				{
 					getimage(rider_img, "Rider(right).png", 26, 24);
-					putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+					putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
 				}
-				else if (i % 2 == 0 && j % 2 == 1)
+				else if (*countTime > 152 && *countTime <= 300)	//再往不同方向走
 				{
-					getimage(rider_img, "Rider(down).png", 17, 26);
-					putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1, BLACK);
+					switch (pathMode)
+					{
+					case 0:			//往右走
+						getimage(rider_img, "Rider(right).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 9, BLACK);
+						break;
+					case 1:			//往上走
+						getimage(rider_img, "Rider(up).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (*countTime - 152) / 4, BLACK);
+						break;
+					case 2:			//往下走
+						getimage(rider_img, "Rider(down).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (*countTime - 152) / 4, BLACK);
+						break;
+					}
+				}
+				else											//停一会(防止误差)
+				{
+					switch (pathMode)
+					{
+					case 0:
+						getimage(rider_img, "Rider(right).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (300) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 9, BLACK);
+						break;
+					case 1:
+						getimage(rider_img, "Rider(up).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4, BLACK);
+						break;
+					case 2:
+						getimage(rider_img, "Rider(down).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4, BLACK);
+						break;
+					}
+				}
+
+			}
+			else if (pathMode >= 3 && pathMode <= 5)												//先往左走
+			{
+				if (*countTime <= 152)	//往左走
+				{
+					getimage(rider_img, "Rider(left).png", 26, 24);
+					putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+				}
+				else if (*countTime > 152 && *countTime <= 300)	//再往不同方向走
+				{
+					switch (pathMode)
+					{
+					case 3:			//往左走
+						getimage(rider_img, "Rider(left).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (*countTime) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+						break;
+					case 4:			//往上走
+						getimage(rider_img, "Rider(up).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (*countTime - 152) / 4, BLACK);
+						break;
+					case 5:			//往下走
+						getimage(rider_img, "Rider(down).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (*countTime - 152) / 4, BLACK);
+						break;
+					}
+				}
+				else											//停一会(防止误差)
+				{
+					switch (pathMode)
+					{
+					case 3:
+						getimage(rider_img, "Rider(left).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (300) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+						break;
+					case 4:
+						getimage(rider_img, "Rider(up).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4, BLACK);
+						break;
+					case 5:
+						getimage(rider_img, "Rider(down).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4, BLACK);
+						break;
+					}
 				}
 			}
+			else if (pathMode == 6)
+			{
+				getimage(rider_img, "Rider(right).png", 26, 24);
+				putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+			}
 		}
+		else if (i % 2 == 0 && j % 2 == 1)	//纵向道路
+		{
+			if (pathMode >= 0 && pathMode <= 2)					//先往上走
+			{
+				if (*countTime <= 152)	//往上走
+				{
+					getimage(rider_img, "Rider(up).png", 17, 26);
+					putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (*countTime) / 4, BLACK);
+				}
+				else if (*countTime > 152 && *countTime <= 300)		//再往其他方向走
+				{
+					switch (pathMode)
+					{
+					case 0:			//往上走
+						getimage(rider_img, "Rider(up).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (*countTime) / 4, BLACK);
+						break;
+					case 1:			//往左走
+						getimage(rider_img, "Rider(left).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+						break;
+					case 2:			//往右走
+						getimage(rider_img, "Rider(right).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+						break;
+					}
+				}
+				else											//停一会(防止误差)
+				{
+					switch (pathMode)
+					{
+					case 0:
+						getimage(rider_img, "Rider(up).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (300) / 4, BLACK);
+						break;
+					case 1:
+						getimage(rider_img, "Rider(left).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+						break;
+					case 2:
+						getimage(rider_img, "Rider(right).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+						break;
+					}
+				}
+			}
+			else if (pathMode >= 3 && pathMode <= 5)											//先往下走
+			{
+				if (*countTime <= 152)	//往下走
+				{
+					getimage(rider_img, "Rider(down).png", 17, 26);
+					putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (*countTime) / 4, BLACK);
+				}
+				else if (*countTime > 152 && *countTime <= 300)	//再往其他方向走
+				{
+					switch (pathMode)
+					{
+					case 3:			//往下走
+						getimage(rider_img, "Rider(down).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (*countTime) / 4, BLACK);
+						break;
+					case 4:			//往左走
+						getimage(rider_img, "Rider(left).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+						break;
+					case 5:			//往右走
+						getimage(rider_img, "Rider(right).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (*countTime - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+						break;
+					}
+				}
+				else											//停一会(防止误差)
+				{
+					switch (pathMode)
+					{
+					case 3:
+						getimage(rider_img, "Rider(down).png", 17, 26);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (300) / 4, BLACK);
+						break;
+					case 4:
+						getimage(rider_img, "Rider(left).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+						break;
+					case 5:
+						getimage(rider_img, "Rider(right).png", 26, 24);
+						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+						break;
+					}
+				}
+			}
+			else if (pathMode == 6)
+			{
+				getimage(rider_img, "Rider(down).png", 17, 26);
+				putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1, BLACK);
+			}
+		}
+		nowRider = nowRider->Nxt_rider;
 	}
+
 	delimage(rider_img);
 }
 
