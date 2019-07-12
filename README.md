@@ -226,7 +226,7 @@ A任务没有约束条件，任何时间都属于可达目标点；B任务，默
 ```
 ***
 ##  该项目具体用法
-首先，你需要Visual Studio 2019并且安装ege图形库[ege图形库](http://xege.org/),按照vs2017的标准安装即可<br>
+首先，你需要Visual Studio 2019并且安装[ege图形库](http://xege.org/),按照其官网的vs2017的标准安装即可<br>
 下载该项目后，直接运行`外卖超人vs2019`中的`外卖超人.sln`，便能直接打开整个项目
 ##  懒得下载Visual Studio？
 Ohhhh!!!<br>
