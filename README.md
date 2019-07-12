@@ -23,7 +23,7 @@
 你负责的外卖派送区域如图1所示：
 
 区域图
-![](https://github.com/FAWC-bupt/Takeaway-Superman/raw/master/picture/1.jpg)
+![](https://github.com/FAWC-bupt/Takeaway-Superman/blob/master/picture/1.jpg)
 图1-外卖区域示意图
 
 约束1-1: 你的区域必须是一个9*9的方格，每格是一个房间，既可以是下订单的食客家，也可以是接单的餐馆。
