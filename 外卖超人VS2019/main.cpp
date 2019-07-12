@@ -104,8 +104,7 @@ void console()
 		//输出文件
 		outputOnFile();
 		end_clock = clock();
-		// TIME_UNIT * 1000 - (end_clock - start_clock)
-		// Sleep(100); // 准确2秒刷新
+		// Sleep(TIME_UNIT * 1000 - (end_clock - start_clock)); // 准确2秒刷新
 	}
 	gameSuccess();
 }

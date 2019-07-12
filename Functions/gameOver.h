@@ -128,6 +128,8 @@ void gameOverG()
 	setfillcolor(EGERGB(220, 220, 220));
 	bar(690, 50, 975, 485);
 	setfontbkcolor(EGERGB(220, 220, 220));
+	setcolor(BLACK);
+	setbkmode(TRANSPARENT);
 	setfont(30, 0, "微软雅黑");
 	if (IsEnd == 3)
 	{
@@ -296,6 +298,8 @@ void gameSuccessG()
 	setfillcolor(EGERGB(220, 220, 220));
 	bar(690, 50, 975, 485);
 	setfontbkcolor(EGERGB(220, 220, 220));
+	setcolor(BLACK);
+	setbkmode(TRANSPARENT);
 	setfont(30, 0, "微软雅黑");
 	sprintf(s, "本次公司所在地址:(%d，%d)\n", COMPANY_X, COMPANY_Y);
 	outtextrect(700, 60, 965, 475, s);

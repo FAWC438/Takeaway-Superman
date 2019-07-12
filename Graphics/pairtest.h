@@ -1,8 +1,10 @@
 #include "../Global/header.h"
+#include <MMSystem.h>
 #include <cstdio>
 #include <graphics.h>
 #include <iostream>
 #include <windows.h>
+#pragma comment(lib, "winmm.lib")
 
 using namespace std;
 
@@ -73,6 +75,8 @@ void clickMap(Pair *par, int *sum)
 			}
 			else if (msg.x >= 700 && msg.y >= 605 && msg.x <= 965 && msg.y <= 690)
 			{
+				if (!CompanyOrderSum)
+					exit(0);
 				IsEnd = 1;
 			}
 		}
@@ -91,25 +95,25 @@ void printText()
 	setcolor(BLACK);
 	setfont(40, 0, "微软雅黑");
 	sprintf(s, "时间: %d\n钱: %d\n接单数: %d\n完成数: %d\n超时数: %d", Time, CompanyMoney, CompanyOrderSum, CompanyOrderFinish, CompanyOrderOverTime);
-	outtextrect(700, 60, 965, 475, s);
+	outtextrect(700, 60, 300, 300, s);
 	PIMAGE img[3];
 	for (int i = 0; i < 3; i++)
 		img[i] = newimage();
 	getimage(img[0], "House.png", 0, 0);
 	getimage(img[1], "Restaurant.png", 0, 0);
 	getimage(img[2], "Dormitory.png", 0, 0);
-	putimage(700, 330, img[0]);
-	putimage(800, 330, img[1]);
-	putimage(900, 330, img[2]);
-	setfont(20, 0, "宋体");
+	putimage(700, 320, img[0]);
+	putimage(800, 320, img[1]);
+	putimage(900, 320, img[2]);
+	setfont(16, 0, "宋体");
 	setcolor(BLACK);
 	setbkmode(TRANSPARENT);
 	//sprintf(s, "%d", (*sum);
-	outtextrect(705, 380, 810, 380, "房屋");
-	outtextrect(800, 380, 810, 380, "餐馆(A)");
-	outtextrect(900, 380, 810, 380, "宿舍(B)");
+	outtextrect(705, 370, 50, 50, "房屋");
+	outtextrect(800, 370, 50, 50, "餐馆(A)");
+	outtextrect(900, 370, 50, 50, "宿舍(B)");
 	setfont(25, 0, "微软雅黑");
-	outtextrect(700, 400, 810, 380, "*房屋轻透明选中餐厅\n*重透明选中宿舍\n*变红表示停靠");
+	outtextrect(700, 400, 220, 220, "*房屋轻透明选中餐厅\n*重透明选中宿舍\n*变红表示停靠");
 	for (int i = 0; i < 3; i++)
 		delimage(img[i]);
 }
@@ -163,6 +167,7 @@ unsigned __stdcall runGraph(void *cnt_hire)
  */
 void mainFunction()
 {
+	PlaySound("11303.wav", NULL, SND_LOOP | SND_ASYNC);
 	int cnt_hire = 0; // 记录每次招募骑手数量
 	updateMap();
 	HANDLE hThread;
@@ -214,7 +219,7 @@ void mainFunction()
 		//完成每一个需要完成的订单 但是在骑手背包里不弹出刚完成的订单 （输出文件时判断停靠使用）
 		end_clock = clock();
 		api_sleep(TIME_UNIT * 1500 - (end_clock - start_clock)); // 准确2秒刷新
-
+		start_clock = clock();
 		int isAnyOrderComplish = 0;
 		RiderList *tempRider = AllRiderLog->Nxt_rider;
 		while (tempRider) // 骑手

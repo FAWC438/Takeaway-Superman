@@ -82,14 +82,14 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 		{
 			if (*cur_y > pos_y + 1) // 在右边就要往左走
 			{
-				(*cur_y) -= 2;
 				p->Cur_rider->path_mode = 3;
+				(*cur_y) -= 2;
 			}
 
 			else if (*cur_y < pos_y - 1) // 在左边要往右走
 			{
-				(*cur_y) += 2;
 				p->Cur_rider->path_mode = 0;
+				(*cur_y) += 2;
 			}
 		}
 		else if (i % 2 == 0 && j % 2 == 1) // 在纵向道路上
@@ -98,30 +98,30 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 			{
 				if (pos_x > *cur_x || (pos_x == *cur_x && pos_x == 0)) // 目标在下或同行
 				{
+					p->Cur_rider->path_mode = 4;
 					(*cur_x)++;
 					(*cur_y)--;
-					p->Cur_rider->path_mode = 4;
 				}
 				else // 目标在上
 				{
+					p->Cur_rider->path_mode = 1;
 					(*cur_x)--;
 					(*cur_y)--;
-					p->Cur_rider->path_mode = 1;
 				}
 			}
 			else if (*cur_y < pos_y + 1) // 在左边就要往右走
 			{
 				if (pos_x > *cur_x || (pos_x == *cur_x && pos_x == 0)) // 目标在下或同行
 				{
+					p->Cur_rider->path_mode = 5;
 					(*cur_x)++;
 					(*cur_y)++;
-					p->Cur_rider->path_mode = 5;
 				}
 				else // 目标在上
 				{
+					p->Cur_rider->path_mode = 2;
 					(*cur_x)--;
 					(*cur_y)++;
-					p->Cur_rider->path_mode = 2;
 				}
 			}
 		}
@@ -140,14 +140,14 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 		{
 			if (*cur_x > pos_x + 1) // 在下边就要往上走
 			{
-				(*cur_x) -= 2;
 				p->Cur_rider->path_mode = 0;
+				(*cur_x) -= 2;
 			}
 
 			else if (*cur_x < pos_x - 1) // 在上边要往下走
 			{
-				(*cur_x) += 2;
 				p->Cur_rider->path_mode = 3;
+				(*cur_x) += 2;
 			}
 		}
 		else if (i % 2 == 1 && j % 2 == 0) // 在横向道路上
@@ -156,30 +156,30 @@ void riderMove(int rider_id, int pos_x, int pos_y)
 			{
 				if (pos_y > *cur_y || (pos_y == *cur_y && pos_y == 0)) // 目标在右或同列
 				{
+					p->Cur_rider->path_mode = 1;
 					(*cur_y)++;
 					(*cur_x)--;
-					p->Cur_rider->path_mode = 1;
 				}
 				else // 目标在左
 				{
+					p->Cur_rider->path_mode = 4;
 					(*cur_y)--;
 					(*cur_x)--;
-					p->Cur_rider->path_mode = 4;
 				}
 			}
 			if (*cur_x < pos_x + 1) // 在上边就要往下走
 			{
 				if (pos_y > *cur_y || (pos_y == *cur_y && pos_y == 0)) // 目标在右或同列
 				{
+					p->Cur_rider->path_mode = 2;
 					(*cur_y)++;
 					(*cur_x)++;
-					p->Cur_rider->path_mode = 2;
 				}
 				else // 目标在左
 				{
+					p->Cur_rider->path_mode = 5;
 					(*cur_y)--;
 					(*cur_x)++;
-					p->Cur_rider->path_mode = 5;
 				}
 			}
 		}

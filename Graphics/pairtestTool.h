@@ -22,7 +22,7 @@ void createGraph()
 	setfont(50, 0, "黑体");
 	outtextxy(770, 530, "确定");
 	setfontbkcolor(EGERGB(233, 150, 122));
-	outtextxy(770, 635, "退出");
+	outtextxy(770, 635, "结算");
 }
 
 /*
@@ -51,7 +51,7 @@ void createMap(Pair par, int *sum)
 				setfont(30, 0, "微软雅黑");
 				setcolor(BLACK);
 				setbkmode(TRANSPARENT);
-				sprintf(s, "%d", (*sum) + 1);
+				sprintf(s, "%d", (*sum));
 				outtextrect(RWID + (HWID + RWID) * j + 20, HWID + (HWID + RWID) * i + 10, HWID + RWID + (HWID + RWID) * j, 2 * HWID + (HWID + RWID) * i, s);
 			}
 			else if ((par.is_end && par.end_x == i && par.end_y == j))
@@ -63,7 +63,7 @@ void createMap(Pair par, int *sum)
 				setfont(30, 0, "微软雅黑");
 				setcolor(BLACK);
 				setbkmode(TRANSPARENT);
-				sprintf(s, "%d", (*sum) + 1);
+				sprintf(s, "%d", (*sum));
 				outtextrect(RWID + (HWID + RWID) * j + 20, HWID + (HWID + RWID) * i + 10, HWID + RWID + (HWID + RWID) * j, 2 * HWID + (HWID + RWID) * i, s);
 			}
 			else if (Map[i * 2][j * 2] < 0) // 停靠
@@ -71,6 +71,24 @@ void createMap(Pair par, int *sum)
 				setfillcolor(LIGHTGRAY);
 				bar(RWID + (HWID + RWID) * j, HWID + (HWID + RWID) * i, HWID + RWID + (HWID + RWID) * j, 2 * HWID + (HWID + RWID) * i);
 				putimage_transparent(NULL, img[-Map[i * 2][j * 2] + 3], RWID + (HWID + RWID) * j, HWID + (HWID + RWID) * i, BLACK);
+				OrderList *tmpOrder = AllOrderLog->Nxt_order;
+				while (tmpOrder)
+				{
+					int r_x = tmpOrder->Cur_order->rest_x;
+					int r_y = tmpOrder->Cur_order->rest_y;
+					int c_x = tmpOrder->Cur_order->cust_x;
+					int c_y = tmpOrder->Cur_order->cust_y;
+					if ((r_x == i * 2 && r_y == j * 2) || (c_x == i * 2 && c_y == j * 2))
+					{
+						char s[11];
+						setfont(30, 0, "微软雅黑");
+						setcolor(WHITE);
+						setbkmode(TRANSPARENT);
+						sprintf(s, "%d", tmpOrder->Cur_order->id);
+						outtextrect(RWID + (HWID + RWID) * j + 20, HWID + (HWID + RWID) * i + 10, HWID + RWID + (HWID + RWID) * j, 2 * HWID + (HWID + RWID) * i, s);
+					}
+					tmpOrder = tmpOrder->Nxt_order;
+				}
 			}
 			else
 			{
@@ -199,6 +217,16 @@ void drawRider(int *countTime, int *cnt_hire)
 				break;
 			}
 		}
+		char s[11];
+		int tmp;
+		if (nowRider->Cur_rider->id <= (INIT_MONEY / HIRE_MONEY - 1))
+			tmp = 0;
+		else
+			tmp = nowRider->Cur_rider->id;
+		setfont(20, 0, "黑体");
+		setcolor(WHITE);
+		setbkmode(TRANSPARENT);
+		sprintf(s, "%d", tmp);
 		if (i % 2 == 1 && j % 2 == 0) //横向道路
 		{
 			if (pathMode >= 0 && pathMode <= 2) //先往右走
@@ -233,14 +261,17 @@ void drawRider(int *countTime, int *cnt_hire)
 					case 0:
 						getimage(rider_img, "Rider(right).png", 26, 24);
 						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 + (300) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 9, BLACK);
+						outtextrect(25 + j / 2 * (HWID + RWID) + 12 + (300) / 4 + 12, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 9 - 8, 25, 25, s);
 						break;
 					case 1:
 						getimage(rider_img, "Rider(up).png", 17, 26);
 						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4, BLACK);
+						outtextrect(25 + j / 2 * (HWID + RWID) + 54 + 8, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4 - 8, 25, 25, s);
 						break;
 					case 2:
 						getimage(rider_img, "Rider(down).png", 17, 26);
 						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 54, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4, BLACK);
+						outtextrect(25 + j / 2 * (HWID + RWID) + 54 + 8, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4 - 8, 25, 25, s);
 						break;
 					}
 				}
@@ -277,14 +308,17 @@ void drawRider(int *countTime, int *cnt_hire)
 					case 3:
 						getimage(rider_img, "Rider(left).png", 26, 24);
 						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12 - (300) / 4, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+						outtextrect(25 + j / 2 * (HWID + RWID) + 12 - (300) / 4 + 12, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10 - 8, 25, 25, s);
 						break;
 					case 4:
 						getimage(rider_img, "Rider(up).png", 17, 26);
 						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4, BLACK);
+						outtextrect(25 + j / 2 * (HWID + RWID) - 21 + 8, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 - (300 - 152) / 4 - 8, 25, 25, s);
 						break;
 					case 5:
 						getimage(rider_img, "Rider(down).png", 17, 26);
 						putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) - 21, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4, BLACK);
+						outtextrect(25 + j / 2 * (HWID + RWID) - 21 + 8, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 12 + (300 - 152) / 4 - 8, 25, 25, s);
 						break;
 					}
 				}
@@ -293,6 +327,7 @@ void drawRider(int *countTime, int *cnt_hire)
 			{
 				getimage(rider_img, "Rider(right).png", 26, 24);
 				putimage_transparent(NULL, rider_img, 25 + j / 2 * (HWID + RWID) + 12, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10, BLACK);
+				outtextrect(25 + j / 2 * (HWID + RWID) + 12 + 12, 50 + (i - 1) / 2 * (HWID + RWID) + HWID - 10 - 8, 25, 25, s);
 			}
 		}
 		else if (i % 2 == 0 && j % 2 == 1) //纵向道路
@@ -329,14 +364,17 @@ void drawRider(int *countTime, int *cnt_hire)
 					case 0:
 						getimage(rider_img, "Rider(up).png", 17, 26);
 						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 - (300) / 4, BLACK);
+						outtextrect(25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4 + 8, 50 + i / 2 * (HWID + RWID) + 1 - (300) / 4 - 8, 25, 25, s);
 						break;
 					case 1:
 						getimage(rider_img, "Rider(left).png", 26, 24);
 						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+						outtextrect(25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4 + 12, 50 + i / 2 * (HWID + RWID) - 35 - 8, 25, 25, s);
 						break;
 					case 2:
 						getimage(rider_img, "Rider(right).png", 26, 24);
 						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) - 35, BLACK);
+						outtextrect(25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4 + 12, 50 + i / 2 * (HWID + RWID) - 35 - 8, 25, 25, s);
 						break;
 					}
 				}
@@ -373,14 +411,17 @@ void drawRider(int *countTime, int *cnt_hire)
 					case 3:
 						getimage(rider_img, "Rider(down).png", 17, 26);
 						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1 + (300) / 4, BLACK);
+						outtextrect(25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4 + 8, 50 + i / 2 * (HWID + RWID) + 1 + (300) / 4 - 8, 25, 25, s);
 						break;
 					case 4:
 						getimage(rider_img, "Rider(left).png", 26, 24);
 						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+						outtextrect(25 + (j - 1) / 2 * (HWID + RWID) + HWID - 1 - (300 - 152) / 4 + 12, 50 + i / 2 * (HWID + RWID) + 40 - 8, 25, 25, s);
 						break;
 					case 5:
 						getimage(rider_img, "Rider(right).png", 26, 24);
 						putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4, 50 + i / 2 * (HWID + RWID) + 40, BLACK);
+						outtextrect(25 + (j - 1) / 2 * (HWID + RWID) + HWID + (300 - 152) / 4 + 12, 50 + i / 2 * (HWID + RWID) + 40 - 8, 25, 25, s);
 						break;
 					}
 				}
@@ -389,6 +430,7 @@ void drawRider(int *countTime, int *cnt_hire)
 			{
 				getimage(rider_img, "Rider(down).png", 17, 26);
 				putimage_transparent(NULL, rider_img, 25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4, 50 + i / 2 * (HWID + RWID) + 1, BLACK);
+				outtextrect(25 + (j - 1) / 2 * (HWID + RWID) + HWID + 4 + 8, 50 + i / 2 * (HWID + RWID) + 1 - 8, 25, 25, s);
 			}
 		}
 		nowRider = nowRider->Nxt_rider;
